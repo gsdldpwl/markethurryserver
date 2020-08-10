@@ -1,0 +1,140 @@
+* {
+    list-style-type: none;
+    outline: none;
+    text-decoration: none !important;
+}
+
+html { height: 100% }
+@import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css); 
+body {
+    min-width: 1580px;
+    max-width: 1920px;
+    height: 100%;
+    word-spacing: -1px;
+    margin: 0px auto;
+    overflow-x: hidden;
+    font-family: "Noto Sans KR",  sans-serif;
+}
+
+/* 헤더 */
+#header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 202;
+    height: 60px;
+    box-sizing: border-box;
+    background-color: #08718E;
+}
+.header {
+    display: flex;
+    align-items: center;
+    min-width: 1024px;
+    max-width: 1920px;
+    height: 60px;
+    font-size: 1.1em;
+    font-weight: bold;
+    text-align: left;
+    color: white;
+}
+
+.header > div:first-child {
+    flex: 1;
+    display: block;
+    height: 60px;
+}
+
+#logoimg {
+    cursor: pointer;
+    height: 60px;
+    margin-left: 20px;
+}
+
+#home {
+    display: block;
+    float: right;
+    position: relative;
+    right: 20px;
+    margin: 14px 20px;
+    cursor: pointer;
+    line-height: 30px;
+}
+
+#homeglyphicon { 
+    color: white;
+    text-align: center;
+    line-height: 30px;
+    width: 30px;
+}
+
+/* 메뉴 */
+
+.glyphicon { 
+    text-align: center;
+    line-height: 30px;
+    width: 30px;
+}
+
+#side {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    bottom: 0;
+    z-index: 202;
+    width: 220px;
+    height: 100%;
+    background-color: #fafafa;
+    display: block;
+    float: left;
+}
+
+.glyphicon, #menu a {
+    color: #999;
+    font-size: 1.15em;
+    font-weight: bold;
+}
+
+#menu {padding: 0;}
+#menu > li > div {
+    /* margin: 20px auto; */
+    padding: 10px 0px 10px 20px;
+}
+
+.sublist {
+    padding-left: 20px;
+    margin: 10px 0px;
+    font-size: 0.85em;
+}
+
+.subsublist {
+    padding-left: 20px;
+    margin: 10px 0px;
+    font-size: 0.9em;
+}
+
+.sublist li, #staticlist div {
+    padding: 4px 0px;
+}
+
+#itemlist, #orderlist, #borderlist, #staticlist, #saleslist, #itemslist {
+    display: none;
+    cursor: pointer;
+}
+
+#main {
+    position: absolute;
+    top: 60px;
+    left: 220px;
+    width: 1700px;
+    border: 0px solid #666666;
+    background-color: white;
+    display: block;
+    float: right;
+    /* padding-right: 17px; */
+}
+
+#container {
+    width: 1600px;
+    margin: 0 auto;
+}

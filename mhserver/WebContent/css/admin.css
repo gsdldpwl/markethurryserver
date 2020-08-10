@@ -1,0 +1,391 @@
+body {
+    width: 1920px;
+    height: 100%;
+    word-spacing: -1px;
+    margin: 0px auto;
+}
+
+#header {
+    background-color: #8A98AA;
+    height: 60px;
+    font-family: '맑은 고딕';
+    font-size: 1.5em;
+    font-weight: bold;
+    text-align: left;
+    color: white;
+    padding-left: 20px;
+}
+
+#header > img {
+    cursor: pointer;
+    /* width: 250px; */
+    height: 60px;
+}
+
+#header > #home {
+    display: block;
+    float: right;
+    background-image: url("../images/icons8-home-30.png");
+    background-repeat: no-repeat;
+    margin-top: 12px;
+    margin-right: 20px;
+    padding-left: 40px;
+    cursor: pointer;
+}
+
+#side {
+    width: 219px;
+    height: 841px;
+    background-color: #D5DFEA;
+    display: block;
+    float: left;
+}
+
+#menu {
+    list-style-type: none;
+}
+
+#menu > li > div {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin: 50px auto;
+}
+
+#menu > li > div > a {
+    text-decoration: none;
+    color: white;
+}
+
+#menu > li > ul > li {
+    list-style-type: none;
+    margin: 20px auto;
+}
+
+#menu > li > ul > li > a{
+    text-decoration: none;
+    font-weight: bold;
+    color: white;
+}
+
+#item {
+    background-image: url("../images/icons8-sugar-cubes-25.png");
+    background-repeat: no-repeat;
+    padding-left: 36px;
+}
+
+#order {
+    background-image: url("../images/icons8-shopping-cart-25.png");
+    background-repeat: no-repeat;
+    padding-left: 36px;
+}
+
+#customer {
+    background-image: url("../images/icons8-customer-support-25.png");
+    background-repeat: no-repeat;
+    padding-left: 36px;
+}
+
+#border {
+    background-image: url("../images/icons8-flipboard-25.png");
+    background-repeat: no-repeat;
+    padding-left: 34px;
+}
+
+#static {
+    background-image: url("../images/icons8-combo-chart-25.png");
+    background-repeat: no-repeat;
+    padding-left: 36px;
+}
+
+#itemlist, #orderlist, #borderlist, #staticlist, #saleslist, #itemslist {
+    display: none;
+    cursor: pointer;
+}
+
+#staticlist > div {
+    font-size: 1em;
+    font-weight: bold;
+    margin: 20px auto;
+}
+
+#staticlist > div > a {
+    text-decoration: none;
+    color: white;
+}
+
+#saleslist > li {
+    list-style-type: none;
+    font-size: 1em;
+    margin: 20px auto;
+}
+
+#saleslist > li > a {
+    list-style-type: none;
+    text-decoration: none;
+    font-size: 1em;
+    color: white;
+    margin: 20px auto;
+}
+
+#itemslist > li {
+    list-style-type: none;
+    font-size: 1em;
+    margin: 20px auto;
+}
+
+#itemslist > li > a {
+    list-style-type: none;
+    text-decoration: none;
+    font-size: 1em;
+    color: white;
+    margin: 20px auto;
+}
+
+#main {
+    width: 1701px;
+    height: 770px;
+    border: 0px solid #666666;
+    background-color: white;
+    display: block;
+    float: right;
+}
+
+#maintitle {
+    border: 0px solid black;
+    font-size: 1.2em;
+    color: #666666;
+    margin: 60px 40px;
+}
+
+#bar1 {
+    border: 1px solid #666666;
+    border-radius: 5px;
+    width: 1600px;
+    height: 150px;
+    margin-top: -40px;
+    margin-left: 40px;
+}
+
+#bar1 > #order2, #pay, #payback {
+    border-right: 0px dashed #666666;
+    width: 140px;
+    height: 60px;
+    float: left;
+    margin: 40px 190px;
+    cursor: pointer;
+}
+
+#payback {
+    border-right: 0px;
+}
+
+#order2 > img {
+    display: block;
+    float: left;
+}
+
+#order2 > .text1 {
+    display: block;
+    float: left;
+    margin: auto 10px;
+    padding-top: 10px;
+}
+
+#order2 > .text2 {
+    display: block;
+    float: left;
+    padding-left: 10px;
+}
+
+#pay > img {
+    display: block;
+    float: left;
+}
+
+#pay > .text1 {
+    display: block;
+    float: left;
+    margin: auto 10px;
+    padding-top: 10px;
+}
+
+#pay > .text2 {
+    display: block;
+    float: left;
+    padding-left: 10px;
+}
+
+#payback > img {
+    display: block;
+    float: left;
+}
+
+#payback > .text1 {
+    display: block;
+    float: left;
+    margin: auto 10px;
+    padding-top: 10px;
+}
+
+#payback > .text2 {
+    display: block;
+    float: left;
+    padding-left: 10px;
+}
+
+#maintitle2 {
+    border: 0px solid black;
+    font-size: 1.2em;
+    color: #666666;
+    margin: 60px 40px;
+}
+
+#bar2 {
+    border: 1px solid #666666;
+    border-radius: 5px;
+    width: 1600px;
+    height: 150px;
+    margin-top: -40px;
+    margin-left: 40px;
+}
+
+#bar2 > #order3, #pay2, #payback2 {
+    border-right: 0px dashed #666666;
+    width: 140px;
+    height: 60px;
+    float: left;
+    margin: 40px 190px;
+    cursor: pointer;
+}
+
+#payback2 {
+    border-right: 0px;
+}
+
+#order3 > img {
+    display: block;
+    float: left;
+}
+
+#order3 > .text1 {
+    display: block;
+    float: left;
+    margin: auto 10px;
+    padding-top: 10px;
+}
+
+#order3 > .text2 {
+    display: block;
+    float: left;
+    padding-left: 10px;
+}
+
+#pay2 > img {
+    display: block;
+    float: left;
+}
+
+#pay2 > .text1 {
+    display: block;
+    float: left;
+    margin: auto 10px;
+    padding-top: 10px;
+}
+
+#pay2 > .text2 {
+    display: block;
+    float: left;
+    padding-left: 10px;
+}
+
+#payback2 > img {
+    display: block;
+    float: left;
+}
+
+#payback2 > .text1 {
+    display: block;
+    float: left;
+    margin: auto 10px;
+    padding-top: 10px;
+}
+
+#payback2 > .text2 {
+    display: block;
+    float: left;
+    padding-left: 10px;
+}
+
+ul.tabs {
+    float: left;
+    list-style: none;
+    height: 32px;
+    border-left: 1px solid #eee;
+    width: 100%;
+    font-family:"dotum";
+    font-size:12px;
+}
+
+ul.tabs li {
+    float: left;
+    font-size: 1em;
+    text-align:center;
+    cursor: pointer;
+    width: 12%;
+    height: 40px;
+    border: 1px solid gray;
+    font-weight: bold;
+    background: #fafafa;
+    overflow: hidden;
+    position: relative;
+    padding-top: 10px;
+}
+
+ul.tabs li.active {
+    background: #FFFFFF;
+    /* border-bottom: 1px solid black; */
+    border-left: 1px solid black;
+}
+
+.tab_container {
+    border: 1px solid black;
+    clear: both;
+    float: left;
+    width: 1600px;
+    height: 158px;
+    margin-left: 41px;
+    margin-top: -2px;
+    background: #FFFFFF;
+}
+
+.tab_content {
+    padding: 5px;
+    font-size: 12px;
+    display: none;
+}
+
+.tab_container .tab_content ul {
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+
+.tab_container .tab_content ul li {
+    padding-top: 14px;
+    padding-left: 20px;
+    padding-bottom: 10px;
+    font-size: 1.3em;
+    list-style: none;
+    text-decoration: none;
+}
+ 
+.tab_container .tab_content ul li > a {
+    text-decoration: none;
+    color: black;
+    padding-left: 20px;
+}
+
+#container {
+    width: 1200px;
+    margin: 80px 0px;
+}

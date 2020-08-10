@@ -1,0 +1,10 @@
+INDEX VERSION 1.4+D:\MHserver\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+830889095.index
+1720913946.index
+1786209649.index
+4112764342.index
+1554236703.index
+4112764342.index
+3148426481.index
+441224389.index
+588201838.index

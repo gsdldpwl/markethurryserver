@@ -1,0 +1,312 @@
+        
+        /* noto sans 폰트 */
+        @import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css); 
+        body {
+            
+            height: auto;
+            color: #333;
+            overflow-x: hidden;
+            font-family: "Noto Sans KR",  sans-serif;
+        }
+        
+        /* hyperlink color  */
+        a:link {
+            color: black;
+            text-decoration: none;
+        }
+
+        a:visited {
+            color: black;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: none;
+        }
+
+        /* header */
+        header {
+            width: 1100px;
+            text-align: center;
+            margin: 0px auto;
+        }
+
+        /* header img */
+        header>img {
+            width: 300px;
+            height: 150px;
+        }
+
+        /* 검색창 */
+        #searchbox {
+            width: 238px;
+            height: 36px;
+            padding: 0 50px 0 20px;
+            border: 1px solid #f7f7f6;
+            border-radius: 18px;
+            background-color: #f7f7f7;
+            font-weight: 400;
+            font-size: 12px;
+            color: #cccccc;
+            line-height: 16px;
+            outline: none;
+        }
+
+        #searchimg {
+            font-size: 1.3em;
+            position: relative;
+            right: 40px;
+            top: 5px;
+        }
+
+        /* 상단 메뉴 (로그인, 회원가입, 고객센터) */
+        #noticebar {
+            width: 1920px;
+            height: 30px;
+            background-color: #08718E;
+            overflow: hidden;
+        }
+
+        #noticeMent {
+            width: 1100px;
+            margin: 0px auto;
+            text-align: center;
+            transition: all 1s;
+        }
+
+        .eachNotice {
+            display: block;
+            font-size: 15px;
+            padding: 5px 0px;
+            color: white;   
+        }
+
+        #usermenu {
+            width: 1100px;
+            height: 30px;
+            margin: 0px auto;
+            text-align: right;
+            padding-top: 20px;
+        }
+
+        #usermenu>a {
+            display: inline-block;
+            border-left: 1px solid #cccccc;
+            text-align: center;
+            width: 70px;
+            font-size: 12px;
+        }
+
+        #usermenu>a:first-child {
+            border: 0px;
+        }
+
+        #usermenu>a:last-child {
+            margin-left: -3px;
+        }
+
+        /* 중앙 메인 메뉴 리스트 */
+        /* 요 부분은 메뉴가 내려오면 페이지 상단에 붙도록 수정 필요함 */
+        #menubar{
+            width: 1100px;
+            margin: 0px auto;
+            text-align: center;
+            font-size: 16px;
+            border-bottom: 2px solid #f7f7f6;
+        }
+
+        #menubar>a, #menubartp>a {
+            display: inline-block;
+            width: 120px;
+            border-right: 1px solid #cccccc;
+            margin: 30px 0px;
+        }
+
+        #menubar>a:first-child, #menubartp>a:first-child  {
+            margin-bottom: 0px;
+            border: 0px;
+            padding-bottom: 30px;
+        }
+        
+        #menubar>a:nth-child(2), #menubartp>a:nth-child(2){
+            border-left: 1px solid #cccccc;
+        }
+        
+
+        #menubar>a:nth-child(5), #menubartp>a:nth-child(5) {
+            border-right: 0px;
+        }
+
+        /* menubar 상단에 숨겨놓는 menubar */
+        #menubartp{
+            width: 100%;
+            min-width: 1100px;
+            margin: 0px auto;
+            text-align: center;
+            position: fixed;
+            left: 0px;
+            top:-80px;
+            font-size: 16px;
+            z-index: 1;
+            opacity: 0;
+            background-color: white;
+            border-bottom: 2px solid #f7f7f6;
+        }
+
+        #topbtn {
+            position: fixed;
+            width: 58px;
+            height: 58px;
+            background: url("../images/topbtn.png") no-repeat 50% 50%;
+            opacity: 0;
+            transition: all .5s;
+        }
+
+        #detailmenu {
+            display: none;
+            width: 140px;
+            position: absolute;
+            left: 490px;
+            top: 294px;
+            z-index: 3;
+            border: 1px solid rgb(221, 221, 221);
+            background-color: white;
+        }
+
+        #detailmenu > ul {
+            font-size: 16px;
+            margin: 0;
+            padding: 0;
+        }
+
+        #detailmenu > ul > a > li {
+            margin: 15px 0;
+            margin-left: 10px;
+        }
+
+        /* footer */
+
+        #footer {
+            width: 100%;
+            /* width: 1920px; */
+            height: 300px;
+            /* margin-top: 100px; */
+            margin: 100px auto 0px auto;
+            background-color: #FAFBFC;
+            border-top: 1px solid #eeeeee;
+        }
+
+        #innerfooter {
+            width: 1100px;
+            height: 300px;
+            margin: 0px auto;
+        }
+
+        .footerctnt {
+            display: block;
+            width: 547px;
+            height: 300px;
+            margin: 0px auto;
+            padding: 30px 20px;
+            float: left;
+        }
+
+
+        #asknum {
+            display: inline-block;
+            height: 40px;
+            font-size: 32px;
+            font-weight: 500;
+        }
+
+        
+        .ask {
+            display: block;
+            width: 153px;
+            height: 40px;
+            padding-top: 7px;
+            border: 1px solid #eeeeee;
+            border-radius: 5px;
+            font-weight: 700;
+            font-size: 14px;
+            color: #333;
+            line-height: 22px;
+            text-align: center;
+            background-color: #ffffff;
+        }
+
+        #ft1  tr  td {
+            padding: 10px 5px;
+        }
+
+        .footerctnt:last-child {
+            padding: 15px 0px;
+            
+        }
+
+        #ft2 tr td > a {
+            padding: 5px 10px;
+        }
+
+        #ft2 tr:nth-child(2) td{
+            padding-top:25px;
+            
+        }
+
+        .cpmdesc {
+            font-size: 12px;
+            color: #999999;
+        }
+
+        #insta {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background-image: url("../images/insta.png");
+            background-size: contain;
+        }
+        
+        #fb {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background-image: url("../images/fb.png");
+            background-size: contain;
+        }
+        
+        #post {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background-image: url("../images/post.png");
+            background-size: contain;
+        }
+        
+        #blog {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background-image: url("../images/blog.png");
+            background-size: contain;
+        }
+        
+        .snslogo {
+            /* border: 1px solid black; */
+            margin: 5px 5px;
+        }
+
+        #menubar > #shoppingbox, #menubartp > #shoppingbox{
+            padding: 0px;
+            margin: 0;
+            display: inline-block;
+            height: 40px;
+            width: 40px;
+            background-image: url("../images/shoppingbasket.png");
+            background-size: contain;
+            background-repeat: no-repeat;
+            border: 0px;
+
+            position: relative;
+            left: -15px;
+            top: 15px;
+        }

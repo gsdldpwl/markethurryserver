@@ -1,0 +1,144 @@
+
+        /* ---------------------------------------------------------------------------- */
+        * { outline: none; }
+
+        /* 회원 정보 */
+        #memberContain {
+            width: 100%;
+            text-align: center;
+            height: 250px;
+            background-color: #f5f5f5;
+        }
+
+        #memberInfo {
+            width: 550px;
+            height: 170px;
+            background-color: white;
+            float: left;
+            margin-right: 10px;
+        }
+
+        #memberPoint {
+            width: 200px;
+            height: 170px;
+            background-color: white;
+            float: left;
+        }
+
+        #memberInfo, #memberInfo > div{ float: left; }
+        #memberInfo > div { margin-top: 45px; }
+        
+        .txtInfo {
+            display: block;
+            height: 30px;
+            line-height: 30px;
+        }
+
+        #memberGrade {
+            width: 80px;
+            height: 80px;
+            border: 1px solid #aaa;
+            color: #999;
+            font-weight: bold;
+            border-radius: 5px;
+            font-size: 1.05em;
+            margin-left: 40px;
+            line-height: 80px;
+        }
+
+        .btnGrade {
+            display: block;
+            width: 200px;
+            height: 35px;
+            border-radius: 20px;
+            border: none;
+            background-color: #f5f5f5;
+        }
+
+        #memberPoint > div:last-child { cursor: pointer; }
+        #memberPoint > div {
+            width: 150px;
+            text-align: left;
+            margin: 45px 45px;
+        }
+
+        #MyMenu > div {
+            width: 200px;
+            height: 50px;
+            border: 1px solid #ccc;
+            border-bottom: none;
+        }
+
+        #MyMenu > div:first-child {
+            border: none; 
+            font-size: 2.5em; 
+            letter-spacing: -1px;
+            font-weight: bold; 
+            margin-bottom: 30px;
+            color: #444;
+        }
+
+        #MyMenu > div:nth-child(3) {border: 1px solid #ccc;}
+        #MyMenu > div:nth-child(4) {
+            border: none; 
+            margin-top: 20px; 
+            background-color: #f5f5f5; 
+            border-top-right-radius: 25px;
+            border-bottom-right-radius: 25px;
+        }
+
+        .menulist, .qlist {
+            line-height: 50px;
+            color: #777;
+            font-size: 0.9em;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .menulist > div:first-child, .qlist > div:first-child {
+            margin-left: 15px;
+            width: 150px;
+            height: 50px;
+            float: left;
+        }
+
+        .menulist > div:last-child, .qlist > div:last-child {
+            text-align: right;
+            float: left;
+            width: 15px;
+            height: 50px;
+            margin-right: 15px;
+        }
+
+        /* 현재 페이지 메뉴 리스트에 붙는 css */
+        .nowPage {
+            background-color: #f5f5f5;
+            color: #08718E;
+        }
+        .focusPage {
+            background-color: #f5f5f5;
+            color: #08718E;
+        }
+
+        /* ---------------------------------------------------------------------------- */
+
+        /* 마이페이지 메뉴 헤더 들어가는 부분 */
+        #title {
+            font-size: 1.7em;
+            font-weight: bold;
+            color: #444;
+        }
+        #subtitle {
+            font-size: 0.5em;
+            letter-spacing: -0.2px;
+            position: relative;
+            left: 10px;
+            color: #666;
+        }
+
+        #selectYear {
+            width: 100px;
+            font-size: 0.9em;
+        }
+
+        /* ---------------------------------------------------------------------------- */

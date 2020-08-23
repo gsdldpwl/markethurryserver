@@ -2,6 +2,7 @@ package com.test.crawler;
 
 import java.beans.Statement;
 
+
 import java.io.BufferedReader;
 
 import java.io.IOException;
@@ -22,7 +23,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import com.test.main.DBUtil;
+import com.test.user.main.DBUtil;
 
 import org.json.*;
 

@@ -1,2 +1,4 @@
 eclipse.preferences.version=1
 encoding//WebContent/WEB-INF/views/inc/header.jsp=UTF-8
+encoding//WebContent/WEB-INF/views/user/customercenter/orderlistpopup.jsp=UTF-8
+encoding//WebContent/WEB-INF/views/user/product/searchedList.jsp=UTF-8

@@ -12,7 +12,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import com.test.main.DBUtil;
+import com.test.user.main.DBUtil;
 
 public class ReceipeDummy {
 
@@ -56,6 +56,7 @@ public class ReceipeDummy {
 					doc = Jsoup.connect(eachUrl).get();
 					Elements subjects = doc.select("small.recipe_product");
 					Elements contents = doc.select("p.words");
+					
 					Elements regdates = doc.select("span.td");
 					Elements images = doc.select("div.pic > img");
 
@@ -68,7 +69,7 @@ public class ReceipeDummy {
 						receipe.setTitle(subject.text());
 					}
 					for (Element content : contents) {
-						receipe.setContent(content.text());
+						receipe.setContent(content.outerHtml().replace("<p class=\"words\"> <strong class=\"recipe_item_tit\">","").replace("</strong>", "").replace("</b>","").replace("<b>","").replace("</br>","").replace("</p>", ""));
 					}
 
 					boolean flag = true;
@@ -84,11 +85,13 @@ public class ReceipeDummy {
 					for (Element img : images) {
 						receipe.setImgpath(img.attr("src"));
 					}
-					
+					System.out.println(receipe.getTitle());
+					System.out.println(receipe.getImgpath());
 					System.out.println("crawling end");
 					
 					Connection conn = util.open();
-					insert(receipe, conn);
+//					insert(receipe, conn);
+					update(receipe,conn);
 					conn.close();
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -99,6 +102,25 @@ public class ReceipeDummy {
 		}
 	}
 	
+	private static void update(Receipe receipe, Connection conn) {
+		PreparedStatement stat = null;
+		
+		String sql = "update receipe set content=? where title=?";
+		String img = receipe.getImgpath();
+		try {
+			stat = conn.prepareStatement(sql);
+			stat.setString(1, receipe.getContent());
+			stat.setString(2, receipe.getTitle());
+			
+			stat.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+	}
+
 	private static void insert(Receipe receipe, Connection conn) throws SQLException {
 
 		PreparedStatement stat = null;

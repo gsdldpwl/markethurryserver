@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Random;
 
-import com.test.main.DBUtil;
+import com.test.user.main.DBUtil;
 
 public class ReviewDummy {
 	//

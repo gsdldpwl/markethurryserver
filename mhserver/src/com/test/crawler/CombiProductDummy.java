@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.util.Random;
 
-import com.test.main.DBUtil;
+import com.test.user.main.DBUtil;
 
 public class CombiProductDummy {
 

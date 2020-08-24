@@ -19,7 +19,7 @@ public class HotProduct extends HttpServlet {
 		//DB작업
 		HotProductDAO dao = new HotProductDAO();
 		
-		ArrayList<HotProductDTO> list = new ArrayList<HotProductDTO>();
+		ArrayList<ProductDTO> list = new ArrayList<ProductDTO>();
 		
 		list = dao.Hotlist();
 		

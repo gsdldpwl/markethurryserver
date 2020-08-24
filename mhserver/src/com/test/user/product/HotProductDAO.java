@@ -1,7 +1,6 @@
 package com.test.user.product;
 
 import java.sql.Connection;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -31,7 +30,7 @@ public class HotProductDAO {
 		}
 	}
 
-	public ArrayList<HotProductDTO> Hotlist() {
+	public ArrayList<ProductDTO> Hotlist() {
 		
 		DecimalFormat formatter = new DecimalFormat("###,###");
 
@@ -42,11 +41,11 @@ public class HotProductDAO {
 			stat = conn.createStatement();
 			rs = stat.executeQuery(sql);
 			
-			ArrayList<HotProductDTO> list = new ArrayList<HotProductDTO>();
+			ArrayList<ProductDTO> list = new ArrayList<ProductDTO>();
 			
 			while (rs.next()) {
 				
-				HotProductDTO dto = new HotProductDTO();
+				ProductDTO dto = new ProductDTO();
 				
 				dto.setSeq(rs.getString("seq"));
 				dto.setName(rs.getString("name"));

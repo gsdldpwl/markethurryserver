@@ -31,7 +31,7 @@ public class CheapProductDAO {
 		}
 	}
 
-	public ArrayList<CheapProductDTO> Cheaplist() {
+	public ArrayList<ProductDTO> Cheaplist() {
 		
 		DecimalFormat formatter = new DecimalFormat("###,###");
 
@@ -42,11 +42,11 @@ public class CheapProductDAO {
 			stat = conn.createStatement();
 			rs = stat.executeQuery(sql);
 			
-			ArrayList<CheapProductDTO> list = new ArrayList<CheapProductDTO>();
+			ArrayList<ProductDTO> list = new ArrayList<ProductDTO>();
 			
 			while (rs.next()) {
 				
-				CheapProductDTO dto = new CheapProductDTO();
+				ProductDTO dto = new ProductDTO();
 				
 				dto.setSeq(rs.getString("seq"));
 				dto.setName(rs.getString("name"));

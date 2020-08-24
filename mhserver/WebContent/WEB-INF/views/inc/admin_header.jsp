@@ -3,6 +3,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@include file="/WEB-INF/views/inc/asset.jsp" %>   
 <link rel="stylesheet" href="/mh/css/admin_template.css">
+<link rel="stylesheet" href="/mh/css/delivery.css">
+<link rel="stylesheet" href="/mh/css/jquery-ui.css" />
+<script src="/mh/js/jquery-1.12.4.js"></script>
+<script src="/mh/js/jquery-ui.js"></script>
 <script src="/mh/js/highcharts.js"></script>
   
 <!-- 헤더 -->

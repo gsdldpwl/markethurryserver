@@ -19,7 +19,7 @@ public class CheapProduct extends HttpServlet {
 		//DB작업
 		CheapProductDAO dao = new CheapProductDAO();
 		
-		ArrayList<CheapProductDTO> list = new ArrayList<CheapProductDTO>();
+		ArrayList<ProductDTO> list = new ArrayList<ProductDTO>();
 		
 		list = dao.Cheaplist();
 		

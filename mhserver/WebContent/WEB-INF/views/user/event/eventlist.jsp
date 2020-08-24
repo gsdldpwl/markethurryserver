@@ -16,8 +16,32 @@
    <div id="smalltitle" class="smalltitle">
        <!-- 전체 카테고리에서 선택한 카테고리명 표시하기 -->
      <!-- <span class="glyphicon glyphicon-apple" style="font-size: 3em; padding-top: 10px;"></span> -->
-     <p style="display: inline-block; margin-left: 0px; font-size: 16px; margin-top: 30px;">알뜰상품</p>
+     <p style="display: inline-block; margin-left: 0px; font-size: 16px; margin-top: 30px;">${title}</p>
    </div>
+
+
+    <!-- 소주제(작은카테고리) 선택 순으로 상품목록 정렬하기 -->
+    <div id="titleselect" class="titleselect">
+
+        <a class="nameselect">
+            <span class="on">신상품순</span>
+            <span class="glyphicon glyphicon-menu-down" id="moreselect"></span>
+        </a>
+        <ul class="selectlist">
+            <li>
+                <a class="on">신상품순</a>
+            </li>
+            <li>
+                <a class="">인기상품순</a>
+            </li>
+            <li>
+                <a class="">낮은가격순</a>
+            </li>
+            <li>
+                <a class="">높은가격순</a>
+            </li>
+        </ul>
+    </div>
 
     <!-- 상품 목록들 -->
     <div id="goodsList" style="border: 1px solid rgb(194, 192, 192);">

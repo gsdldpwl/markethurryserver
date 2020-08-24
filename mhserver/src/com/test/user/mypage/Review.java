@@ -27,7 +27,7 @@ public class Review extends HttpServlet {
 		HttpSession session = req.getSession();
 		
 		// ## 1-1. 작성한 후기 ##
-		ArrayList<ReviewDTO> reviewlist = dao.getReview((String)session.getAttribute("seq"));
+		ArrayList<ReviewDTO> reviewlist = dao.getReviewAll((String)session.getAttribute("seq"));
 		
 		// ## 1-2. 작성 가능한 후기 ##
 		ArrayList<OrderListDTO> reviewavaillist = dao.getReviewAvail((String)session.getAttribute("seq"));

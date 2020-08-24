@@ -213,7 +213,7 @@
                                 <input type="checkbox" class="ckbox recipelist" name="recipelist">
                             </label>
                         </td>
-                        <td><img src="${rlist.img}" class="itemImg"></td>
+                        <td><img src="/mh/image/${rlist.img}" class="itemImg"></td>
                         <td>
                             <div class="recipetitle">${rlist.title}</div>
                             <div class="recipecategory">${rlist.category}</div>

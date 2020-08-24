@@ -13,7 +13,15 @@ import javax.servlet.http.HttpServletResponse;
 public class Review_Upload extends HttpServlet {
 	
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+		// orderdetail seq 받아옴
+		req.setCharacterEncoding("UTF-8");
+		String odseq = req.getParameter("odseq");
+		String pname = req.getParameter("pname");
+
+		req.setAttribute("orderdetailseq", odseq);
+		req.setAttribute("productname", pname);
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/user/mypage/review_upload.jsp");
 		dispatcher.forward(req, resp);

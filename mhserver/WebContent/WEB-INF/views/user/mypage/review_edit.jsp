@@ -133,22 +133,22 @@
                 * 후기 작성은 배송 완료일로부터 <b>30</b>일 이내 가능합니다.
             </div>
 
-			<form method="POST" action="/mh/user/mypage/review_uploadok.do">
+			<form method="POST" action="/mh/user/mypage/review_editok.do">
            
 	            <!-- select button -->
 	            <div class="MyRCPpart" style="margin-top: 40px;">
 	                <div class="rcpTitle">상품</div>
-	                <input type="text" id="itemTitle" class="UserInputRCP" value="${productname}" readonly>
+	                <input type="text" id="itemTitle" class="UserInputRCP" value="${rdto.pname}" readonly>
 	            </div>
 	
 	            <div class="MyRCPpart">
 	                <div class="rcpTitle">제목</div>
-	                <input type="text" id="UserInputTitle" name="UserInputTitle" class="UserInputRCP">
+	                <input type="text" id="UserInputTitle" name="UserInputTitle" class="UserInputRCP" value="${rdto.title}">
 	            </div>
 	
 	            
 	            <div class="rcpTitle">내용</div>
-	            <textarea id="UserInputsubstance" name="UserInputsubstance" class="UserInputRCP"></textarea>
+	            <textarea id="UserInputsubstance" name="UserInputsubstance" class="UserInputRCP">${rdto.content}</textarea>
 	            
 	            <div class="MyRCPpart">
 	                <div class="filebox preview-image"> 
@@ -162,7 +162,8 @@
 	                <button type="submit" class="btnInputBorad" id="SuccessInput">작성완료</button>
 	            </div>
     		
-    			<input type="hidden" name="odseq" value="${orderdetailseq}">
+    			<input type="hidden" name="seq" value="${rdto.seq}">
+    			<input type="hidden" name="image" value="${rdto.image}">
     		</form>
             <!-- ※ 오른쪽 영역 끝 ※ -->
             

@@ -266,7 +266,7 @@ public class MypageDAO {
 		
 		try {
 			
-			String sql = "select count(*) as cnt from member where id=? and pw=?";
+			String sql = "select count(*) as cnt from member where id=? and pw=? and delflag = 0";
 			pstat = conn.prepareStatement(sql);
 			pstat.setString(1, id);
 			pstat.setString(2, pw);
@@ -444,15 +444,16 @@ public class MypageDAO {
 
 	/**
 	 * Review.java
-	 * 회원의 작성한 후기를 가져온다.
+	 * 회원이 작성한 모든 후기를 가져온다.
 	 * @param memberseq 회원 번호
 	 * @return 회원이 작성한 후기 DTO를 저장한 ArrayList
 	 */
-	public ArrayList<ReviewDTO> getReview(String memberseq) {
+	public ArrayList<ReviewDTO> getReviewAll(String memberseq) {
 		
 		try {
 			
-			String sql = "select * from review where orderdetailseq in (select odseq from vwOrderlist where mseq = ?)";
+			String sql = "select r.*, (select name from product where seq = (select productseq from orderdetail o where seq = r.orderdetailseq and delflag = 0)) as pname "
+					+ "from review r where orderdetailseq in (select odseq from vwOrderlist where mseq = ? and delflag = 0)";
 			
 			pstat = conn.prepareStatement(sql);
 			pstat.setString(1, memberseq);
@@ -466,10 +467,16 @@ public class MypageDAO {
 				dto.setSeq(rs.getString("seq"));
 				dto.setOrderdetailseq(rs.getString("orderdetailseq"));
 				dto.setTitle(rs.getString("title"));
-				dto.setContent(rs.getString("content"));
+				
+				// 내용 개행처리
+				String content = rs.getString("content");
+				content = content.replace("\r\n", "<br>");
+				dto.setContent(content);
+				
 				dto.setImage(rs.getString("image"));
 				dto.setRegdate(rs.getString("regdate").split(" ")[0].replace("-", "."));
 				dto.setReadcount(rs.getInt("readcount"));
+				dto.setPname(rs.getString("pname"));
 				
 				list.add(dto);
 			}
@@ -496,7 +503,7 @@ public class MypageDAO {
 
 		try {
 			
-			String sql = "select * from vwOrderlist where mseq = ? and regdate > (sysdate - 7)";
+			String sql = "select * from vwOrderlist where mseq = ? and dregdate > (sysdate - 30)";
 			pstat = conn.prepareStatement(sql);
 			pstat.setString(1, memberseq);
 			
@@ -513,11 +520,12 @@ public class MypageDAO {
 				
 				dto.setDseq(rs.getString("dseq"));
 				dto.setOlseq(rs.getString("olseq"));
+				dto.setOdseq(rs.getString("odseq"));
 				dto.setMseq(rs.getString("mseq"));
 				dto.setPseq(rs.getString("pseq"));
 				dto.setTotalprice(String.format("%,d", rs.getInt("totalprice")));
 				dto.setPrice(String.format("%,d", rs.getInt("price")));
-				dto.setPname(rs.getString("pname"));
+				dto.setPname(rs.getString("pname").replace("'", "\'"));
 				dto.setImg(rs.getString("img"));
 				dto.setQty(rs.getInt("qty"));
 				dto.setRegdate(rs.getString("regdate").split(" ")[0].replace("-", "."));
@@ -557,6 +565,106 @@ public class MypageDAO {
 		}
 		
 		return null;
+	}
+
+	/**
+	 * Review_Edit.java
+	 * 회원이 작성한 후기를 가져온다.
+	 * @param rseq 선택한 후기 sequence
+	 * @return 회원이 작성한 후기를 저장한 DTO
+	 */
+	public ReviewDTO getReview(String rseq) {
+
+		try {
+			
+			String sql = "select r.*, (select name from product where seq = (select productseq from orderdetail o where seq = r.orderdetailseq and delflag = 0)) as pname "
+					+ "from review r where seq = ? and delflag = 0";
+			
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, rseq);
+			
+			rs = pstat.executeQuery();
+			
+			ReviewDTO dto = new ReviewDTO();
+			
+			while (rs.next()) {
+				dto.setSeq(rs.getString("seq"));
+				dto.setOrderdetailseq(rs.getString("orderdetailseq"));
+				dto.setTitle(rs.getString("title"));
+				dto.setContent(rs.getString("content"));
+				dto.setImage(rs.getString("image"));
+				dto.setRegdate(rs.getString("regdate").split(" ")[0].replace("-", "."));
+				dto.setReadcount(rs.getInt("readcount"));
+				dto.setPname(rs.getString("pname"));
+				
+			}
+			
+			rs.close();
+			pstat.close();
+			
+			return dto;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	/**
+	 * Review_EditOk.java
+	 * 작성한 후기의 수정된 내용을 업데이트한다.
+	 * @param dto 수정된 후기 내용을 저장한 DTO
+	 * @return 업데이트 결과(0: 실패, 1: 성공)
+	 */
+	public int editReview(ReviewDTO dto) {
+		
+		try {
+			
+			String sql = "update review set title = ?, content = ?, image = ? where seq = ?";
+			
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, dto.getTitle());
+			pstat.setString(2, dto.getContent());
+			pstat.setString(3, dto.getImage());
+			pstat.setString(4, dto.getSeq());
+			
+			int result = pstat.executeUpdate();
+			
+			pstat.close();
+			
+			return result;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
+
+	/**
+	 * Review_Delete.java
+	 * 작성한 후기 삭제상태를 업데이트한다.
+	 * @param rseq 삭제할 후기의 sequence
+	 * @return 업데이트 결과(0: 실패, 1: 성공)
+	 */
+	public int deleteReview(String rseq) {
+
+		try {
+			
+			String sql = "update review set delflag = 1 where seq = ?";
+			
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, rseq);
+			
+			int result = pstat.executeUpdate();
+			
+			pstat.close();
+			
+			return result;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return 0;
 	}
 	
 }

@@ -49,8 +49,8 @@
             line-height: 50px;
             margin: 0px 20px;
         }
-        .list_title > div:first-child { float: left; }
-        .list_title > div:last-child { /* .goItemInfo */
+        .list_title div:first-child { float: left; }
+        .list_title div:last-child { /* .goItemInfo */
             width: 20px;
             height: 20px;
             float: right; 
@@ -60,7 +60,7 @@
         .imgItem {
             width: 67px;
             height: 87px;
-            border: 1px solid black;
+            background-size: contain;
             margin: 20px 20px;
         }
 
@@ -140,7 +140,14 @@
 			border-bottom: 1px solid #eee;                	
 			font-weight: bold;
 		}
-		  
+		 
+		.review_img {
+            height: 100px; 
+            background-size: contain; 
+            background-repeat: no-repeat;
+            margin: 10px 20px;
+        }
+        
 		.review_title {
 			padding: 20px 20px 10px 20px;
 			margin: 0px;
@@ -247,19 +254,22 @@
                 
                 <c:if test="${reviewavaillist.size() >= 1}">
                 	<c:forEach items="${reviewavaillist}" var="list">
+                	<form method="POST" action="/mh/user/mypage/review_upload.do">
                     <li class="list_data">
                         <div class="list_container">
-                            <div class="list_title"><div>${list.pname}</div><div class="goItemInfo">></div></div>
+                            <div class="list_title"><a href="/mh/user/product/productdetail.do?seq=${list.pseq}"><div>${list.pname}</div><div class="goItemInfo">></div></a></div>
                             <div>
                                 <div class="imgItem" style="background-image: url(${list.img});"></div>
                                 <div class="infoItem">
                                     <div><span>결제금액</span>${list.totalprice}</div>
                                     <div><span>주문상태</span>${list.status}</div>
                                 </div>
-                                <div><input class="reviewItem reviewWrite" type="button" value="후기 작성하기"></div>
+                                <div><input class="reviewItem reviewWrite" type="submit" value="후기 작성하기"></div>
                             </div>
                         </div>
+                        <input type="hidden" name="pname" value="${list.pname}">
                     </li>
+                    </form>
                     </c:forEach>
                 </c:if>
                 </ul>
@@ -273,17 +283,18 @@
                 	<c:forEach items="${reviewlist}" var="list">
                     <li class="list_data">
                         <div class="review_container">
-                            <div class="review_item"></div>
+                            <div class="review_item">${list.pname}</div>
                             <div>
                                 <div class="review_title">
 	                                <span class="title">${list.title}<span class="regdate">${list.regdate}</span></span>
                                 </div>
+                                <div class="review_img" style="background-image: url(${list.image});"></div>
                                 <div class="review_content">${list.content}</div>
                                 <div class="review_modify">
                                 	<div>
 	                                	조회수 ${list.readcount}
-	                                	<input class="reviewbtn delete" type="button" value="삭제하기">
-	                                	<input class="reviewbtn modify" type="button" value="수정하기">
+	                                	<input class="reviewbtn delete" type="button" onclick="location.href='/mh/user/mypage/review_delete.do?seq=${list.seq}'" value="삭제하기">
+	                                	<input class="reviewbtn modify" type="button" onclick="location.href='/mh/user/mypage/review_edit.do?seq=${list.seq}'" value="수정하기">
                                 	</div>
                                 </div>
                             </div>
@@ -309,6 +320,7 @@
     <!-- script start -->
     <script>
     
+    // ## 현재 페이지 ##
 	$("#MyMenu > div").removeClass("nowPage");
 	$("#goMyReview").addClass("nowPage");
 	
@@ -326,68 +338,8 @@
         $("#reviewTab li").removeClass("nowTab");
         $("#prevTab").addClass("nowTab");
     });
-
-        // 상품 이름 옆의 화살표를 눌렀을 때 해당 상품의 정보 페이지로 넘어간다.
-        $(".goItemInfo").click(function() {
-            console.log("상품 정보 페이지입니다.");
-        });
-
-        // 상품의 후기 작성하기을 눌렀을 때
-        // 해당 상품의 데이터를 가지고 후기 작성 페이지로 넘어간다.
-        $(".reviewWrite").click(function() {
-            console.log("후기 작성 페이지입니다.");
-            location.href='/mh/user/mypage/review_upload.do';
-        });
-
-        // 상품의 후기 확인하기을 눌렀을 때
-        // 본인이 작성항 후기 확인 페이지로 넘어간다.
-        $(".reviewView").click(function() {
-            console.log("후기 확인 페이지입니다.");
-            location.href='/mh/user/mypage/review_view.do';
-        });
-
-        
-        // 주문 목록이 없는 경우
-        // 버튼 클릭은 서버 적용 후에 삭제해야하는 데이터임.
-        $("#btnNoData").click(function() {
-
-            // 하위 li 태그 전부 삭제
-            $("#listOrder *").remove();
-            // 주문 목록이 없다고 나타내주는 li 태그 추가
-            $("#listOrder").append(`<li class="no_data">작성가능 후기 내역이 없습니다.</li>`);
-
-        });
-
-
-        // 주문 목록이 있는 경우
-        $("#btnYesData").click(function() {
-
-            $("#listOrder").css("border-bottom", "0px solid #ccc");
-            
-            // 하위 li 태그 전부 삭제
-            $("#listOrder *").remove();
-
-            // 주문 목록 태그 작성
-            var contents = `<li class="list_data">
-                <div class="list_container">
-                    <div class="list_title"><div>[오하마] 프라임 등심 스테이크 200g(냉장)</div><div>></div></div>
-                    <div>
-                        <div class="imgItem" style="background-image: url();"></div>
-                        <div class="infoItem">
-                            <div><span>결제금액</span>39,000원</div>
-                            <div><span>주문상태</span>배송완료</div>
-                        </div>
-                        <div><input class="reviewItem" type="button" value="후기 작성하기"></div>
-                    </div>
-                </div>
-            </li>`;
-
-            // 리스트, li 태그 추가
-            $("#listOrder").append(contents);
-
-        });
-
-
+    
+    
     </script>
     <script src="/mh/js/main.js"></script>
 </body>

@@ -8,26 +8,26 @@
     <div id="memberContain">
         <div style="display: inline-block; width: 760px; height: 170px; margin: 40px;">
             <div id="memberInfo">
-                <c:if test="${gradeseq == 1}">
+                <c:if test="${dto.gradeseq == 1}">
 		        <div id="memberGrade" style="color: #aee9ff; border-color: #aee9ff">${gradeinfo.name}</div>
 		        </c:if>
-		        <c:if test="${gradeseq == 2}">
+		        <c:if test="${dto.gradeseq == 2}">
 		        <div id="memberGrade" style="color: #7bd2f1; border-color: #7bd2f1">${gradeinfo.name}</div>
 		        </c:if>
-		        <c:if test="${gradeseq == 3}">
+		        <c:if test="${dto.gradeseq == 3}">
 		        <div id="v" style="color: #5abadd; border-color: #5abadd">${gradeinfo.name}</div>
 		        </c:if>
-		        <c:if test="${gradeseq == 4}">
+		        <c:if test="${dto.gradeseq == 4}">
 		        <div id="memberGrade" style="color: #3c98b9; border-color: #3c98b9">${gradeinfo.name}</div>
 		        </c:if>
-		        <c:if test="${gradeseq == 5}">
+		        <c:if test="${dto.gradeseq == 5}">
 		        <div id="memberGrade" style="color: #2983a3; border-color: #2983a3">${gradeinfo.name}</div>
 		        </c:if>
-		        <c:if test="${gradeseq == 6}">
+		        <c:if test="${dto.gradeseq == 6}">
 		        <div id="memberGrade" style="color: #08718E; border-color: #08718E">${gradeinfo.name}</div>
 		        </c:if>
                 <div style="width: 160px; height: 80px; text-align: left; margin: 45px 15px;">
-                    <span id="memberName" class="txtInfo" style="margin-top: 10px; font-size: 1.3em; font-weight: bold;">${name}<small>님</small></span>
+                    <span id="memberName" class="txtInfo" style="margin-top: 10px; font-size: 1.3em; font-weight: bold;">${dto.name}<small>님</small></span>
                     <span id="memberBenefits" class="txtInfo">${gradeinfo.discountper}% 할인 + ${gradeinfo.mileageper}% 적립</span>
                 </div>
                 <div>

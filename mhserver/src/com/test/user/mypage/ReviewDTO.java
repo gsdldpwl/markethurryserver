@@ -9,6 +9,7 @@ public class ReviewDTO {
 	private String image;
 	private String regdate;
 	private int readcount;
+	private String pname;
 	
 	public String getSeq() {
 		return seq;
@@ -51,6 +52,12 @@ public class ReviewDTO {
 	}
 	public void setReadcount(int readcount) {
 		this.readcount = readcount;
+	}
+	public String getPname() {
+		return pname;
+	}
+	public void setPname(String pname) {
+		this.pname = pname;
 	}
 	
 }

@@ -53,23 +53,25 @@ public class MemberDAO {
       return 0;
    }
 
-   public MemberDTO setinfo(MemberDTO dto) {
+   public MemberDTO setinfo(String memberseq) {
       try {
-         String sql = "select * from member where id=?";
+         String sql = "select * from member where seq=?";
          pstat = conn.prepareStatement(sql);
-         pstat.setString(1, dto.getId());
+         pstat.setString(1, memberseq);
          
          rs = pstat.executeQuery();
+         MemberDTO dto = new MemberDTO();
+         
          if(rs.next()) {
-            dto.setSeq(rs.getString("seq"));
-            dto.setId(rs.getString("id"));
-            dto.setName(rs.getString("name"));
-            dto.setEmail(rs.getString("email"));
-            dto.setTel(rs.getString("tel"));
-            dto.setGradeseq("gradeseq");
-            dto.setAddress(rs.getString("address"));
-            dto.setBirth(rs.getString("birth"));
-            dto.setGender(rs.getString("gender"));
+	        dto.setSeq(rs.getString("seq"));
+	        dto.setId(rs.getString("id"));
+	        dto.setName(rs.getString("name"));
+	        dto.setEmail(rs.getString("email"));
+	        dto.setTel(rs.getString("tel"));
+	        dto.setGradeseq(rs.getString("gradeseq"));
+	        dto.setAddress(rs.getString("address"));
+	        dto.setBirth(rs.getString("birth"));
+	        dto.setGender(rs.getString("gender"));
             
          }
          return dto;

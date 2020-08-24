@@ -4,6 +4,7 @@ public class OrderListDTO {
 	
 	private String dseq;	//배송번호
 	private String olseq;	//주문번호
+	private String odseq;	//주문상세번호
 	private String mseq;	//회원번호
 	private String pseq;	//상품번호
 	private String totalprice;	//주문전체가격
@@ -93,6 +94,12 @@ public class OrderListDTO {
 	}
 	public void setDregdate(String dregdate) {
 		this.dregdate = dregdate;
+	}
+	public String getOdseq() {
+		return odseq;
+	}
+	public void setOdseq(String odseq) {
+		this.odseq = odseq;
 	}
 	
 }

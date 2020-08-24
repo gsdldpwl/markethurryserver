@@ -9,7 +9,7 @@
 	<a href="#!">전체 카테고리</a> 
 	<a href="/mh/user/product/hotproduct.do" class="hyperlink">HOT 상품</a> 
 	<a href="/mh/user/product/cheapproduct.do" class="hyperlink">알뜰 상품</a>
-	<a href="/mh/user/myreceipe/myreceipi.do" class="hyperlink">나만의 레시피</a> 
+	<a href="/mh/user/myrecipe/myrecipe.do" class="hyperlink">나만의 레시피</a> 
 	<a href="/mh/user/event/event.do" class="hyperlink">이달의 이벤트</a> 
 	<input type="text" id="searchbox" value="검색내용을 입력해주세요." autocomplete="off"> 
 	<span class="glyphicon glyphicon-search" id="searchimg"></span> 
@@ -50,7 +50,7 @@
 
 		<c:if test="${not empty sessionScope.seq }">
 			<a href="/mh/user/main/loginout.do" class="hyperlink">로그아웃</a>
-			<a href="/mh/user/mypage/수진씨 여기에 서블릿 이름 넣어주세용.do" class="hyperlink">마이페이지</a>
+			<a href="/mh/user/mypage/orderlist.do" class="hyperlink">마이페이지</a>
 			<a href="/mh/user/customercenter/customercenter.do" class="hyperlink">고객센터</a>
 		</c:if>
 
@@ -63,9 +63,9 @@
 
 <div id="menubar">
 	<a href="#!">전체 카테고리</a> 
-	<a href="" class="hyperlink">HOT 상품</a> 
-	<a href="" class="hyperlink">알뜰 상품</a> 
-	<a href="/mh/user/myreceipe/myreceipi.do" class="hyperlink">나만의 레시피</a> 
+	<a href="/mh/user/product/hotproduct.do" class="hyperlink">HOT 상품</a> 
+	<a href="/mh/user/product/cheapproduct.do" class="hyperlink">알뜰 상품</a> 
+	<a href="/mh/user/myrecipe/myrecipe.do" class="hyperlink">나만의 레시피</a> 
 	<a href="/mh/user/event/event.do" class="hyperlink">이달의 이벤트</a> 
 	<input type="text" id="searchbox" value="검색내용을 입력해주세요." autocomplete="off"> 
 	<span class="glyphicon glyphicon-search" id="searchimg"></span> 

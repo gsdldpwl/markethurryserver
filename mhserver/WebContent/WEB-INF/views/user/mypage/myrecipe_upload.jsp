@@ -17,6 +17,7 @@
             float: left;
             font-weight: bold;
             font-size: 16px;
+           
         }
 
         #rcpTypeList {
@@ -51,11 +52,7 @@
             color: #666666;
             width:110px;
         }
-         .upload-file{
-            /* 이미지, 재료선택파일 선택 버튼 */
-            margin-left: 113px;
-            width: 250px;
-        }
+     
 
         #mypagetwobtn {
             /* 버튼을 감싸고 있는 틀 */
@@ -80,7 +77,6 @@
             color: #08718e;
             border: 1px solid #08718e;
         }
-
         #SuccessInput {
             /* 작성완료 버튼 */
             margin-left:30px;
@@ -88,6 +84,29 @@
             color: white;
             border:none;
         }
+        
+        #btn_File {
+        	margin-left: 30px;
+        }
+        
+        #choiceFood {
+         	margin-right: 45px;
+        }
+        
+        #choiceimg {
+        	margin-right: 30px;
+        }
+      
+      	#selectedvalue {
+      	border: none;
+      	
+      	}
+      	
+      	#contract_file {
+      		width: 75px;
+      		height: 25px;
+      	}
+      	
     </style>
 </head>
 
@@ -149,25 +168,25 @@
                 
                   <div class="MyRCPpart">
                   <div class="filebox preview-image"> 
-                  <div class="rcpTitle">이미지 선택</div>
-                  <input type="file" value="이미지추가하기" class="upload-file" >
+                  <div class="rcpTitle" id="choiceimg">이미지 선택</div>
+                  <input type="file" value="이미지추가하기" class="upload-file" id="btn_File" >
                   </div>
                    </div>
 
 
                   <div class="MyRCPpart">
                     <div class="filebox preview-image"> 
-                  <div class="rcpTitle">재료 선택</div>
-                  <input type="file" value="재료 추가하기" class="upload-file" id="contract_file" multiple>
+                  <div class="rcpTitle" id="choiceFood">재료 선택</div>
+                  <input type="button" value="선택하기" class="upload-file" id="contract_file">
+                  <input type="text" placeholder="선택된 파일 없음" id="selectedvalue" value="">
                   <div id="MaterialSubtitle">내가 구매한 재료만 선택할 수 있습니다.</div>
                   </div>
                    </div>
 
                    <div id="mypagetwobtn">
                    <button class="btnInputBorad" id="CancleInput" onclick="clearInput()">작성취소</button>
-                   <input type="button" value="작성완료" class="btnInputBorad" id="SuccessInput">
+                   <input type="submit" value="작성완료" class="btnInputBorad" id="SuccessInput">
                 </div>
-      
             <!-- ※ 오른쪽 영역 끝 ※ -->
             
         </div>
@@ -180,7 +199,16 @@
 
     <!-- script start -->
     <script>
-        // 소진
+     
+    //글 전송하기
+    $("#SuccessInput").click(function() {
+    	
+    })
+    
+    //재료선택하기
+    $("#contract_file").click(function() {
+    	window.open("http://localhost:8090/mh/myrecipe_choiceFD.do" ,"메뉴선택하기","width=800, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
+    })
 
    	$("#MyMenu > div").removeClass("nowPage");
    	$("#goMyRecipe").addClass("nowPage");
@@ -237,7 +265,16 @@
          $("#CancleInput").on("click",function() {
              $('.UserInputRCP').val('');
             });
-
+	
+     var temp = "";
+     
+     function callback(selected){
+    	 
+    	 $(selected).each(function(index) {
+    		 temp += $(selected)[index];
+    	 });
+   		 $("#selectedvalue").attr("value",temp);
+     }
     </script>
     <script src="/mh/js/main.js"></script>
     

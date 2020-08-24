@@ -109,7 +109,7 @@ public class MyRecipe_BoardDAO {
 				dto.setPimg(rs.getString("pimg")); //이미지
 				dto.setPname(rs.getString("pname")); // 상품이름
 				dto.setPdate(rs.getString("pdate")); // 상품구매날짜
-				dto.setPrice(rs.getString("price")); //상품가격
+				//dto.setPrice(rs.getString("price")); //상품가격
 				dto.setPseq(rs.getString("pseq")); //상품seq
 				
 				rlist.add(dto);

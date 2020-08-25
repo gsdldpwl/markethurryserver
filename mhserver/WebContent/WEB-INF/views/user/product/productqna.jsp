@@ -187,7 +187,7 @@
 
         // 로고 클릭시 메인화면으로
         $("#brandlogo").click(function() {
-            $(location).attr('href', '../../templates/main_template.html');
+            $(location).attr('href', '/mh/user/main/main.do');
         });
 
 

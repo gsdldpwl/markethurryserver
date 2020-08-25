@@ -17,13 +17,13 @@ public class ProductQnaOk extends HttpServlet{
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		
-//		HttpSession session = req.getSession();
+		HttpSession session = req.getSession();
 		
 		req.setCharacterEncoding("UTF-8");
 		
 		String title = req.getParameter("title");
 		String content = req.getParameter("content");
-//		String mseq = (String)session.getAttribute("seq");
+		String mseq = (String)session.getAttribute("seq");
 		String pseq = req.getParameter("pseq");
 		String img = req.getParameter("img");
 		
@@ -34,7 +34,7 @@ public class ProductQnaOk extends HttpServlet{
 		
 		dto.setTitle(title);
 		dto.setContent(content);
-//		dto.setMseq(mseq);
+		dto.setMseq(mseq);
 		dto.setPseq(pseq);
 		dto.setImg(img);
 		
@@ -44,11 +44,13 @@ public class ProductQnaOk extends HttpServlet{
 		
 		//3.
 		if (result ==1) {
+			resp.setCharacterEncoding("UTF-8");
 			PrintWriter writer = resp.getWriter();
 			writer.print("<html>");
+			writer.print("<meta charset=\"UTF-8\">");
 			writer.print("<body>");
 			writer.print("<script>");
-			writer.print("alert('success');");
+			writer.print("alert('문의 작성이 완료되었습니다.');");
 			writer.print("location.href='/mh/user/product/productdetail.do?seq=" + pseq + "';");
 			writer.print("</script>");
 			writer.print("</body>");
@@ -58,11 +60,14 @@ public class ProductQnaOk extends HttpServlet{
 			
 		} else {
 			//글쓰기 실패
+			resp.setCharacterEncoding("UTF-8");
 			PrintWriter writer = resp.getWriter();
 			writer.print("<html>");
+			writer.print("<meta charset=\"UTF-8\">");
 			writer.print("<body>");
 			writer.print("<script>");
-			writer.print("alert('failed'); history.back();");
+			writer.print("alert('문의를 작성하는데 실패했습니다.');");
+			writer.print("history.back();");
 			writer.print("</script>");
 			writer.print("</body>");
 			writer.print("</html>");

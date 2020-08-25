@@ -3,11 +3,13 @@ package com.test.user.product;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet("/user/product/productjjim.do")
 public class ProductJjim extends HttpServlet{
@@ -15,9 +17,11 @@ public class ProductJjim extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
+		HttpSession session = req.getSession();
+		
 		//상품번호
 		String seq = req.getParameter("seq");
-//		String mseq = req.getParameter("mseq");
+		String mseq = ((String)session.getAttribute("seq"));
 		String pseq = req.getParameter("pseq");
 		
 		ProductDAO dao = new ProductDAO();
@@ -25,33 +29,33 @@ public class ProductJjim extends HttpServlet{
 		JjimDTO jdto = new JjimDTO();
 		
 		jdto.setSeq(seq);
-//		jdto.setMseq(mseq);
+		jdto.setMseq(mseq);
 		jdto.setPseq(pseq);
 		
+		int cnt = dao.checkjjim(jdto);
+		int result = 0;
 		
-		int result = dao.addjjim(jdto);
+		
+		// 있는 경우
+		if (cnt > 0) {
+			resp.setCharacterEncoding("UTF-8");
+			PrintWriter writer = resp.getWriter();
+			writer.print(result);
+			writer.close();
+		}
+		// 없는 경우
+		else {
+			result = dao.addjjim(jdto);
+			PrintWriter writer = resp.getWriter();
+			writer.print(result);
+			writer.close();
+		}
+		
+
+		
 		dao.close(); //DB 닫기
 		
 		
-		PrintWriter writer = resp.getWriter();
-		writer.print(result);
-		writer.close();
-
-		
-		/*
-		 * if (result ==1) { PrintWriter writer = resp.getWriter();
-		 * writer.print("<html>"); writer.print("<body>"); writer.print("<script>");
-		 * writer.print("alert('success.');");
-		 * writer.print("location.href='/mh/productdetail.do?seq=" + pseq + "';");
-		 * writer.print("</script>"); writer.print("</body>"); writer.print("</html>");
-		 * writer.close();
-		 * 
-		 * 
-		 * } else { //글쓰기 실패 PrintWriter writer = resp.getWriter();
-		 * writer.print("<html>"); writer.print("<body>"); writer.print("<script>");
-		 * writer.print("alert('failed'); history.back();"); writer.print("</script>");
-		 * writer.print("</body>"); writer.print("</html>"); writer.close(); }
-		 */
 	}
 	
 }

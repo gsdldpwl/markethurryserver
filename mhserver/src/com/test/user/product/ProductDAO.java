@@ -200,7 +200,7 @@ public class ProductDAO {
 		
 		try {
 			// 이미지랑 이름 가져오기
-			String sql = "select r.seq, r.title, r.img from receipe r inner join combiproduct cp on cp.receipeseq = r.seq where cp.productseq=?";
+			String sql = "select rownum, r.seq, r.title, r.img from receipe r inner join combiproduct cp on cp.receipeseq = r.seq where cp.productseq=? and rownum <= 3";
 			
 			pstat = conn.prepareStatement(sql);
 			pstat.setString(1, seq);
@@ -276,7 +276,7 @@ public class ProductDAO {
 				
 			pstat = conn.prepareStatement(sql);
 			pstat.setString(1, dto.getPseq());
-			pstat.setString(2, "1");
+			pstat.setString(2, dto.getMseq());
 			pstat.setString(3, dto.getTitle());
 			pstat.setString(4, dto.getContent());
 			pstat.setString(5, dto.getImg());
@@ -301,7 +301,7 @@ public class ProductDAO {
 			String sql = "insert into jjim (seq, memberseq, productseq) values (seqjjim.nextval, ?, ?)";
 			
 			pstat = conn.prepareStatement(sql);
-			pstat.setString(1, "1");
+			pstat.setString(1, dto.getMseq());
 			pstat.setString(2, dto.getPseq());
 			
 			return pstat.executeUpdate();
@@ -324,7 +324,7 @@ public class ProductDAO {
 			sql = "insert into shoppingcart (seq, memberseq, productseq, qty, regdate) values (seqshoppingcart.nextval, ?, ?, ?, sysdate)";
 			
 			pstat = conn.prepareStatement(sql);
-			pstat.setString(1, "1");
+			pstat.setString(1, cdto.getMseq());
 			pstat.setString(2, cdto.getPseq());
 			pstat.setString(3, cdto.getQty());
 			
@@ -350,7 +350,8 @@ public class ProductDAO {
 				return rs.getInt("cnt");
 			}
 		} catch (Exception e) {
-			// TODO: handle exception
+			System.out.println("ProductDAO.checkexist()");
+			e.printStackTrace();
 		}
 		return 0;
 	}
@@ -374,6 +375,31 @@ public class ProductDAO {
 		}
 		
 		return 0;
+	}
+	
+	
+
+	public int checkjjim(JjimDTO jdto) {
+		
+		
+		try {
+			String sql = "select count(*) as cnt from jjim where memberseq = ? and productseq=?";
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, jdto.getMseq());
+			pstat.setString(2, jdto.getPseq());
+			
+			rs = pstat.executeQuery();
+			if(rs.next()) {
+				return rs.getInt("cnt");
+			}
+			
+		} catch (Exception e) {
+			System.out.println("ProductDAO.checkjjim()");
+			e.printStackTrace();
+		}
+		return 0;
+		
+		
 	}
 	
 

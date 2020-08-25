@@ -21,17 +21,21 @@ public class ProductDetail extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		
-//		HttpSession session = req.getSession();
+		HttpSession session = req.getSession();
 		
 		String seq = req.getParameter("seq");
+		
 		ProductDAO dao = new ProductDAO();
 		
 		//상품 관련
 		ProductDTO dto = dao.get(seq);
 		
 		//적립율..
-//		dto.setMseq((String)session.getAttribute("seq"));
-		String mseq = "1"; //회원번호 1로 고정
+		String mseq = ((String)session.getAttribute("seq"));
+		//mseq = "1";
+		dto.setMseq(mseq);
+		
+		
 		MemberDAO mdao = new MemberDAO();
 		MemberDTO mdto = mdao.getper(mseq); //회원번호로 적립율 가져오기
 		req.setAttribute("mdto", mdto);
@@ -43,22 +47,16 @@ public class ProductDetail extends HttpServlet{
 		req.setAttribute("dto", dto);
 		
 		
-		
 		// 관련 레시피 가져오기
 		ArrayList<RecipeDTO> recipeinfo = dao.getRelativeRecipe(seq);
 		req.setAttribute("recipeinfo", recipeinfo);
 		
-
 		
 		//리뷰 관련
 		ReviewDAO rdao = new ReviewDAO();
-		ReviewDTO rdto = rdao.getdeliveryinfo(seq); //상품번호
-		req.setAttribute("rdto", rdto);
-		
 		ArrayList<ReviewDTO> rlist = dao.getreview(seq);
 		req.setAttribute("rlist", rlist);
 		
-
 		
 		//상품 문의
 		ArrayList<InquiryDTO> ilist = dao.getinquiry(seq);

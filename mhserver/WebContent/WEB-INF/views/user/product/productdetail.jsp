@@ -183,8 +183,8 @@
             height: 40px;
             width: 80px;
         }
-
-        #btnReview, #btnQna {
+ 		#btnReview,
+         #btnQna {
             border-style: none;
             background-color: #08718E;
             border-radius: 3px;
@@ -326,17 +326,18 @@
     </style>
 
 
-<div id="menubartp">
-    <a href="" class="hyperlink">전체 카테고리</a>
-    <a href="" class="hyperlink">HOT 상품</a>
-    <a href="" class="hyperlink">알뜰 상품</a>
-    <a href="" class="hyperlink">나만의 레시피</a>
-    <a href="" class="hyperlink">이달의 이벤트</a>
-    <input type="text" id="searchbox" value="검색내용을 입력해주세요.">
-    <span class="glyphicon glyphicon-search" id="searchimg"></span>
-    <a href="#" id="shoppingbox">
-        <!-- 장바구니 넣었을때 뜨는 창 -->
- <div class="inCart">
+
+ <div id="menubartp">
+
+	<a href="#!">전체 카테고리</a> 
+	<a href="/mh/user/product/hotproduct.do" class="hyperlink">HOT 상품</a> 
+	<a href="/mh/user/product/cheapproduct.do" class="hyperlink">알뜰 상품</a>
+	<a href="/mh/user/myreceipe/myreceipi.do" class="hyperlink">나만의 레시피</a> 
+	<a href="/mh/user/event/event.do" class="hyperlink">이달의 이벤트</a> 
+	<input type="text" id="searchbox" value="검색내용을 입력해주세요." autocomplete="off"> 
+	<span class="glyphicon glyphicon-search" id="searchimg"></span> 
+	<a href="/mh/user/product/shoppingbasket.do" id="shoppingbox">
+	<div class="inCart">
     <div class="gsInCart">
         <img src="${dto.img}">
         <p class="cTxt">
@@ -344,45 +345,64 @@
             <span class="inTxt2">장바구니에 담겼습니다.</span>
         </p>
     </div>
+</div></a>
+	<div id="detailmenutp">
+		<ul style="list-style: none;" id="detailul" style="z-index:-1;">
+			<li onclick="location.href='/mh/user/product/productlist.do?category=0';">채소</li>
+			<li onclick="location.href='/mh/user/product/productlist.do?category=1';">과일</li>
+			<li onclick="location.href='/mh/user/product/productlist.do?category=2';">육류</li>
+			<li onclick="location.href='/mh/user/product/productlist.do?category=3';">수산</li>
+			<li onclick="location.href='/mh/user/product/productlist.do?category=4';">가공식품</li>
+			<li onclick="location.href='/mh/user/product/productlist.do?category=5';">양념, 소스</li>
+			<li onclick="location.href='/mh/user/product/productlist.do?category=6';">유제품</li>
+			<li onclick="location.href='/mh/user/product/productlist.do?category=7';">건강 식품</li>
+			<li onclick="location.href='/mh/user/product/productlist.do?category=8';">음료</li>
+		</ul>
+	</div>
 </div>
-    </a>
-    
-</div>
+
 
 <!-- user menu (register, login , as) -->
 <div id="noticebar">
-    <div id="noticeMent" >
-        <span class="eachNotice">[마켓허리] "허리라이프-어디든 간다! 마켓멀리! 신선하지 않은 신선MD의 신선한 장미를 찾아서" 댓글이벤트 당첨 결과</span>
-        <span class="eachNotice">[마켓허리] 유튜브 ‘컬리라이프-일할 때도 쉴 때도 먹어야 한다, 극한직업 컬리 MD편’ 댓글 이벤트 당첨 공지</span>
-        <span class="eachNotice">[마켓허리] 코로나19 확진자 관련 현황 및 대응조치 안내</span>
-        <span class="eachNotice">[가격인상공지] [모어댄프레쉬] 맥돈 삼겹살 구이용 300g 외 23건 (2020 5. 20 ~)</span>
-        <span class="eachNotice">[마켓컬리] 개인정보처리방침 개정 내용 사전안내</span>
-    </div>
+	<div id="noticeMent">
+		<span class="eachNotice">[마켓허리] "허리라이프-어디든 간다! 마켓멀리! 신선하지 않은 신선MD의 신선한 장미를 찾아서" 댓글이벤트 당첨 결과</span> 
+		<span class="eachNotice">[마켓허리] 유튜브 ‘컬리라이프-일할 때도 쉴 때도 먹어야 한다, 극한직업 컬리 MD편’ 댓글 이벤트 당첨 공지</span> 
+		<span class="eachNotice">[마켓허리] 코로나19 확진자 관련 현황 및 대응조치 안내</span> 
+		<span class="eachNotice">[가격인상공지] [모어댄프레쉬] 맥돈 삼겹살 구이용 300g 외 23건 (2020 5. 20 ~)</span> 
+		<span class="eachNotice">[마켓컬리] 개인정보처리방침 개정 내용 사전안내</span>
+	</div>
 </div>
-
 <header>
-    <div id="usermenu">
-        <a href="#" class="hyperlink">회원가입</a>
-        <a href="#" class="hyperlink">로그인</a>
-        <a href="#" class="hyperlink">고객센터</a>
-    </div>
-    <!-- 마켓허리 로고 -->
-    <img src="/mh/images/brandlogo.png" alt="brandlogo">
+	<div id="usermenu">
+		<c:if test="${empty sessionScope.seq }">
+			<a href="/mh/user/main/register.do" class="hyperlink">회원가입</a>
+			<a href="/mh/user/main/login.do" class="hyperlink">로그인</a>
+			<a href="/mh/user/customercenter/customercenter.do" class="hyperlink">고객센터</a>
+		</c:if>
+
+		<c:if test="${not empty sessionScope.seq }">
+			<a href="/mh/user/main/loginout.do" class="hyperlink">로그아웃</a>
+			<a href="/mh/user/mypage/수진씨 여기에 서블릿 이름 넣어주세용.do" class="hyperlink">마이페이지</a>
+			<a href="/mh/user/customercenter/customercenter.do" class="hyperlink">고객센터</a>
+		</c:if>
+
+	</div>
+	<!-- 마켓허리 로고 -->
+	<img src="/mh/images/brandlogo.png" alt="brandlogo" id="brandlogo" style="cursor:pointer"
+		onclick="location.href='/mh/user/main/main.do';">
 </header>
 
 
-<!-- menu bar -->
 <div id="menubar">
-    <a href="" class="hyperlink">전체 카테고리</a>
-    <a href="" class="hyperlink">HOT 상품</a>
-    <a href="" class="hyperlink">알뜰 상품</a>
-    <a href="" class="hyperlink">나만의 레시피</a>
-    <a href="" class="hyperlink">이달의 이벤트</a>
-    <input type="search" id="searchbox" value="검색내용을 입력해주세요.">
-    <span class="glyphicon glyphicon-search" id="searchimg"></span>
-    <a href="#" id="shoppingbox">
-            <!-- 장바구니 넣었을때 뜨는 창 -->
- <div class="inCart">
+	<a href="#!">전체 카테고리</a> 
+	<a href="" class="hyperlink">HOT 상품</a> 
+	<a href="" class="hyperlink">알뜰 상품</a> 
+	<a href="/mh/user/myreceipe/myreceipi.do" class="hyperlink">나만의 레시피</a> 
+	<a href="/mh/user/event/event.do" class="hyperlink">이달의 이벤트</a> 
+	<input type="text" id="searchbox" value="검색내용을 입력해주세요." autocomplete="off"> 
+	<span class="glyphicon glyphicon-search" id="searchimg"></span> 
+	<a href="/mh/user/product/shoppingbasket.do" id="shoppingbox">
+	<div class="inCart">
     <div class="gsInCart">
         <img src="${dto.img}">
         <p class="cTxt">
@@ -390,32 +410,31 @@
             <span class="inTxt2">장바구니에 담겼습니다.</span>
         </p>
     </div>
+	</div>
+	</a>
+	<div id="detailmenu">
+		<ul style="list-style:none;" id="detailul">
+			<li onclick="location.href='/mh/user/product/productlist.do?category=0';">채소</li>
+			<li onclick="location.href='/mh/user/product/productlist.do?category=1';">과일</li>
+			<li onclick="location.href='/mh/user/product/productlist.do?category=2';">육류</li>
+			<li onclick="location.href='/mh/user/product/productlist.do?category=3';">수산</li>
+			<li onclick="location.href='/mh/user/product/productlist.do?category=4';">가공식품</li>
+			<li onclick="location.href='/mh/user/product/productlist.do?category=5';">양념, 소스</li>
+			<li onclick="location.href='/mh/user/product/productlist.do?category=6';">유제품</li>
+			<li onclick="location.href='/mh/user/product/productlist.do?category=7';">건강 식품</li>
+			<li onclick="location.href='/mh/user/product/productlist.do?category=8';">음료</li>
+		</ul>
+	</div>
 </div>
-    </a>
-</div>
-
  
 
-<!-- detail menu -->
-<div id="detailmenu">
-    <ul style="list-style: none;">
-        <a href=""><li>채소</li></a>
-        <a href=""><li>과일</li></a>
-        <a href=""><li>수산</li></a>
-        <a href=""><li>가공식품</li></a>
-        <a href=""><li>양념, 소스</li></a>
-        <a href=""><li>유제품</li></a>
-        <a href=""><li>건강 식품</li></a>
-        <a href=""><li>음료</li></a>
-    </ul>
-</div>
 </head>
 
 
 
 
 
-</head>
+
 
 <body>
 
@@ -624,9 +643,9 @@
 
             
 
-            <div>
-                <input type="button" id="btnReview" value="후기 등록">
-            </div>
+             <div>
+                <input type="hidden" value="후기 등록" id="btnReview">
+            </div> 
 
             <!-- 페이지 바 -->
             <nav id="pagebarReview" class="pagebar" style="text-align: center; margin-top: 60px;">
@@ -689,7 +708,7 @@
                         <div id="qnaInner1" class="qnaInner"><b>${dto.name}</b>
                             <div style="margin-top: 10px;">
                                 ${idto.content}
-                                <img src="${idto.img}" style="width:150px; height:150px;">
+                                <img src="/mh/images/${idto.img}" style="width:150px; height:150px;">
                             </div>     
                         </div>
                     </td>
@@ -750,6 +769,14 @@
         <div><input type="button" value="확인" href="javascript:;" class="yes"></div>
     </div>
     
+    <!--찜 추가 실패-->
+    <div class="modal_common jjimfailed">
+        <a href="javascript:;" class="close">X</a>
+        <p class="title">알림메세지</p>
+        <div class="con">찜 목록에 상품이 이미 존재합니다.</div>
+        <div><input type="button" value="확인" href="javascript:;" class="yes"></div>
+    </div>
+    
     
     <!-- 장바구니 추가 완료 -->
     <div class="modal_common cartsuccess">
@@ -805,7 +832,7 @@
 
         // 로고 클릭시 메인화면으로
         $("#brandlogo").click(function() {
-            $(location).attr('href', '/mh/templates/main_template.html');
+            $(location).attr('href', '/mh/user/main/main.do');
         });
 
 
@@ -839,11 +866,11 @@
         
         var mper = 0; //적립율
     	//적립
-    	if (${mdto.gradeseq} == 6) mper = 0.1;
-    	else if (${mdto.gradeseq} == 5) mper = 0.07;
-    	else if (${mdto.gradeseq} == 4) mper = 0.05;
-    	else if (${mdto.gradeseq} == 3) mper = 0.03;
-    	else if (${mdto.gradeseq} == 2) mper = 0.01;
+    	if (${mdto.gradeseq eq 6}) mper = 0.1;
+    	else if (${mdto.gradeseq eq 5}) mper = 0.07;
+    	else if (${mdto.gradeseq eq 4}) mper = 0.05;
+    	else if (${mdto.gradeseq eq 3}) mper = 0.03;
+    	else if (${mdto.gradeseq eq 2}) mper = 0.01;
     	else mper = 0.005;
     	
     	//적립금
@@ -956,37 +983,7 @@
             	
         });
         
-  
-
-        // 후기등록
-        // 후기등록 - 마이페이지? 혹은 작성창?
-        $("#btnReview").click(function() {
-            // 조건문 걸기
-            /* alert("상품후기는 상품을 구매하시고 배송완료된 회원 분만 한 달 내 작성 가능합니다."); */
-            //배송완료 처리가 되었는지 확인 하기!!!
-             /* d.orderseq = o.seq
-            inner join orderdetail od
-                on o.seq = od.orderseq
-                    where d.status = 2
-                        and od.productseq = 63
-                            and o.memberseq = 529
-                                and sysdate < d.deliverycomplete + 30; */
-            
-            //이미 쿼리문에서 검사
-            var pseq = ${dto.seq};
-            if (${rdto.productseq == pseq} && ${rdto.memberseq == "529"}) {
-            	alert("완료");
-            	// 마이페이지 후기 쓰는 창으로 이동
-            	//$(location).attr('href', '/mh/user/mypage......')
-            	
-            }
-            	
-            	
-            else openModal("delivery");
-            
-            // $(location).attr('href', 'productReview.html');
-        });
-
+        
         
         // 상품문의 등록버튼
         $("#btnQna").click(function() {
@@ -997,7 +994,6 @@
 
 
     //장바구니 클릭시 장바구니 아이콘에 상품 띄우기
-    
     
     $("#btnBuy").click(function(){
         //    $(".inCart").css("display","block");
@@ -1025,39 +1021,72 @@
     
     
     
-	var mseq = 1;
+    
+  //로그인 하시겠습니까? alert창
+    function next(){
+       if(confirm("로그인 후 이용 가능 합니다. 로그인하시겠습니까?")){
+        location.href="/mh/user/main/login.do";
+       } else{
+          location.href="/mh/user/main/main.do";
+       }
+   }
+    
+    
+    
+    
+	//var mseq = 1;
+	
+	//var mseq = ${sessionScope.seq};
+	
+	var mseq = ${not empty sessionScope.seq ? sessionScope.seq : -1};
 	
 	//찜하기
     $("#btnAlways").click(function(){
-    	$.ajax({
+    	if (mseq == -1) {
+    		next();
+    	}
+    	else {
+    		$.ajax({
+    	
     		type:"GET",
     		url:"/mh/user/product/productjjim.do",
+    		//data:"mseq="+${dto.mseq}+"&pseq="+${dto.seq},
     		data:"mseq="+mseq+"&pseq="+${dto.seq},
     		dataType:"text",
     		success: function(result){
+    			if (result == 1)
     			openModal("jjimsuccess");
+    			else openModal("jjimfailed");
     		},
     		error: function(a,b,c){
     			console.log(a,b,c);
     		}
-    	})
+    		})
+    		
+    	}
     })
     
     
     //장바구니
     $("#btnBuy").click(function(){
-    	$.ajax({
-    		type:"GET",
-    		url:"/mh/user/product/productcart.do",
-    		data:"mseq="+mseq+"&pseq="+${dto.seq}+"&qty="+$("#txtCount").val(),
-    		dataType:"text",
-    		success: function(result){
-    			openModal("cartsuccess");
-    		},
-    		error: function(a,b,c){
-    			console.log(a,b,c);
-    		}
-    	})
+    	if (mseq == -1){
+    		next();
+    	}
+    	else {
+	    	$.ajax({
+	    		type:"GET",
+	    		url:"/mh/user/product/productcart.do",
+	    		//data:"mseq="+${dto.mseq}+"&pseq="+${dto.seq}+"&qty="+$("#txtCount").val(),
+	    		data:"mseq="+mseq+"&pseq="+${dto.seq}+"&qty="+$("#txtCount").val(),
+	    		dataType:"text",
+	    		success: function(result){
+	    			openModal("cartsuccess");
+	    		},
+	    		error: function(a,b,c){
+	    			console.log(a,b,c);
+	    		}
+	    	})
+    	}
     });
 	
 	

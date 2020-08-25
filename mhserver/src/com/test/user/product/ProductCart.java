@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet("/user/product/productcart.do")
 public class ProductCart extends HttpServlet {
@@ -15,12 +16,12 @@ public class ProductCart extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		
+		HttpSession session = req.getSession();
 		
 		// 상품번호 및 데이터
 		String seq = req.getParameter("seq");
-		String mseq = req.getParameter("mseq");
-		mseq = "1";
+//		String mseq = req.getParameter("mseq");
+		String mseq = ((String)session.getAttribute("seq"));
 		String pseq = req.getParameter("pseq");
 		String qty = req.getParameter("qty");
 //		String regdate = req.getParameter("regdate");

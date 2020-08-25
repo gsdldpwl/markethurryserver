@@ -135,19 +135,24 @@ public class CustomerDAO {
 		try {
 			
 			//목록 or 검색
-//			String where = "";
-//			
-//			if (map.get("search") != null) {
-//				//이름 & 제목 & 내용 - 포괄 검색
-//				where = String.format("and (title like '%%%s%%' or content like '%%%s%%')", map.get("search"), map.get("search"));
-//			}
+			//String where = "";
 			
-//			String temp = "select * from (select a.*, rownum as rnum from (select * from vwBoard order by thread desc) a) where rnum >= 1 and rnum <= 20 %s order by %s desc";
-
+			if (map.get("search") != null) {
+				//이름 & 제목 & 내용 - 포괄 검색
+				String sql = String.format("select seq, title, regdate, readcount from (select a.*, rownum as rnum from (select * from notice where title like '%%' || ? || '%%' or content like '%%' || ? || '%%' order by seq desc) a) where rnum >= %s and rnum <= %s order by seq desc", map.get("begin"),map.get("end"));
+				pstat = conn.prepareStatement(sql);
+				pstat.setString(1, map.get("search"));
+				pstat.setString(2, map.get("search"));
+				rs = pstat.executeQuery();
+			} else {
+			
+			
 			String sql = String.format("select seq, title, regdate, readcount from (select a.*, rownum as rnum from (select * from notice order by seq desc) a) where rnum >= %s and rnum <= %s order by seq desc", map.get("begin"), map.get("end"));
 			
 			stat = conn.createStatement();
 			rs = stat.executeQuery(sql);
+			
+			}
 			
 			ArrayList<CustomerDTO> list = new ArrayList<CustomerDTO>();
 			
@@ -157,17 +162,9 @@ public class CustomerDAO {
 				CustomerDTO dto = new CustomerDTO();
 				
 				dto.setSeq(rs.getString("seq"));
-//				dto.setHeart(rs.getInt("heart"));
 				dto.setTitle(rs.getString("title"));
-//				dto.setName(rs.getString("name"));
 				dto.setRegdate(rs.getString("regdate"));
 				dto.setReadcount(rs.getInt("readcount"));
-				
-//				dto.setGap(rs.getInt("gap"));
-				
-//				dto.setCommentcount(rs.getInt("commentcount"));
-				
-//				dto.setDepth(rs.getInt("depth"));
 				
 				list.add(dto);
 			}
@@ -182,5 +179,7 @@ public class CustomerDAO {
 		
 		return null;
 	}
+
+	
 
 }

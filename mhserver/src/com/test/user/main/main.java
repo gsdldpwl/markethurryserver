@@ -22,7 +22,6 @@ public class main extends HttpServlet {
 		
 		HttpSession session = req.getSession();
 		String seq = (String) session.getAttribute("seq");
-		//System.out.println(dto.getSeq());
 		
 		MainDAO dao = new MainDAO();
 

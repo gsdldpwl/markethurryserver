@@ -23,6 +23,11 @@ public class OrderPage extends HttpServlet{
 		HttpSession session = req.getSession();
 		req.setCharacterEncoding("UTF-8");
 		
+		// 상품금액, 할인금액, 최종금액
+		String ogprice = req.getParameter("ogprice");
+		String salesprice = req.getParameter("slPrice");
+		String finalprice = req.getParameter("flprice");
+		
 		// 세션이 있다면 그 세션에 들어있는 회원번호를 request 객체에 넘겨주기
 		String mseq = (String) session.getAttribute("seq");
 		
@@ -53,6 +58,8 @@ public class OrderPage extends HttpServlet{
 					dto.setPrice(beforeparsing[i]);
 				} else if(i==3) { 
 					dto.setQty(beforeparsing[i]);
+				} else if(i==4) {
+					dto.setImg(beforeparsing[i]);
 				}
 			}
 			// 전체 상품들이 들어갈 list에 add
@@ -66,6 +73,9 @@ public class OrderPage extends HttpServlet{
 			dto.setMemseq((String)session.getAttribute("seq"));//로그인 회원 번호
 			
 			req.setAttribute("list", productList);
+			req.setAttribute("ogprice",ogprice );
+			req.setAttribute("salesprice",salesprice );
+			req.setAttribute("finalprice",finalprice );
 			
 			RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/user/product/orderpage.jsp");
 			dispatcher.forward(req, resp);

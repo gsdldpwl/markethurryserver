@@ -351,6 +351,11 @@
 					<span class="PriceTitle" id="ExpectedPrice">0</span> <span
 						class="priceTitleWon">원</span>
 				</div>
+				
+				<input type="hidden" name="ogprice" id="ogprice"> 
+				<input type="hidden" name="slPrice" id="slPrice">
+				<input type="hidden" name="flprice" id="flprice">
+				
 				<div style="clear: both;"></div>
 			</div>
 
@@ -602,9 +607,16 @@
 				var name = $(item).parent().find(".SbasketFoodName").text();
 				var price = $(item).parent().find(".SbasketFoodPrice").text().replace(",","");
 				var qty = $(item).parent().find(".NumBox").find(".SbasketSellingNum").val();
+				var img = $(item).parent().find(".SbasketPhoto").attr("src");
 				
-				$(item).attr("value",seq + "," + name + "," + price + "," + qty);
+				$(item).attr("value",seq + "," + name + "," + price + "," + qty + "," + img);
 			});
+				
+				
+			$("#ogprice").attr("value",$("#ProductPrice").text().replace(",",""));
+			$("#slPrice").attr("value",$("#DiscountPrice").text().replace(",",""));
+			$("#flprice").attr("value",$("#ExpectedPrice").text().replace(",",""));
+			
 			$("#selectedproduct").submit();
 	}
 		else {

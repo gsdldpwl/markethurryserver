@@ -108,6 +108,7 @@
     color: white;
     font-weight: bold;
     background-color: #08718E;
+    cursor:pointer;
 }
 
 #ordernumMent {
@@ -382,6 +383,14 @@
         	}
             
         })
+        
+        $(function(){
+        	if(${not empty orderseq}){
+        		$("#ordernumbox").val(${orderseq});
+        		$("#ordernummodal").attr("disabled",true);
+        		$("#ordernummodal").css("cursor","not-allowed");
+        	} 
+        });
         
     </script>
 	<script src="/mh/js/main.js"></script>

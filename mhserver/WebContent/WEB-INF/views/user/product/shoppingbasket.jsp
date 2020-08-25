@@ -138,19 +138,20 @@
 	/* 주문하기 버튼 감싸기 */
 	margin: 0px auto;
 	width: 1100px;
+	text-align:center;
 }
 
 .SbasketOrder {
 	/* 주문하기 버튼 */
-	margin-left: 450px;
-	margin-top: 100px;
-	margin-bottom: 170px;
+	display:inline-block;
 	width: 160px;
 	height: 42px;
 	border: none;
 	outline: none;
 	color: white;
+	margin: 80px 0px;
 	background-color: #dddfe1;
+	cursor:pointer;
 }
 
 .FoodCheckbox {
@@ -256,6 +257,7 @@
 </style>
 
 <%@include file="/WEB-INF/views/inc/header.jsp"%>
+<link rel="stylesheet" href="/mh/css/modal.css">
 </head>
 
 <!-- body -->
@@ -279,21 +281,20 @@
 						class="SbasketTop">상품금액</span>
 				</div>
 				<hr class="SbasketTableline" />
+				<form method="POST" action="/mh/user/product/orderpage.do" id="selectedproduct">
 				<div class="SbasketMenulist">
 					<c:forEach items="${list }" var="dto">
 						<div class="item">
-							<input type="hidden" value="${dto.seq }" class="productseqbox">
-							<input type="checkbox" class="FoodCheckbox" name="chk"> <img
-								src="${dto.img }" class="SbasketPhoto" alt="상품이미지">
+							<input type="checkbox" class="FoodCheckbox" name="productseq" value="${dto.seq}"> 
+							<img src="${dto.img }" class="SbasketPhoto" alt="상품이미지" name="productimg">
 							<div class="SbasketFoodName">${dto.name }</div>
-							<span class="SbasketFoodPrice">${dto.price }</span> <span
-								class="SbasketPriceWon1">원</span>
-
+							<span class="SbasketFoodPrice">${dto.price }</span> 
+							<span class="SbasketPriceWon1">원</span>
 
 							<div class="NumBox" id="NumBox1">
 								<button type="button" class="SbasketReduce">-</button>
-								<input type="text" value="1" readonly="readonly"
-									class="SbasketSellingNum">
+								<input type="text" value="${dto.qty}" readonly="readonly"
+									class="SbasketSellingNum" name="productqty">
 								<button type="button" class="SbasketRise">+</button>
 							</div>
 							<div class="TotalPrice">
@@ -305,7 +306,7 @@
 						</div>
 					</c:forEach>
 				</div>
-
+				</div>
 
 				<div id="noData">
 					<!-- cart에 물건이 없을때 -->
@@ -317,7 +318,7 @@
 
 
 			<div id="SbasketBottomPart">
-				<button id="selectedDelBtn" class="SbasketBTN" />
+				<button id="selectedDelBtn" class="SbasketBTN">
 				선택 삭제
 				</button>
 			</div>
@@ -354,20 +355,20 @@
 			</div>
 
 			<!-- 주문하기 버튼 -->
+		</form>
 			<div id="orderBtnOn">
 				<button class="SbasketOrder" id="SbasketBtnOn"
-					style="background-color: #08718e;" disabled="">주문하기</button>
+					style="background-color: #08718e;" >주문하기</button>
 
 			</div>
 		</div>
-	</div>
-	</div>
 	<!-- 장바구니 카트 전체 div -->
-
 	<!-- top button -->
 	<a href="#" id="topbtn" style="border: 0px; outline: none;"></a>
 	<%@include file="/WEB-INF/views/inc/footer.jsp"%>
+	
 	<div id="modal"></div>
+	
 	<div class="modal_common noMore">
 		<a href="javascript:;" class="close">X</a>
 		<p class="title">알림메세지</p>
@@ -446,6 +447,7 @@
 
       // + 버튼 클릭
       $(".SbasketRise").click(function(){
+    	  var pseq = $(this).parent().parent().find(".productseqbox").val();
           var qty = parseInt($(this).parent().find(".SbasketSellingNum").val());
           var price = parseInt($(this).parent().parent().find(".SbasketFoodPrice").text().replace(",",""));
           
@@ -453,6 +455,18 @@
               $(this).parent().find(".SbasketSellingNum").val(qty+1);
               var newPrice = numberWithCommas(price * $(this).parent().find(".SbasketSellingNum").val());
               $(this).parent().parent().find(".TotalPrice").find(".SbasketProcductPrice").text(newPrice);
+              
+              $.ajax({
+            	  type:"GET",
+            	  url:"/mh/user/product/shoppingbasketok.do",
+            	  data:"type=0&pseq="+pseq,
+            	  dataType: "text",
+            	  succuess: function(result){
+            	  },
+            	  error: function(a,b,c){
+            		  console.log(a,b,c);
+            	  }
+              });
           } else {
               openModal("noMore");
           }
@@ -470,14 +484,26 @@
 
       // - 버튼 클릭
       $(".SbasketReduce").click(function(){
+		  var pseq = $(this).parent().parent().find(".productseqbox").val();
           var qty = parseInt($(this).parent().find(".SbasketSellingNum").val());
           var price = parseInt($(this).parent().parent().find(".SbasketFoodPrice").text().replace(",",""));
-
 
           if( qty > 1 ){
               $(this).parent().find(".SbasketSellingNum").val(qty-1);
               var newPrice = numberWithCommas(price * $(this).parent().find(".SbasketSellingNum").val());
               $(this).parent().parent().find(".TotalPrice").find(".SbasketProcductPrice").text(newPrice);
+              
+              $.ajax({
+            	  type:"GET",
+            	  url:"/mh/user/product/shoppingbasketok.do",
+            	  data:"type=1&pseq="+pseq,
+            	  dataType: "text",
+            	  succuess: function(result){
+            	  },
+            	  error: function(a,b,c){
+            		  console.log(a,b,c);
+            	  }
+              });
           } else {
               openModal("pleaseMore");
           }
@@ -499,14 +525,16 @@
           
           if($(this).prop("checked")==false){
               $("input[class='FoodCheckbox']:checked").each(function(index, item){
-                  price += parseInt($(item).parent().find(".TotalPrice").find(".SbasketProcductPrice").text().replace(",",""));
+                  price += parseInt($(item).parent().find(".TotalPrice").find(".SbasketProcductPrice").text().replace(",",""))
+                  * $(item).parent().find(".NumBox").find(".SbasketSellingNum").val();
               });
               $("#ProductPrice").text(numberWithCommas(price));
           } 
 
           else {
               $("input[class='FoodCheckbox']:checked").each(function(index, item){
-                  price += parseInt($(item).parent().find(".TotalPrice").find(".SbasketProcductPrice").text().replace(",",""));
+                  price += parseInt($(item).parent().find(".TotalPrice").find(".SbasketProcductPrice").text().replace(",",""))
+                  * $(item).parent().find(".NumBox").find(".SbasketSellingNum").val();
               });
               $("#ProductPrice").text(numberWithCommas(price));
           }
@@ -515,11 +543,26 @@
 
 	  // 선택 삭제 버튼 클릭
 	  $("#selectedDelBtn").click(function(){
-		  
+		  var selectedSeq = new Array() ;
 		  // 선택된 것들 삭제
 		  $("input[class='FoodCheckbox']:checked").each(function(index,item){
 			  $(item).parent().remove();
+			  selectedSeq.push($(item).parent().find(".productseqbox").val());
 		  });
+		  
+		  // 디비에서 삭제
+		  $.ajax({
+        	  type:"GET",
+        	  url:"/mh/user/product/shoppingbasketok.do",
+        	  data:"type=2&selectedSeq="+selectedSeq,
+        	  dataType: "text",
+        	  succuess: function(result){
+        		  
+        	  },
+        	  error: function(a,b,c){
+        		  console.log(a,b,c);
+        	  }
+          });
 		  
 		  // 이후 총 금액 재 계산
 		  var totalPrice = 0 ;
@@ -547,27 +590,30 @@
 			  var salesprice = Math.floor(parseInt($("#ProductPrice").text().replace(",","")) * salesper * 0.1) * 10 ;
 			  $("#DiscountPrice").text(numberWithCommas(salesprice));
 			  var finalprice = parseInt($("#ProductPrice").text().replace(",","")) - salesprice;
-			  $("#ExpectedPrice").text(finalprice);
+			  $("#ExpectedPrice").text(numberWithCommas(finalprice));
 		});
 	 
 	  
-		$("#SbasketBtnOn").click(function(){
-			alert("click");
-			$("input[class='FoodCheckbox']:checked").each(function(index,item){
-				console.log($(item).parent().find(".productseqbox"));
+	 	// 전송하기
+	$("#SbasketBtnOn").click(function(){
+		if($("input[class='FoodCheckbox']:checked").length > 0){
+			$("input[class='FoodCheckbox']:checked").each(function(index, item){
+				var seq = $(item).val();
+				var name = $(item).parent().find(".SbasketFoodName").text();
+				var price = $(item).parent().find(".SbasketFoodPrice").text().replace(",","");
+				var qty = $(item).parent().find(".NumBox").find(".SbasketSellingNum").val();
+				
+				$(item).attr("value",seq + "," + name + "," + price + "," + qty);
 			});
-			
-		});
+			$("#selectedproduct").submit();
+	}
+		else {
+			alert("상품을 최소 1개 이상 선택해주세요.");
+			return;
+		}
+	});
    
-      // 천단위 , 찍기
-     function numberWithCommas(x) {
-         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-     }
-
-     function removeComma(x) {
-         return parseInt(x.replace(",", ""));
-     }
-
+    
     // 천단위 , 찍기
     function numberWithCommas(x) {
             return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");

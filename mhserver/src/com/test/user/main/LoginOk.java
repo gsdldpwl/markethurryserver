@@ -25,8 +25,8 @@ public class LoginOk extends HttpServlet {
 		dto.setId(id);
 		dto.setPw(pw);
 		
-		// sampleid:ufahtf942
-		// samplepw:(!gnhdy596
+		// sampleid: hytcfg296
+		// samplepw: !%hytwed514
 		
 		int result = dao.loginCheck(dto);
 		
@@ -45,7 +45,7 @@ public class LoginOk extends HttpServlet {
 			writer.print("</head>");
 			writer.print("<body>");
 			writer.print("<script>");
-			writer.print("alert('failed'); history.back();");
+			writer.print("alert('로그인에 실패했습니다. 아이디와 비밀번호를 다시 확인해주세요.'); history.back();");
 			writer.print("</script>");
 			writer.print("</body>");
 			writer.print("</html>");

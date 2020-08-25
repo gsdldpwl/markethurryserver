@@ -122,11 +122,13 @@ public class MainDAO {
 	public ArrayList<ProductlistDTO> gettodyHotProduct() {
 		
 		try {
-			String sql = "select * from(select rownum, a.* from (select * from orderdetail od inner join orderlist ol on od.orderseq = ol.seq where regdate = '200722' and ol.delflag = 0 order by qty desc)a where rownum <= 8) a inner join product p on a.productseq = p.seq";
+			String sql = "select p.seq as productseq, p.name as name, p.price as price, p.img as img, p.shortdesc as shortdesc from(select rownum, a.* from (select * from orderdetail od inner join orderlist ol on od.orderseq = ol.seq where regdate = '200722' and ol.delflag = 0 order by qty desc)a where rownum <= 8) a inner join product p on a.productseq = p.seq";
 			stat = conn.createStatement();
 			rs = stat.executeQuery(sql);
 			ArrayList<ProductlistDTO> list = new ArrayList<ProductlistDTO>();
+			
 			while(rs.next()) {
+				
 				ProductlistDTO dto = new ProductlistDTO();
 				dto.setSeq(rs.getString("productseq"));
 				dto.setName(rs.getString("name"));

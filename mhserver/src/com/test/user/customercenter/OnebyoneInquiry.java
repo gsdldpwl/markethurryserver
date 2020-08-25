@@ -22,8 +22,13 @@ public class OnebyoneInquiry extends HttpServlet {
 			
 			CustomercenterDAO dao = new CustomercenterDAO();
 			
+			if(req.getParameter("seq") != null) {
+				req.setAttribute("orderseq", req.getParameter("seq"));
+			} 
+			
 			RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/user/customercenter/onebyoneinquiry.jsp");
 			dispatcher.forward(req, resp);
+			
 		} else {
 			resp.setCharacterEncoding("UTF-8");
 			PrintWriter writer = resp.getWriter();

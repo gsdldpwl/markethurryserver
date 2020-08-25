@@ -7,6 +7,7 @@ public class ShoppingbasketDTO {
 	private String img;
 	private String price;
 	private String qty;
+	
 	public String getSeq() {
 		return seq;
 	}

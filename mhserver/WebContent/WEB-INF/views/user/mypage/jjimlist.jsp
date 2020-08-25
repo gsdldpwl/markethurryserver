@@ -22,7 +22,7 @@
         #tblList td {padding: 20px 0px 20px 0px;}
 
         #tblList td:nth-child(1) { width: 30px; }
-        #tblList td:nth-child(2) { width: 120px; }
+        #tblList td:nth-child(2) { width: 100px; }
         #tblList td:nth-child(3) { text-align: left; padding-left: 30px;}
         #tblList td:nth-child(4) { width: 130px; }
         #tblList th:nth-child(1) { width: 30px; }
@@ -43,10 +43,11 @@
         }
 
         .itemImg {
-            width: 100px;
-            height: 100px;
-            border: 1px solid black;
-
+		    width: 67px;
+		    height: 87px;
+		    border: 0px solid black;
+		    margin: 20px 20px;
+ 			background-size: contain;
         }
 
         .goBasket {
@@ -368,70 +369,24 @@
                     <th>선택</th>
                 </tr>
                 <tbody>
+                	<c:forEach items="${jjimlistdto}" var="list">
                     <tr>
                         <td>
                             <label class="label_check">
                                 <input type="checkbox" class="ckbox jjimCheck" name="jjimCheck">
                             </label>
                         </td>
-                        <td><img src="" class="itemImg"></td>
+                        <td><div class="itemImg" style="background-image: url(${list.image});"></div></td>
                         <td>
-                            <div>[오마하] 프라임 등심 스테이크 200g(냉장) 1</div>
-                            <div>24,000원</div>
+                            <div>${list.pname}</div>
+                            <div>${list.price}원</div>
                         </td>
                         <td>
                             <input type="button" class="goBasket" data-toggle="modal" data-target="#myModal" value="장바구니 담기">
                             <input type="button" class="deleteList" value="삭제">
                         </td>
                     </tr>
-                    <tr>
-                        <td>
-                            <label class="label_check">
-                                <input type="checkbox" class="ckbox jjimCheck" name="jjimCheck">
-                            </label>
-                        </td>
-                        <td><img src="" class="itemImg"></td>
-                        <td>
-                            <div>[오마하] 프라임 등심 스테이크 200g(냉장) 2</div>
-                            <div>24,000원</div>
-                        </td>
-                        <td>
-                            <input type="button" class="goBasket" data-toggle="modal" data-target="#myModal" value="장바구니 담기">
-                            <input type="button" class="deleteList" value="삭제">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label class="label_check">
-                                <input type="checkbox" class="ckbox jjimCheck" name="jjimCheck">
-                            </label>
-                        </td>
-                        <td><img src="" class="itemImg"></td>
-                        <td>
-                            <div>[오마하] 프라임 등심 스테이크 200g(냉장) 3</div>
-                            <div>24,000원</div>
-                        </td>
-                        <td>
-                            <input type="button" class="goBasket" data-toggle="modal" data-target="#myModal" value="장바구니 담기">
-                            <input type="button" class="deleteList" value="삭제">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label class="label_check">
-                                <input type="checkbox" class="ckbox jjimCheck" name="jjimCheck">
-                            </label>
-                        </td>
-                        <td><img src="" class="itemImg"></td>
-                        <td>
-                            <div>[오마하] 프라임 등심 스테이크 200g(냉장) 4</div>
-                            <div>24,000원</div>
-                        </td>
-                        <td>
-                            <input type="button" class="goBasket" data-toggle="modal" data-target="#myModal" value="장바구니 담기">
-                            <input type="button" class="deleteList" value="삭제">
-                        </td>
-                    </tr>
+                	</c:forEach>
                 </tbody>
             </table>
             

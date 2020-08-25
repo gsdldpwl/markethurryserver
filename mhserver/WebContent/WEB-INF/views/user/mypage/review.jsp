@@ -25,7 +25,7 @@
 
         .list_data {
             width: 840px;
-            height: 200px;
+            /* height: 200px; */
             /* border: 1px solid black; */
             margin-top: 20px;
             list-style: none;
@@ -254,8 +254,8 @@
                 
                 <c:if test="${reviewavaillist.size() >= 1}">
                 	<c:forEach items="${reviewavaillist}" var="list">
-                	<form method="POST" action="/mh/user/mypage/review_upload.do">
                     <li class="list_data">
+                	<form method="POST" action="/mh/user/mypage/review_upload.do">
                         <div class="list_container">
                             <div class="list_title"><a href="/mh/user/product/productdetail.do?seq=${list.pseq}"><div>${list.pname}</div><div class="goItemInfo">></div></a></div>
                             <div>
@@ -268,8 +268,9 @@
                             </div>
                         </div>
                         <input type="hidden" name="pname" value="${list.pname}">
-                    </li>
+                        <input type="hidden" name="odseq" value="${list.odseq}">
                     </form>
+                    </li>
                     </c:forEach>
                 </c:if>
                 </ul>
@@ -288,7 +289,9 @@
                                 <div class="review_title">
 	                                <span class="title">${list.title}<span class="regdate">${list.regdate}</span></span>
                                 </div>
+                                <c:if test="${not empty list.image}">
                                 <div class="review_img" style="background-image: url(${list.image});"></div>
+                                </c:if>
                                 <div class="review_content">${list.content}</div>
                                 <div class="review_modify">
                                 	<div>

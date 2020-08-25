@@ -143,12 +143,12 @@
 	
 	            <div class="MyRCPpart">
 	                <div class="rcpTitle">제목</div>
-	                <input type="text" id="UserInputTitle" name="UserInputTitle" class="UserInputRCP">
+	                <input type="text" id="UserInputTitle" name="UserInputTitle" class="UserInputRCP" required>
 	            </div>
 	
 	            
 	            <div class="rcpTitle">내용</div>
-	            <textarea id="UserInputsubstance" name="UserInputsubstance" class="UserInputRCP"></textarea>
+	            <textarea id="UserInputsubstance" name="UserInputsubstance" class="UserInputRCP" required></textarea>
 	            
 	            <div class="MyRCPpart">
 	                <div class="filebox preview-image"> 
@@ -181,60 +181,11 @@
 	$("#MyMenu > div").removeClass("nowPage");
 	$("#goMyReview").addClass("nowPage");
 
-        // 소진
 
-    //제목 입력 시 저장
-    $("#UserInputTitle")
-    // // 입력 시 작동하도록 key up func
-    .keyup(function(){
-        
-    //     // 자신이 입력하는 값을 담을 변수 선언
-        var inputtext ="";
-    //     // 선언한 변수에 값을 추가 (이 경우 백스페이스를 하면 자동으로 값이 지워짐)
-        inputtext += $(this).val();
-    });
-
-
-    //내용 입력 시 저장
-    $("#UserInputsubstance")
-    // // 입력 시 작동하도록 key up func
-    .keyup(function(){   
-    //     // 자신이 입력하는 값을 담을 변수 선언
-        var inputtext ="";
-    //     // 선언한 변수에 값을 추가 (이 경우 백스페이스를 하면 자동으로 값이 지워짐)
-        inputtext += $(this).val();
-    });
-
-
-    $("#SuccessInput").on("click",function() {
-            console.log("click");
-            if(event.keyCode == 13) {
-            // 입력받은 값을 처리
-            // 입력받은 값은 inputtext
-            }  
-
-    // 제목에 아무 내용이 없을 때
-     if($("#UserInputTitle").val().length==0) {
-         
-         alert("제목을 입력하세요."); 
-         $("#UserInputTitle").focus();
-         
-     } else if ($("#UserInputsubstance").val().length==0) {
-         //내용을 입력안했을 때
-         
-         alert("내용을 입력하세요."); 
-         $("#UserInputsubstance").focus();
-   
-     } else {
-         //모두 입력되었으면 완료 메세지 출력
-        $(location).attr('href', 'mypageUplodeRecipeAlert.html');
-     }
-   
- });
-         //작성취소 버튼 누를 시 초기화
-         $("#CancleInput").on("click",function() {
-             $('.UserInputRCP').val('');
-            });
+     //작성취소 버튼 누를 시 초기화
+     $("#CancleInput").on("click",function() {
+     	$('.UserInputRCP').val('');
+     });
 
 
     </script>

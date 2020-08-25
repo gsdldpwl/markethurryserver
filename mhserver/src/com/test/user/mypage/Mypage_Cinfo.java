@@ -18,9 +18,23 @@ import com.test.user.main.MemberDTO;
 @WebServlet("/user/mypage/mypage_cinfo.do")
 public class Mypage_Cinfo extends HttpServlet {
 	
+	
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		myService(req, resp);
+		
+	}
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+		myService(req, resp);		
+		
+	}
+
+	private void myService(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+		
 		//1. DB 작업
 		// 	로그인 정보 없으면 로그인창 띄움.
 		// 1-0. 회원 개인 정보
@@ -59,19 +73,15 @@ public class Mypage_Cinfo extends HttpServlet {
 		// 2. 가져온 등급 정보 HashMap 보냄
 		req.setAttribute("gradeinfo", gradeinfo);
 		
-
 		// ## 1-2. 회원 마일리지 정보 ##
 		// 1. 회원의 마일리지 내역 받아오기
-		int mileage = dao.getNowMileage(dto.getSeq());
+		int mileage = dao.getNowMileage((String)session.getAttribute("seq"));
 		String totalmilaege = String.format("%,d", mileage);
 		// 2. 회원의 마일리지 내역 보냄
 		req.setAttribute("totalmilaege", totalmilaege);
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/inc/mypage_cinfo.jsp");
 		dispatcher.include(req, resp);
-		
-		
-		
 	}
 
 }

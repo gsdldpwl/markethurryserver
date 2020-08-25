@@ -104,8 +104,7 @@ public class MypageDAO {
 			cstat.registerOutParameter(2, OracleTypes.NUMBER);
 			
 			cstat.executeUpdate();
-			
-			int total = cstat.getInt(2);			
+			int total = cstat.getInt(2);
 			
 			cstat.close();
 			
@@ -503,9 +502,13 @@ public class MypageDAO {
 
 		try {
 			
-			String sql = "select * from vwOrderlist where mseq = ? and dregdate > (sysdate - 30)";
+			String sql = "select * from vworderlist where mseq = ? and dregdate > (sysdate - 30) "
+					+ "and odseq not in (select orderdetailseq from review where delflag=0 "
+					+ "and orderdetailseq in (select odseq from vwOrderlist where mseq = ? and dregdate > (sysdate - 30)))";
+			
 			pstat = conn.prepareStatement(sql);
 			pstat.setString(1, memberseq);
+			pstat.setString(2, memberseq);
 			
 			rs = pstat.executeQuery();
 			
@@ -665,6 +668,97 @@ public class MypageDAO {
 			e.printStackTrace();
 		}
 		return 0;
+	}
+
+	/**
+	 * Review_UploadOk.java
+	 * 작성한 후기의 내용을 추가한다.
+	 * @param dto 작성된 후기 내용을 저장한 DTO
+	 * @return 업데이트 결과(0: 실패, 1: 성공)
+	 */
+	public int uploadReview(ReviewDTO dto) {
+
+		try {
+			
+			String sql = "insert into review values (SEQREVIEW.nextval, ?, ?, ?, ?, sysdate, 0, default)";
+			
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, dto.getOrderdetailseq());
+			pstat.setString(2, dto.getTitle());
+			pstat.setString(3, dto.getContent());
+			pstat.setString(4, dto.getImage());
+			
+			int result = pstat.executeUpdate();
+			
+			pstat.close();
+			
+			return result;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
+
+	/**
+	 * JjimList.java
+	 * 회원의 찜목록을 받아온다.
+	 * @param memberseq 회원 번호
+	 * @return 찜목록 DTO가 저장된 ArrayList
+	 */
+	public ArrayList<JjimListDTO> getJjimList(String memberseq) {
+		
+		try {
+			
+			String sql = "select j.seq jseq, p.seq pseq, p.name pname, p.price price, p.img image from jjim j "
+					+ "inner join product p on p.seq = j.productseq where j.memberseq = ?";
+			
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, memberseq);
+			
+			rs = pstat.executeQuery();
+			
+			ArrayList<JjimListDTO> list = new ArrayList<JjimListDTO>();
+			
+			while (rs.next()) {
+				
+				JjimListDTO dto = new JjimListDTO();
+				dto.setJseq(rs.getString("jseq"));
+				dto.setPseq(rs.getString("pseq"));
+				dto.setPname(rs.getString("pname"));
+				dto.setPrice(String.format("%,d",rs.getInt("price")));
+				dto.setImage(rs.getString("image"));
+				list.add(dto);
+			}
+			
+			rs.close();
+			pstat.close();
+			
+			return list;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;	
+	}
+
+	/**
+	 * OrderDetailList.java
+	 * 해당 주문번호의 세부 주문 내역을 받아온다.
+	 * @param olseq 주문번호
+	 * @return 세부 주문내역 DTO가 담긴 ArrayList
+	 */
+	public ArrayList<OrderListDTO> getOrderDetailList(String olseq) {
+		
+		try {
+			
+			String sql = "00";
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 }

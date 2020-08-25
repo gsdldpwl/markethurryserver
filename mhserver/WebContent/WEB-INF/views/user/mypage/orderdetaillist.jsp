@@ -52,7 +52,6 @@
 	    border-bottom: 1px solid #ccc;
 	    line-height: 50px;
 	    margin: 0px 20px;
-	    cursor: pointer;
 	}
 	.list_title > div:first-child { float: left; }
 	.list_title > div:last-child { /* .goItemInfo */
@@ -114,15 +113,7 @@
             <!-- 마이페이지 메뉴 헤더 들어가는 부분 -->
             <div style="height: 82px; border-bottom: 2px solid #08718E;">
                 <div style="float: left;">
-                    <h2 id="title">주문 내역<span id="subtitle">지난 3년간의 주문 내역 조회가 가능합니다.</span></h2>
-                </div>
-                <div style="float: right; margin-top: 15px;">
-                    <select class="form-control" id="selectYear">
-                        <option value="all">전체기간</option>
-                        <option value="2020">2020년</option>
-                        <option value="2019">2019년</option>
-                        <option value="2018">2018년</option>
-                    </select>
+                    <h2 id="title">주문 상세 내역<span id="subtitle"></span></h2>
                 </div>
             </div>
             
@@ -133,12 +124,6 @@
             <!-- 주문 내역 -->
             
             <ul id="listOrder">
-                <%-- 주문 내역 없는 경우 --%>
-                <c:if test="${empty orderlistdto}">
-                <li class="no_data">주문 내역이 없습니다.</li>
-                </c:if>
-                
-                <%-- 주문 내역 있는 경우 --%>
                 <c:if test="${not empty orderlistdto}">
                 <c:set var="datetemp" value="" />
                 <c:set var="seqtemp" value="${orderlistdto[0].olseq}" />
@@ -193,7 +178,7 @@
 			                    
 			                    
 			                    <div class="list_container">
-			                        <div class="list_title" onclick="location.href='/mh/user/mypage/orderdetaillist.do?seq=${prevolseq}'"><div>${prevname}<c:if test="${cnt > 0}"> 외 ${cnt}건</c:if></div><div class="goItemInfo">></div></div>
+			                        <div class="list_title"><div>${prevname}<c:if test="${cnt > 0}"> 외 ${cnt}건</c:if></div><div class="goItemInfo">></div></div>
 			                        <div>
 			                            <div class="imgItem" style="background-image: url(${previmg}); background-size: contain;"></div>
 			                            <div class="infoItem">
@@ -223,7 +208,7 @@
 			                    </c:if>
 			                    
 			                    <div class="list_container">
-			                        <div class="list_title" onclick="location.href='/mh/user/mypage/orderdetaillist.do?seq=${prevolseq}'"><div>${prevname}<c:if test="${cnt > 0}"> 외 ${cnt}건</c:if></div><div class="goItemInfo">></div></div>
+			                        <div class="list_title"><div>${prevname}<c:if test="${cnt > 0}"> 외 ${cnt}건</c:if></div><div class="goItemInfo">></div></div>
 			                        <div>
 			                            <div class="imgItem" style="background-image: url(${previmg}); background-size: contain;"></div>
 			                            <div class="infoItem">
@@ -247,7 +232,7 @@
 			                    </c:if>
 			                    
 			                    <div class="list_container">
-			                        <div class="list_title" onclick="location.href='/mh/user/mypage/orderdetaillist.do?seq=${prevolseq}'"><div>${list.pname}<c:if test="${cnt > 0}"> 외 ${cnt}건</c:if></div><div class="goItemInfo">></div></div>
+			                        <div class="list_title"><div>${list.pname}<c:if test="${cnt > 0}"> 외 ${cnt}건</c:if></div><div class="goItemInfo">></div></div>
 			                        <div>
 			                            <div class="imgItem" style="background-image: url(${list.img}); background-size: contain;"></div>
 			                            <div class="infoItem">

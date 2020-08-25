@@ -15,7 +15,7 @@
 		        <div id="memberGrade" style="color: #7bd2f1; border-color: #7bd2f1">${gradeinfo.name}</div>
 		        </c:if>
 		        <c:if test="${dto.gradeseq == 3}">
-		        <div id="v" style="color: #5abadd; border-color: #5abadd">${gradeinfo.name}</div>
+		        <div id="memberGrade" style="color: #5abadd; border-color: #5abadd">${gradeinfo.name}</div>
 		        </c:if>
 		        <c:if test="${dto.gradeseq == 4}">
 		        <div id="memberGrade" style="color: #3c98b9; border-color: #3c98b9">${gradeinfo.name}</div>

@@ -9,27 +9,24 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-@WebServlet("/user/mypage/jjimlist.do")
-public class JjimList extends HttpServlet {
+@WebServlet("/user/mypage/orderdetaillist.do")
+public class OrderDetailList extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		//1. DB 작업 : 회원번호 넘겨서 > 주문 데이터 가져옴
-		//2. 결과 전달
-		
-		//1.
+		// orderseq 받아옴
+		String olseq = req.getParameter("seq");
+
 		MypageDAO dao = new MypageDAO();
-		HttpSession session = req.getSession();
 		
-		ArrayList<JjimListDTO> jjimlistdto = dao.getJjimList((String)session.getAttribute("seq"));
-
-		//2.
-		req.setAttribute("jjimlistdto", jjimlistdto);
-
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/user/mypage/jjimlist.jsp");
+		// DTO 받아옴
+		ArrayList<OrderListDTO> odldto = dao.getOrderDetailList(olseq);
+		
+		req.setAttribute("odldto", odldto);
+		
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/user/mypage/orderdetaillist.jsp");
 		dispatcher.forward(req, resp);
 		
 	}

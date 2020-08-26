@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import com.test.user.myrecipe.RecipeDTO;
 
-@WebServlet("/user/mypage/myrecipe_uploadok.do")
+@WebServlet("/user/mypage/myrecipeuploadok.do")
 public class MyRecipe_UploadOk extends HttpServlet {
 
 	@Override

@@ -23,7 +23,9 @@ public class MyrecipeCommentOk extends HttpServlet {
 	//1.
 	HttpSession session = req.getSession();
 	//추후 삭제해야함 #todo
-	session.setAttribute("seq", "1");
+	//session.setAttribute("seq", "1");
+	
+	
 	
 	//형변환
 	req.setCharacterEncoding("UTF-8");
@@ -48,15 +50,19 @@ public class MyrecipeCommentOk extends HttpServlet {
 	cdto.setMseq((String)session.getAttribute("seq"));//멤버
 
 	int result = dao.write(cdto);
-	String status = "";
-	if(result > 0) {
-		status = "SUCCESS";
-	}else {
-		status = "FAIL";
-	}
 	
-	resp.setContentType("text/plan");
-	resp.getWriter().write(status);
+	
+		
+	
+//	String status = "";
+//	if(result > 0) {
+//		status = "SUCCESS";
+//	}else {
+//		status = "FAIL";
+//	}
+//	
+//	resp.setContentType("text/plan");
+//	resp.getWriter().write(status);
   }
 
 }

@@ -8,8 +8,7 @@ public class Myrecipe_BoardDTO {
 	private String pimg; //상품이미지
 	private String price;// 가격 멤버변수 만드시고
 	private String pseq;// 상품seq 멤머변수
-	
-	
+
 	
 	public String getPrice() {
 		return price;

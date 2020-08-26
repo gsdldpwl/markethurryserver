@@ -1,311 +1,309 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>MarketHurry :: 내레시피</title>
-<%@include file="/WEB-INF/views/inc/header.jsp" %>
+<%@include file="/WEB-INF/views/inc/header.jsp"%>
 <style>
-   /* 소진구현 */
-   			* {
-   			outline: none;
-   			}
-		   	#container {
-		   	/* 전체 */
-		   	width: 1200px;
-		   	margin: 0px auto;
+/* 소진구현 */
+* {
+	outline: none;
+}
 
-		   	}
-		   	
-            #foodType,
-            #title1 {
-                text-align: center;
-            }
+#container {
+	/* 전체 */
+	width: 1200px;
+	margin: 0px auto;
+}
 
-            #foodType {
-                /* 음식타입 */
-                color: #666666;
-            }
+#foodType, #title1 {
+	text-align: center;
+}
 
-            #title1 {
-                /*  제목 */
-                font-size: 2.5em;
-                margin-bottom: 50px;
-            }
+#foodType {
+	/* 음식타입 */
+	color: #666666;
+}
 
-            #MainTitle {
-                margin: 110px auto;
-                width: 1100px;
-                margin-bottom: -12px;
-            }
+#title1 {
+	/*  제목 */
+	font-size: 2.5em;
+	margin-bottom: 50px;
+}
 
-            #UserID,
-            #Date,
-            #viewnum {
-                color: #666666;
-            }
+#MainTitle {
+	margin: 110px auto;
+	width: 1100px;
+	margin-bottom: -12px;
+}
 
-            #Date,
-            #viewnum {
-                text-align: right;
-                width: 200px;
-                margin-left: 900px;
-            }
+#UserID, #Date, #viewnum {
+	color: #666666;
+}
 
-            #UserID {
-                text-align: left;
-                margin-top: 20px;
-                float: left;
-                text-align: left;
-                width: 100px;
-            }
+#Date, #viewnum {
+	text-align: right;
+	width: 200px;
+	margin-left: 900px;
+}
 
-            .foodpic {
-          		text-align:center;
-                margin: 0px auto;
-            }
+#UserID {
+	text-align: left;
+	margin-top: 20px;
+	float: left;
+	text-align: left;
+	width: 100px;
+}
 
-            #pasta1 {
-                /*음식사진*/
-                width: 600px;
-                height: 500px;
-                margin: 0px auto;
-            }
+.foodpic {
+	text-align: center;
+	margin: 0px auto;
+}
 
-            #ExplainRCP {
-                /*  레시피 글 */
-                background-color: white;
-                margin-top: 60px;
-                width: 1100px;
-                margin: 0px auto;
-                margin-bottom: 100px;
-                text-align: center;
-            }
+#pasta1 {
+	/*음식사진*/
+	width: 600px;
+	height: 500px;
+	margin: 0px auto;
+}
 
-            #RCPsetBox {
-                /* recipe set 상자  */
-                width: 1100px;
-                margin: 0px auto;
-            }
+#ExplainRCP {
+	/*  레시피 글 */
+	background-color: white;
+	margin-top: 60px;
+	width: 1100px;
+	margin: 0px auto;
+	margin-bottom: 100px;
+	text-align: center;
+}
 
-            #RCPsetBox > fieldset legend {
-                /* 상자 제목 */
-                margin-top: 350px;
-                font-size: 30px;
-            	text-align: center;
-                font-weight: bold;
-                border: none;
-                width: 400px;
-                color: #08718e;
-            }
+#RCPsetBox {
+	/* recipe set 상자  */
+	width: 1100px;
+	margin: 0px auto;
+}
 
-            fieldset {
-                border: 2px solid #ccc;
-                width: 1100px;
-                height: 320px;
-                margin: 0px auto;
-            }
+#RCPsetBox>fieldset legend {
+	/* 상자 제목 */
+	margin-top: 350px;
+	font-size: 30px;
+	text-align: center;
+	font-weight: bold;
+	border: none;
+	width: 400px;
+	color: #08718e;
+}
 
-			#PDExplainBox{
-			/* 음식 사진 + 가격 + 이름 전체 */
-				width: 50%;
-				float: left;
-				text-align: center;
-			}
-            
-            #foodPic {
-                /* 상자안 사진 */
-                width: 200px;
-                height: 150px;
-            }
+fieldset {
+	border: 2px solid #ccc;
+	width: 1100px;
+	height: 320px;
+	margin: 0px auto;
+}
 
-            #sellingFoodName {
-                /* 상자안 음식 제목 */
-                font-weight: bold;
-                margin-top: 10px;
-                font-size: 20px;
+#PDExplainBox {
+	/* 음식 사진 + 가격 + 이름 전체 */
+	width: 50%;
+	float: left;
+	text-align: center;
+}
 
-            }
+#foodPic {
+	/* 상자안 사진 */
+	width: 200px;
+	height: 150px;
+}
 
-            #SalePrice {
-                /* 상자안 가격 */
-                padding-top:20px;
-                font-weight: bold;
-                font-size: 15px;
-            }
+#sellingFoodName {
+	/* 상자안 음식 제목 */
+	font-weight: bold;
+	margin-top: 10px;
+	font-size: 20px;
+}
 
-			#FDListBox {
-			/* 상자안 음식 종류 리스트 + 가격리스트  전체*/
-				float:right;
-				width: 50%;
-				margin-top: 30px;
-			
-			}
-            #menuMaterial {
-                /* 상자안 음식 종류 */
-                letter-spacing: 0.5px;
-            }
+#SalePrice {
+	/* 상자안 가격 */
+	padding-top: 20px;
+	font-weight: bold;
+	font-size: 15px;
+}
 
-            .MatarialName {
-                /* 상자 안 음식 이름 */
-                padding-left: 10px;
-                width: 400px;
-               
-            }
+#FDListBox {
+	/* 상자안 음식 종류 리스트 + 가격리스트  전체*/
+	float: right;
+	width: 50%;
+	margin-top: 30px;
+}
 
-            .rcpPrice {
-                /* 상자 안 음식 종류가격 */
-                padding-left: 30px;
-                text-align: right;
-                width: 100px;
-            }
+#menuMaterial {
+	/* 상자안 음식 종류 */
+	letter-spacing: 0.5px;
+}
 
-            #Cartfood {
-                /* 장바구니버튼 전체 */
-                width: 1172px;
-                margin: 0px auto;
-                padding: 35px;
-            }
+.MatarialName {
+	/* 상자 안 음식 이름 */
+	padding-left: 10px;
+	width: 400px;
+}
 
-            .InputCart {
-                /* 장바구니에 담기 버튼 */
-                float: right;
-                color: #08718e;
-                font-weight: bold;
-                width: 120px;
-                height: 40px;
-                border: 1px solid #08718e;
-                background-color: white;
-            }
+.rcpPrice {
+	/* 상자 안 음식 종류가격 */
+	padding-left: 30px;
+	text-align: right;
+	width: 100px;
+}
 
-			#allAnwser {
-			/* 댓글 전체 */
-				padding-top : 100px;
-			
-			}
-            #Answerbox {
-                /* 댓글 박스 */
-                width: 1100px;
-                margin: 0px auto;
-            }
+#Cartfood {
+	/* 장바구니버튼 전체 */
+	width: 1172px;
+	margin: 0px auto;
+	padding: 35px;
+}
 
-            #AnwserTitle {
-                /* 댓글글자 */
-                width: 1100px;
-                font-size: 20px;
-                font-weight: bold;
-                margin: 0px auto;
-                border-bottom: 1px solid rgb(196, 193, 193);
-            }
+.InputCart {
+	/* 장바구니에 담기 버튼 */
+	float: right;
+	color: #08718e;
+	font-weight: bold;
+	width: 120px;
+	height: 40px;
+	border: 1px solid #08718e;
+	background-color: white;
+}
 
-            #UserCommnet1 {
-                /* 댓글 작은상자 */
-                width: 1098px;
-                margin: 0px auto;
-                border-bottom: 1px solid rgb(196, 193, 193);
-                padding: 10px;
-            }
+#allAnwser {
+	/* 댓글 전체 */
+	padding-top: 100px;
+}
 
-            .AnswerUserId {
-                /* 댓글 사용자 아이디 */
-                font-weight: bold;
-                margin-bottom: 10px;
-                font-size: 15px;
-                
-            }
+#Answerbox {
+	/* 댓글 박스 */
+	width: 1100px;
+	margin: 0px auto;
+}
 
-            .AnswerDate {
-                /* 댓글 작성날짜 */
-                margin-top: 10px;
-                color: #666666;
-                font-size: 12px;
-            }
+#AnwserTitle {
+	/* 댓글글자 */
+	width: 1100px;
+	font-size: 20px;
+	font-weight: bold;
+	margin: 0px auto;
+	border-bottom: 1px solid rgb(196, 193, 193);
+}
 
-            .ReAnswer {
-                /* 댓글에 답글달기 버튼*/
-                margin-top: 15px;
-                background-color: white;
-                border: 1px solid white;
-                font-weight: bold;
-            }
+#UserCommnet1 {
+	/* 댓글 작은상자 */
+	width: 1098px;
+	margin: 0px auto;
+	border-bottom: 1px solid rgb(196, 193, 193);
+	padding: 10px;
+}
 
-            .TextReAnswer {
-                /* 답글 달기 textarea */
-                width: 95%;
-                height: 100%;
-            }
+.AnswerUserId {
+	/* 댓글 사용자 아이디 */
+	font-weight: bold;
+	margin-bottom: 10px;
+	font-size: 15px;
+}
 
-            .RegisterAnswer {
-                /* 답글 달기 등록 버튼 */
-                float: right;
-                height: 100%;
-                background-color: white;
-                border: 1px solid black;
-                font-weight: bold;
-              
-            }
+.AnswerDate {
+	/* 댓글 작성날짜 */
+	margin-top: 10px;
+	color: #666666;
+	font-size: 12px;
+}
 
-            .NewReAnswer {
-                /* 답글 전체 상자 + 등록버튼 */
-                width: 100%;
-                height: 50px;
-                margin-top: 10px;
-                display: none;
-           
-            }
+.ReAnswer {
+	/* 댓글에 답글달기 버튼*/
+	margin-top: 15px;
+	background-color: white;
+	border: 1px solid white;
+	font-weight: bold;
+}
 
-            #NewCommentBoxClass {
-                /* 댓글 전체 상자 + 등록버튼 */
-                margin-top: 10px;
-                width: 1100px;
-                margin: 0px auto;
-                padding: 15px;
-                height: 100px;
-             
-            }
+.TextReAnswer {
+	/* 답글 달기 textarea */
+	width: 95%;
+	height: 100%;
+}
 
-            #NewCommentBox {
-                /* 새로운 댓글 달기 입력 textarea */
-                width: 95%;
-                height: 100%;
-            }
+.RegisterAnswer {
+	/* 답글 달기 등록 버튼 */
+	float: right;
+	height: 100%;
+	background-color: white;
+	border: 1px solid black;
+	font-weight: bold;
+}
 
-            #BTNRegisterAnswer {
-                /* 댓글 등록 버튼 */
-                height: 100%;
-                float: right;
-                background-color: white;
-                border: 1px solid black;
-                font-weight: bold;
-            
-            }
+.NewReAnswer {
+	/* 답글 전체 상자 + 등록버튼 */
+	width: 100%;
+	height: 50px;
+	margin-top: 10px;
+	display: none;
+}
 
-            .comment {
-                width: 95%;
-                height: 100%;
-            }
+#NewCommentBoxClass {
+	/* 댓글 전체 상자 + 등록버튼 */
+	margin-top: 10px;
+	width: 1100px;
+	margin: 0px auto;
+	padding: 15px;
+	height: 100px;
+}
 
-		#noAnswer {
-		/* 댓글없을 시 */
-		padding : 5%;
-		color: #666;
-		text-align: center;
-		}
-		
-		#noAnswerline{
-		width: 1100px;
-		 border-bottom: 1px solid rgb(196, 193, 193);
-		}
-		
+#NewCommentBox {
+	/* 새로운 댓글 달기 입력 textarea */
+	width: 95%;
+	height: 100%;
+}
+
+#BTNRegisterAnswer {
+	/* 댓글 등록 버튼 */
+	height: 100%;
+	float: right;
+	background-color: white;
+	border: 1px solid black;
+	font-weight: bold;
+}
+
+.comment {
+	width: 95%;
+	height: 100%;
+}
+
+#noAnswer {
+	/* 댓글없을 시 */
+	padding: 5%;
+	color: #666;
+	text-align: center;
+}
+
+#noAnswerline {
+	width: 1100px;
+	border-bottom: 1px solid rgb(196, 193, 193);
+}
+
+#btnContent {
+	float: right;
+	margin-top: 20px;
+}
+
+#btnContent span {
+	color: #08718e;
+}
 </style>
 </head>
 
 <body>
 
 	<div id="container">
-	
-	  <div id="MainTitle">
+
+		<div id="MainTitle">
 			<div id="foodType">${dto.category}</div>
 			<div id="title1">${dto.title}</div>
 			<div id="UserID">${dto.memberID}</div>
@@ -337,8 +335,8 @@
 					<div id="SalePrice">${totalPrice}</div>
 
 				</div>
-                <!-- 음식 set 목록 -->
-                <div id="FDListBox">
+				<!-- 음식 set 목록 -->
+				<div id="FDListBox">
 					<c:forEach items="${productlist}" var="dto">
 						<table id="menuMaterial">
 							<tr>
@@ -351,64 +349,78 @@
 				</div>
 
 			</fieldset>
+
+
+
+			<div class="btns btn-group" id="btnContent">
+				<button type="button" class="btn btn-default"
+					onclick="location.href='/mh/user/myrecipe/myrecipe.do';">
+					<span class="glyphicon glyphicon-th-list"></span> 목록
+				</button>
+
+
+
+				<c:if test="${dto.mseq eq mseq}">
+
+					<button type="button" class="btn btn-default"
+						onclick="location.href='/mh/user/mypage/myrecipe_edit.do?seq=${dto.seq}';">
+						<span class="glyphicon glyphicon-minus"></span> 수정
+					</button>
+
+					<button type="button" class="btn btn-default"
+						onclick="location.href='/mh/user/mypage/recipe_deleteok.do?seq=${dto.seq}';">
+						<span class="glyphicon glyphicon-remove"></span> 삭제
+					</button>
+				</c:if>
+			</div>
 		</div>
 
-		<%-- 			<div class="btns btn-group">
-                    <button type="button" class="btn btn-default" onclick="location.href='/mh/user/mypage/myrecipe';">
-                        <span class="glyphicon glyphicon-th-list"></span>
-                        목록
-                    </button>
-                
-                     <c:if test="${id == dto.id}"> 
-                    <button type="button" class="btn btn-default" onclick="location.href='/mh/user/mypage/edit.do?seq=${dto.seq}';">
-                        <span class="glyphicon glyphicon-minus"></span>
-                        수정
-                    </button>
-                    
-                    
-                    
-                    <button type="button" class="btn btn-default" onclick="location.href='/codestudy/board/delete.do?seq=${dto.seq}';">
-                        <span class="glyphicon glyphicon-remove"></span>
-                        삭제
-                    </button>
-             </c:if> --%>
+
 
 		<!-- 댓글 -->
-		<div id="allAnwser">
-			<div id="AnwserTitle">댓글</div>
-			<c:forEach items="${clist}" var="cdto">
-				<div id="Answerbox">
-					<div id="UserCommnet1">
-						<div class="AnswerUserId">${cdto.memberID}</div>
-						<div class="AnswerDate">${cdto.regdate}</div>
-						<div class="AnswerComment">${cdto.content}</div>
+		<c:if test="${not empty mseq}">
+			<div id="allAnwser">
+				<div id="AnwserTitle">댓글</div>
+				<c:forEach items="${clist}" var="cdto">
+					<div id="Answerbox">
+						<div id="UserCommnet1">
+							<div class="AnswerUserId">${cdto.memberID}</div>
+							<div class="AnswerDate">${cdto.regdate}</div>
+							<div class="AnswerComment">${cdto.content}</div>
+							<c:if test="${dto.mseq eq mseq}">
+								 <span class="delete" onclick="location.href='/mh/user/myrecipe/deletecomment.do?seq=${cdto.seq}&cseq=${dto.seq}';">[삭제]</span>
+							</c:if>
+						</div>
 					</div>
+				</c:forEach>
+
+				<div id="noAnswerBox">
+					<div id="noAnswer">입력된 댓글이 없습니다. 첫번째 댓글을 달아보세요!</div>
+					<hr id="noAnswerline">
 				</div>
-			</c:forEach>
-	
-	<div id="noAnswerBox">
-			<div id="noAnswer">입력된 댓글이 없습니다. 첫번째 댓글을 달아보세요!</div>
-				<hr id="noAnswerline">
-			</div>
 
-			<!-- 새로운 댓글 입력 시 -->
-			<div id="NewCommentBoxClass">
-				<textarea placeholder="댓글을 입력해주세요." class="comment"></textarea>
-				<button type="button" id="BTNRegisterAnswer"
-					name="BTNRegisterAnswer">등록</button>
-			</div>
-        
-        
 
-	</div> <!-- 댓글전체 -->
-	</div> <!-- 페이지 전체 -->
+				<!-- 새로운 댓글 입력 시 -->
+				<div id="NewCommentBoxClass">
+					<textarea placeholder="댓글을 입력해주세요." class="comment"></textarea>
+					<button type="button" id="BTNRegisterAnswer"
+						name="BTNRegisterAnswer">등록</button>
+				</div>
+		</c:if>
 
-<!-- footer -->
-<%@include file="/WEB-INF/views/inc/footer.jsp" %>
+
+
+	</div>
+	<!-- 댓글전체 -->
+	</div>
+	<!-- 페이지 전체 -->
+
+	<!-- footer -->
+	<%@include file="/WEB-INF/views/inc/footer.jsp"%>
 
 </body>
-	<script>
-	var mseq = ${seq};//멤버 seq
+<script>
+	var mseq = ${mseq};//멤버 seq
 	var seq = ${dto.seq}; //레피시 seq가져오기
 	
 	//새로운 댓글 등록하기
@@ -423,8 +435,7 @@
 				data: "content=" + content + "&mseq=" + mseq + "&seq=" + seq,
 				dataType: "json",
 				//success빼고 모두 실행완료! -> success 는 왜 실행이 되지않는감ㅜ_ㅜ
-				success: function(data) {
-					console.log(data);
+				success: function(result) {
 // 					var result = data.responseText;
 
 // 					if(result == "SUCCESS"){

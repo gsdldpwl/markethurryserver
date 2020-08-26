@@ -187,12 +187,12 @@
                    </form>
                 <div id="mypagetwobtn">
                    <button class="btnInputBorad" id="CancleInput" onclick="history.back();">작성취소</button>
-                   <input type="button" value="작성완료" class="btnInputBorad" id="SuccessInput">
+                   <input type="button" value="작성완료" class="btnInputBorad" id="SuccessInput" >
             <!-- ※ 오른쪽 영역 끝 ※ -->
             
         </div>
-        <div style="clear:both;"></div>
     </div>
+        <div style="clear:both;"></div>
 
 
 <!-- footer -->
@@ -265,7 +265,7 @@
             }  
 
     // 제목에 아무 내용이 없을 때
-     if($("#UserInputTitle").val().length==0) {
+  /* /*    if($("#UserInputTitle").val().length==0) {
          
          alert("제목을 입력하세요."); 
          $("#UserInputTitle").focus();
@@ -276,10 +276,10 @@
          alert("내용을 입력하세요."); 
          $("#UserInputsubstance").focus();
    
-     } else {
+     } else { */ 
          //모두 입력되었으면 완료 메세지 출력
-        $(location).attr('href', 'mypageUplodeRecipeAlert.html');
-     }
+      //  $(location).attr('href', 'mypageUplodeRecipeAlert.html');
+    // }
    
  });
          //작성취소 버튼 누를 시 초기화

@@ -1,5 +1,6 @@
 package com.test.user.product;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 
 import java.sql.PreparedStatement;
@@ -17,6 +18,7 @@ public class OrderPageDAO {
 	   private Statement stat;
 	   private PreparedStatement pstat;
 	   private ResultSet rs;
+	   private CallableStatement cstat;
 	         
 	   public OrderPageDAO() {
 	   //DB연결
@@ -36,44 +38,39 @@ public class OrderPageDAO {
 	   
 	   
 	   
-	   //OrderPage 서블릿 -> 주문서 들어갈 회원정보 주세요.
-	   public ArrayList<OrderPageDTO>  memlist(String memseq) {
-	      
+	 //OrderPage 서블릿 -> 주문서 들어갈 회원정보 주세요. (마일리지 있는 회원)
+	   public OrderPageDTO  memlist(String mseq) {
 	      
 	      try {
-	         
-	        String sql ="select mem.seq as MemberSeq,mem.name as MemberName, mem.tel as MemberTel, mem.email as MemberEmail, mem.address as MemberAddress, mil.price as MemberMileage from member mem  inner join mileage mil on mil.memberseq = mem.seq";
+	    	 
+	        //String sql ="select mem.seq as MemberSeq,mem.name as MemberName, mem.tel as MemberTel, mem.email as MemberEmail, mem.address as MemberAddress, mil.price as MemberMileage from member mem  inner join mileage mil on mil.memberseq = mem.seq where memberseq = ?";
+	        String sql ="select seq,name,tel,email,address from member where seq = ?";
+	        //String sql ="call proc_nowmileage(?,?)";
 
-//	        pstat = conn.prepareStatement(sql);
-//	        
-//			pstat.setString(1, memseq);
+	        pstat = conn.prepareStatement(sql);
+			pstat.setString(1, mseq);
+			//pstat.setString(2, mseq);
 			
-			stat = conn.createStatement();
+			//stat = conn.createStatement();
 	         
-	         rs = stat.executeQuery(sql);
-	         
-	         ArrayList<OrderPageDTO> memlist = new ArrayList<OrderPageDTO>();
+	        rs = pstat.executeQuery();
 	         
 	         
 	         //rs -> list 복사
-	         while (rs.next()) {
+	         OrderPageDTO dto = new OrderPageDTO();
+	         if (rs.next()) {
 	            //이때 도는 레코드 1줄이 -> ProduclistDTO 1개
-	        	 OrderPageDTO dto = new OrderPageDTO();
-	            dto.setMemseq(rs.getString("memseq"));
-	            dto.setMemname(rs.getString("memname"));
-	            dto.setMemtel(rs.getString("memtel"));
-	            dto.setMememail(rs.getString("mememail"));
-	            dto.setMemaddress(rs.getString("memaddress"));
-	            dto.setMemmile(rs.getString("memmile"));
+	            dto.setMemseq(rs.getString("seq"));
+	            dto.setMemname(rs.getString("name"));
+	            dto.setMemtel(rs.getString("tel"));
+	            dto.setMememail(rs.getString("email"));
+	            dto.setMemaddress(rs.getString("address"));
 	            
-	            
-	            memlist.add(dto);
-	            
+	            return dto;
 	            
 	         }
 	         
 	      
-	         return memlist;
 	         
 	         
 	      } catch (Exception e) {
@@ -81,5 +78,42 @@ public class OrderPageDAO {
 	      }
 	      return null;
 	   }
+
+	   
+	   
+	   
+	//주문하기 결제 버튼 클릭 후 주문 테이블에 데이터 보내기
+	   public int odtable(String mseq) {
+		   try {
+			
+			   String sql = "insert into orderlist set(seq, memberseq, regdate, price) values (seqorderlist.nextVal,?,sysdate,?,delflag)";
+			   
+			   pstat = conn.prepareStatement(sql);
+			   pstat.setString(1, mseq);
+			   pstat.setString(2, dto1.get);
+			   
+				
+				pstat.executeUpdate();
+		} catch (Exception e) {
+			
+		}
+		   return 0;
+	   }
+
+	   
+	//주문하기 결제 버튼 클릭 후 주문상세 테이블에 데이터 보내기   
+	public int oddttable(OrderPageDTO dto2) {
+		try {
+			String sql = "insert into orderlist set(seq, productseq, orderseq, qty) values (seqorderdetail.nextVal,?,?,?,delflag)";
+			
+		} catch (Exception e) {
+			
+		}
+		return 0;
+	}
+	   
+	
+
+	
 	   
 }//class

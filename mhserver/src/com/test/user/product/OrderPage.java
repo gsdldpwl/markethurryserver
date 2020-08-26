@@ -14,6 +14,8 @@ import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONArray;
 
+import com.test.user.mypage.MypageDAO;
+
 @WebServlet("/user/product/orderpage.do")
 public class OrderPage extends HttpServlet{
 	@Override
@@ -22,6 +24,8 @@ public class OrderPage extends HttpServlet{
 		// 세션 선언해서 "seq" 가져오시고
 		HttpSession session = req.getSession();
 		req.setCharacterEncoding("UTF-8");
+		
+		
 		
 		// 상품금액, 할인금액, 최종금액
 		String ogprice = req.getParameter("ogprice");
@@ -66,12 +70,18 @@ public class OrderPage extends HttpServlet{
 			productList.add(dto);
 		}
 		
+		
+		
 		// 가져온 seq가 != null 인 if문 거셔서 만약에 있으면 dispatcher 실행하고, 아니면 튕기는 alert창 보내기
 		if(mseq != null) {
 			OrderPageDAO dao = new OrderPageDAO();
-			OrderPageDTO dto = new OrderPageDTO();
-			dto.setMemseq((String)session.getAttribute("seq"));//로그인 회원 번호
+			OrderPageDTO dto = dao.memlist((String)session.getAttribute("seq"));
+			MypageDAO dao2 = new MypageDAO();
+			int mileage = dao2.getNowMileage((String)session.getAttribute("seq"));
 			
+			dto.setMemmile(String.valueOf(mileage));
+			
+			req.setAttribute("dto", dto);
 			req.setAttribute("list", productList);
 			req.setAttribute("ogprice",ogprice );
 			req.setAttribute("salesprice",salesprice );

@@ -257,6 +257,12 @@
             line-height: 20px;
             font-weight: 500;
         }
+         .adInfo .adTel {
+           font-size: 14px;
+            color: #666;
+            line-height: 20px;
+            font-weight: 500;
+        }
 
         .adInfo #adChange , .receive #plChange  {
             border: 1px solid teal;
@@ -866,6 +872,7 @@
         <div class="orderGoodsList" >
                       
             <div id="detailList">
+            	<form method="POST" action="/mh/user/product/orderpageok.do" id="orderproduct">
                 <table class="tbl1" >
                     <caption style="display: none;">상품 정보 상세보기</caption>
                     <thead>
@@ -874,21 +881,23 @@
                             <th class="sangpuomInfo">상품 정보</th>
                             <th class="sangpuomSum">상품금액</th>
                         </tr>
-                        <tbody>
                         <c:forEach items="${list}" var="dto">
+                        <tbody>
+                        <tr>
                             <td class="infoSmImg">
-                                <img src="/mh/images/hobak.JPG" class="detailImg" alt="애호박">
+                                <img src="${dto.img }" class="detailImg" alt="${dto.name}">
                             </td>
                             <td class="infoInfo">
-                                <div class="detalName">${dto.proname}</div>
+                                <div class="detalName">${dto.name}</div>
                                 <div class="detalInfo">
-                                    <span class="danga">${dto.proqty}개 / 개 당 1,480원</span>
+                                    <span class="danga">${dto.qty}개 / 개 당 ${dto.price}원</span>
                                 </div>
                             </td>
                             <td class="detalPrice">
-                               ${dto.price }*${dto.proqty}
+                               ${dto.price * dto.qty}
                             </td>
-                            </c:forEach>
+                         </tr>
+                       </c:forEach>
                         </tbody>
                     </thead>
                 </table>
@@ -904,7 +913,7 @@
         <div class="mainFont2">
             <h2>주문자 정보</h2>
         </div>
-        <div class="ordererInfo${memlist}">
+        <div class="ordererInfo">
             <table class="infoTable">
                 <tbody>
                     <tr class="senderName">
@@ -937,7 +946,7 @@
                 </tbody>
             </table>
         </div>
-    </div> <!--주문자 정보 끝-->
+        </div> <!--주문자 정보 끝-->
 
     <div class="deliverPage">
         <div class="mainFont3">
@@ -955,8 +964,9 @@
                 <span class="badge default" id="basicPlace">기본배송지</span>
                 <span class="addr">${dto.memaddress}</span>
                 <span class="addrNum">[01861]</span>
-                <div class="adName">${dto.memname},${dto.memtel}</div>
+                <div class="adName">${dto.memname},<span class="adTel">${dto.memtel}</span></div>
                 <button class="btn btn-default" id="adChange">변경</button>
+                
             </div>
         </div>
 
@@ -1381,7 +1391,7 @@
 
 
 <div class="realPay">
-    <button type="button" class="btn btn-default" id="payNow">결제하기</button>
+    <button type="submit" class="btn btn-default" id="payNow">결제하기</button>
 </div> <!--결제하기 버튼 끝-->
 
 
@@ -1391,29 +1401,29 @@
         <h2>결제 금액</h2>
     </div>
     <div class="stTool">
+     
         <div class="tool1">
             <div class="tolTit" id="ortxtOr">
                 주문금액 
                 <div class="toool">
-                    <span class="tolSub" id="orpPrice">1,480</span>
+                    <span class="tolSub" id="payPrice"> ${ogprice}</span>
                     <span class="tolSub">원</span>
                 </div>
             </div>
                 <div class="detlSub">└ 상품금액
                     <div class="subTool">
-                            <span class="detlprice">${dto.proprice}</span>
+                            <span class="detlprice" id="ogPrice">${ogprice}</span>
                         <span class="detlprice">원</span>
                      
                     </div>
                 </div>
                 <div class="detlSub">└ 상품할인
                     <div class="subTool">
-                        <span class="detlprice">0</span>
+                        <span class="detlprice" id="salesprice">- ${salesprice}</span>
                         <span class="detlprice">원</span>
                     </div>
                 </div>
-           
-        </div>
+            </div>
 
         <div class="tool2">
             <div class="tolTit">
@@ -1438,8 +1448,8 @@
           <div class="tolTit">
                   최종 결제 금액 
               <div class="toool">
-                  <span class="tolSub" id="tolSumNum">4,480</span>
-                  <span class="tolSub">${dto.price }*${dto.proqty}원</span>
+                  <span class="tolSub" id="tolSumNum" >${finalprice}</span>
+                  <span class="tolSub">원</span>
               </div>
          </div>
 
@@ -1449,14 +1459,15 @@
               </span>
               <span class="getpoint">
                   <span class="ifyoubuy">구매 시 </span>
-                  <strong class="savenum">22</strong>
+                  <strong class="savenum">${finalprice}</strong>
                   <strong class="savewon">원 (0.5%) </strong>
               </span>
           </div>
       </div>
-
+	
      </div>
 </div> <!--결제금액 끝-->
+</form>
 
 
 <div style="clear: both;"></div>
@@ -1483,6 +1494,7 @@
         $(".tremsMo2").click(function(){
             $('#myModal3').modal(show)
         });
+        
        
       
 
@@ -1491,9 +1503,13 @@
         $("#mlCheckbox").click(function(){
           if(check){
               $(".myPoint").val($(".havePoint").text());
+              $("#orMail").text($(".havePoint").text());
+              $("#tolSumNum").text(numberWithCommas(${finalprice - dto.memmile}));
             check = false;
           }  else  {
             $(".myPoint").val(0);
+            $("#orMail").text(0);
+            $("#tolSumNum").text(numberWithCommas(${finalprice}));
             check = true;
           }
 
@@ -1509,8 +1525,141 @@
             }
         });
 
-
-
+        
+        //전화번호 '-' 넣기
+         function telhyphen(th) {
+           return th.toString().replace(/(^02.{0}|^01.{1}|[0-9]{3})([0-9]+)([0-9]{4})/,"$1-$2-$3");
+       }
+       
+         $(function(){
+        	 $(".telSender").each(function(index, item){
+	        	var thth = $(item).val();
+	        	$(item).val(telhyphen(thth));
+	        	
+	        })
+         });
+         
+         
+         $(function(){
+        	 $(".adTel").each(function(index, item){
+	        	var thth = $(item).text();
+	        	$(item).text(telhyphen(thth));
+	        	
+	        })
+         });
+   
+      
+         
+       //적립금 소수점 자르기
+      $(function(){
+ 	        $('.savenum').each(function(index, item){
+ 	        	var temp = $(item).text();
+ 	        	$(item).text(Math.floor(parseInt(temp)*0.005));
+ 	        	
+ 	        })
+         }); 
+         
+         
+        // 천단위 , 찍기
+        function numberWithCommas(x) {
+           return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+       }
+       	
+        //상품 단가 , 찍기
+        $(function(){
+	        $('.danga').each(function(index, item){
+	        	var temp = $(item).text();
+	        	$(item).text(numberWithCommas(temp));
+	        	
+	        })
+        });
+     
+        //상품금액 천단위로 , 찍기
+        $(function(){
+	        $('.detalPrice').each(function(index, item){
+	        	var temp = $(item).text();
+	        	$(item).text(numberWithCommas(temp));
+	        	
+	        })
+        });
+        
+        
+      //상품금액 천단위로 , 찍기
+        $(function(){
+	        $('.detalPrice').each(function(index, item){
+	        	var temp = $(item).text();
+	        	$(item).text(numberWithCommas(temp));
+	        	
+	        })
+        });
+      
+      
+      //결제하기 div 금액들  천단위로 , 찍기
+        $(function(){
+	        $('#payPrice').each(function(index, item){
+	        	var temp = $(item).text();
+	        	$(item).text(numberWithCommas(temp));
+	        	
+	        })
+        });
+      
+        $(function(){
+	        $('#ogPrice').each(function(index, item){
+	        	var temp = $(item).text();
+	        	$(item).text(numberWithCommas(temp));
+	        	
+	        })
+        });
+        
+        
+        $(function(){
+	        $('#salesprice').each(function(index, item){
+	        	var temp = $(item).text();
+	        	$(item).text(numberWithCommas(temp));
+	        	
+	        })
+        });
+        
+        
+        $(function(){
+	        $('#orMail').each(function(index, item){
+	        	var temp = $(item).text();
+	        	$(item).text(numberWithCommas(temp));
+	        	
+	        })
+        });
+        
+        
+        $(function(){
+	        $('#tolSumNum').each(function(index, item){
+	        	var temp = $(item).text();
+	        	$(item).text(numberWithCommas(temp));
+	        	
+	        })
+        });
+        
+        $(function(){
+	        $('.havePoint').each(function(index, item){
+	        	var temp = $(item).text();
+	        	$(item).text(numberWithCommas(temp));
+	        	
+	        })
+        });
+        
+        
+        
+        //결제하기 버튼 클릭시 결제완료 alert뜨고, 메인화면으로 돌려보내기
+        $("#payNow").click(function(){
+        	alert("주문이 완료되었습니다.");
+        	location.href="/mh/user/main/main.do";
+        })
+        
+      
+      
+     
+        
+        
+        
 
 
     </script>

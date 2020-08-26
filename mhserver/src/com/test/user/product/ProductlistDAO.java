@@ -43,7 +43,7 @@ public class ProductlistDAO {
 		try {
 			
 			//String sql = "select * from product";
-			String sql =String.format("select * from (select a.*,rownum as rnum from (select * from product where category=%s )a) where rnum >= %s and rnum <=%s ",map.get("category"),map.get("begin"),map.get("end"));
+			String sql =String.format("select * from (select a.*,rownum as rnum from (select * from product where category=%s order by %s )a) where rnum >= %s and rnum <=%s ",map.get("category"),map.get("sort"),map.get("begin"),map.get("end"));
 			//String sql =String.format("select * from  product where rnum >= %s and rnum <=%s",map.get("begin"),map.get("end"));
 			stat = conn.createStatement();
 			

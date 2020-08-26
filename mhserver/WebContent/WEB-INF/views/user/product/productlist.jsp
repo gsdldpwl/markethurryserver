@@ -424,55 +424,24 @@
 </head>
 <body>
 <!-- user menu (register, login , as) -->
-<div id="noticebar">
-   <div id="noticeMent">
-      <span class="eachNotice">[마켓허리] "허리라이프-어디든 간다! 마켓멀리! 신선하지 않은
-         신선MD의 신선한 장미를 찾아서" 댓글이벤트 당첨 결과</span> <span class="eachNotice">[마켓허리]
-         유튜브 ‘컬리라이프-일할 때도 쉴 때도 먹어야 한다, 극한직업 컬리 MD편’ 댓글 이벤트 당첨 공지</span> <span
-         class="eachNotice">[마켓허리] 코로나19 확진자 관련 현황 및 대응조치 안내</span> <span
-         class="eachNotice">[가격인상공지] [모어댄프레쉬] 맥돈 삼겹살 구이용 300g 외 23건
-         (2020 5. 20 ~)</span> <span class="eachNotice">[마켓컬리] 개인정보처리방침 개정 내용
-         사전안내</span>
-   </div>
-</div>
 
 
-<header>
-   <div id="usermenu">
-      <c:if test="${empty dto.id }">
-         <a href="/mh/user/main/register.do" class="hyperlink">회원가입</a>
-         <a href="/mh/user/main/login.do" class="hyperlink">로그인</a>
-         <a href="/mh/user/customercenter/customercenter.do" class="hyperlink">고객센터</a>
-      </c:if>
 
-      <c:if test="${not empty dto.id }">
-         <a href="/mh/user/main/loginout.do" class="hyperlink">로그아웃</a>
-         <a href="/mh/user/mypage/수진씨 여기에 서블릿 이름 넣어주세용.do" class="hyperlink">마이페이지</a>
-         <a href="/mh/user/customercenter/customercenter.do" class="hyperlink">고객센터</a>
-      </c:if>
-
-   </div>
-   <!-- 마켓허리 로고 -->
-   <img src="/mh/images/brandlogo.png" alt="brandlogo" id="brandlogo" style="cursor:pointer"
-      onclick="location.href='/mh/user/main/main.do';">
-      
-     
-</header>
 
 
 
 <!-- menu bar -->
-<div id="menubar">
-   <a class="hyperlink">전체 카테고리</a> 
-   <a href="" class="hyperlink">HOT 상품</a> 
-   <a href="" class="hyperlink">알뜰 상품</a> 
-   <a href="/mh/user/myreceipe/myreceipi.do" class="hyperlink">나만의 레시피</a> 
-   <a href="/mh/user/event/event.do" class="hyperlink">이달의 이벤트</a> 
-   <input type="search" id="searchbox" value="검색내용을 입력해주세요." autocomplete="off"> 
-   <span class="glyphicon glyphicon-search" id="searchimg"></span> 
-   <a href="/mh/user/product/shoppingbasket.do" id="shoppingbox">
-   <!-- 장바구니 넣었을때 뜨는 창 -->
-   <%-- <c:forEach items="${list}" var="dto"> --%>
+<div id="menubartp">
+
+	<a href="#!">전체 카테고리</a> 
+	<a href="/mh/user/product/hotproduct.do" class="hyperlink">HOT 상품</a> 
+	<a href="/mh/user/product/cheapproduct.do" class="hyperlink">알뜰 상품</a>
+	<a href="/mh/user/myrecipe/myrecipe.do" class="hyperlink">나만의 레시피</a> 
+	<a href="/mh/user/event/event.do" class="hyperlink">이달의 이벤트</a> 
+	<input type="text" id="searchbox" value="검색내용을 입력해주세요." autocomplete="off"> 
+	<span class="glyphicon glyphicon-search" id="searchimg"></span> 
+	<a href="/mh/user/product/shoppingbasket.do" id="shoppingbox">
+	 <!-- 장바구니 넣었을때 뜨는 창 -->
 	<div class="inCart" id="inCart1">
     <div class="gsInCart">
         <img src="" class="inImg">
@@ -482,33 +451,63 @@
         </p>
     </div>
 	</div>
-<%-- </c:forEach> --%>
- </a>
-   <div id="detailmenu">
-      <ul style="list-style:none;" id="detailul">
-         <li onclick="location.href='/mh/user/product/productlist.do?category=0';">채소</li>
-         <li onclick="location.href='/mh/user/product/productlist.do?category=1';">과일</li>
-         <li onclick="location.href='/mh/user/product/productlist.do?category=2';">육류</li>
-         <li onclick="location.href='/mh/user/product/productlist.do?category=3';">수산</li>
-         <li onclick="location.href='/mh/user/product/productlist.do?category=4';">가공식품</li>
-         <li onclick="location.href='/mh/user/product/productlist.do?category=5';">양념, 소스</li>
-         <li onclick="location.href='/mh/user/product/productlist.do?category=6';">유제품</li>
-         <li onclick="location.href='/mh/user/product/productlist.do?category=7';">건강 식품</li>
-         <li onclick="location.href='/mh/user/product/productlist.do?category=8';">음료</li>
-      </ul>
-   </div>
+	</a>
+	<div id="detailmenutp">
+		<ul style="list-style: none;" id="detailul" style="z-index:-1;">
+			<li onclick="location.href='/mh/user/product/productlist.do?category=0';">채소</li>
+			<li onclick="location.href='/mh/user/product/productlist.do?category=1';">과일</li>
+			<li onclick="location.href='/mh/user/product/productlist.do?category=2';">육류</li>
+			<li onclick="location.href='/mh/user/product/productlist.do?category=3';">수산</li>
+			<li onclick="location.href='/mh/user/product/productlist.do?category=4';">가공식품</li>
+			<li onclick="location.href='/mh/user/product/productlist.do?category=5';">양념, 소스</li>
+			<li onclick="location.href='/mh/user/product/productlist.do?category=6';">유제품</li>
+			<li onclick="location.href='/mh/user/product/productlist.do?category=7';">건강 식품</li>
+			<li onclick="location.href='/mh/user/product/productlist.do?category=8';">음료</li>
+		</ul>
+	</div>
 </div>
-<div id="menubartp">
 
-   <a class="hyperlink">전체 카테고리</a> 
-   <a href="" class="hyperlink">HOT 상품</a> 
-   <a href="" class="hyperlink">알뜰 상품</a>
-   <a href="/mh/user/myreceipe/myreceipi.do" class="hyperlink">나만의 레시피</a> 
-   <a href="/mh/user/event/event.do" class="hyperlink">이달의 이벤트</a> 
-   <input type="search" id="searchbox" value="검색내용을 입력해주세요." autocomplete="off"> 
-   <span class="glyphicon glyphicon-search" id="searchimg"></span> 
-   <a href="/mh/user/product/shoppingbasket.do" id="shoppingbox">
-   <!-- 장바구니 넣었을때 뜨는 창 -->
+
+<!-- user menu (register, login , as) -->
+<div id="noticebar">
+	<div id="noticeMent">
+		<span class="eachNotice">[마켓허리] "허리라이프-어디든 간다! 마켓멀리! 신선하지 않은 신선MD의 신선한 장미를 찾아서" 댓글이벤트 당첨 결과</span> 
+		<span class="eachNotice">[마켓허리] 유튜브 ‘컬리라이프-일할 때도 쉴 때도 먹어야 한다, 극한직업 컬리 MD편’ 댓글 이벤트 당첨 공지</span> 
+		<span class="eachNotice">[마켓허리] 코로나19 확진자 관련 현황 및 대응조치 안내</span> 
+		<span class="eachNotice">[가격인상공지] [모어댄프레쉬] 맥돈 삼겹살 구이용 300g 외 23건 (2020 5. 20 ~)</span> 
+		<span class="eachNotice">[마켓컬리] 개인정보처리방침 개정 내용 사전안내</span>
+	</div>
+</div>
+<header>
+	<div id="usermenu">
+		<c:if test="${empty sessionScope.seq }">
+			<a href="/mh/user/main/register.do" class="hyperlink">회원가입</a>
+			<a href="/mh/user/main/login.do" class="hyperlink">로그인</a>
+			<a href="/mh/user/customercenter/customercenter.do" class="hyperlink">고객센터</a>
+		</c:if>
+
+		<c:if test="${not empty sessionScope.seq }">
+			<a href="/mh/user/main/loginout.do" class="hyperlink">로그아웃</a>
+			<a href="/mh/user/mypage/orderlist.do" class="hyperlink">마이페이지</a>
+			<a href="/mh/user/customercenter/customercenter.do" class="hyperlink">고객센터</a>
+		</c:if>
+
+	</div>
+	<!-- 마켓허리 로고 -->
+	<img src="/mh/images/brandlogo.png" alt="brandlogo" id="brandlogo" style="cursor:pointer"
+		onclick="location.href='/mh/user/main/main.do';">
+</header>
+  
+<div id="menubar">
+	<a href="#!">전체 카테고리</a> 
+	<a href="/mh/user/product/hotproduct.do" class="hyperlink">HOT 상품</a> 
+	<a href="/mh/user/product/cheapproduct.do" class="hyperlink">알뜰 상품</a> 
+	<a href="/mh/user/myrecipe/myrecipe.do" class="hyperlink">나만의 레시피</a> 
+	<a href="/mh/user/event/event.do" class="hyperlink">이달의 이벤트</a> 
+	<input type="text" id="searchbox" value="검색내용을 입력해주세요." autocomplete="off"> 
+	<span class="glyphicon glyphicon-search" id="searchimg"></span> 
+	<a href="/mh/user/product/shoppingbasket.do" id="shoppingbox">
+	   <!-- 장바구니 넣었을때 뜨는 창 -->
    <div class="inCart" id="inCart2">
     <div class="gsInCart">
         <img src="" class="inImg">
@@ -517,24 +516,26 @@
             <span class="inTxt2">장바구니에 담겼습니다.</span>
         </p>
     </div>
+</div></a>
+	<div id="detailmenu">
+		<ul style="list-style:none;" id="detailul">
+			<li onclick="location.href='/mh/user/product/productlist.do?category=0';">채소</li>
+			<li onclick="location.href='/mh/user/product/productlist.do?category=1';">과일</li>
+			<li onclick="location.href='/mh/user/product/productlist.do?category=2';">육류</li>
+			<li onclick="location.href='/mh/user/product/productlist.do?category=3';">수산</li>
+			<li onclick="location.href='/mh/user/product/productlist.do?category=4';">가공식품</li>
+			<li onclick="location.href='/mh/user/product/productlist.do?category=5';">양념, 소스</li>
+			<li onclick="location.href='/mh/user/product/productlist.do?category=6';">유제품</li>
+			<li onclick="location.href='/mh/user/product/productlist.do?category=7';">건강 식품</li>
+			<li onclick="location.href='/mh/user/product/productlist.do?category=8';">음료</li>
+		</ul>
+	</div>
 </div>
+
+
+
  
-   </a>
-   
-   <div id="detailmenutp">
-      <ul style="list-style: none;" id="detailul" style="z-index:-1;">
-         <li onclick="location.href='/mh/user/product/productlist.do?category=0';">채소</li>
-         <li onclick="location.href='/mh/user/product/productlist.do?category=1';">과일</li>
-         <li onclick="location.href='/mh/user/product/productlist.do?category=2';">육류</li>
-         <li onclick="location.href='/mh/user/product/productlist.do?category=3';">수산</li>
-         <li onclick="location.href='/mh/user/product/productlist.do?category=4';">가공식품</li>
-         <li onclick="location.href='/mh/user/product/productlist.do?category=5';">양념, 소스</li>
-         <li onclick="location.href='/mh/user/product/productlist.do?category=6';">유제품</li>
-         <li onclick="location.href='/mh/user/product/productlist.do?category=7';">건강 식품</li>
-         <li onclick="location.href='/mh/user/product/productlist.do?category=8';">음료</li>
-      </ul>
-   </div>
-</div>
+
 
 
     <!-- <div id="smalltitle" style="background-color: yellow; margin: 0px auto;"> -->
@@ -581,12 +582,12 @@
     		<c:forEach items="${list}" var="dto"> 
             <li>
                 <div class="item">
-                   <a class="img">
+                   <a class="img" >
                     <!-- onclick="location.href='/mh/user/product/productdetail?seq=${dto.seq}" -->
                      <img src="${dto.img }" alt="${dto.name }" onclick="location.href='/mh/user/product/productdetail.do?seq=${dto.seq}';" id="img${dto.seq }">
                         </a> 
                         <button type="button" class="glyphicon glyphicon-shopping-cart shcart" data-toggle="modal" data-target="#myModal${dto.seq }" ></button>
-                    <div class="info" onclick="location.href='/mh/user/product/productdetail?seq=${dto.seq}">
+                    <div class="info" onclick="location.href='/mh/user/product/productdetail.do?seq=${dto.seq}';">
                         <span class="name">${dto.name}</span>
                             <span class="price">${dto.price}원</span>
                                 	<span class="desc"> ${dto.shortdesc}</span>
@@ -698,20 +699,6 @@
 
        
 
-
-        //특정 상품 이미지 클릭 시 상품 상세정보(구매)페이지로 이동
-         $(".img").click(function() {
-            location.href="/mh/user/product/productDetail.do";
-            // href="productDetail.html"
-        }); 
-
-        //특정 상품 텍스트 클릭 시 상품 상세정보(구매)페이지로 이동
-         $(".info").click(function() {
-            location.href="/mh/user/product/productDetail.do";
-            
-            // href="productDetail.html"
-        }); 
-        
       
 
         //장바구니 수량버튼 클릭 시 수량 + - 시키기
@@ -834,7 +821,7 @@
 
         $("#titleselect").click(function(){
 			
-            console.log(block);
+            //console.log(block);
             if(block == "block") {
                 block = "none";
                 $("#titleselect > ul > li > a").css({"display":block});
@@ -852,6 +839,7 @@
         
         
         
+        
         //같은 소메뉴명 색 변화 시키기 
          $(".selectlist li a").eq(${sortNum}).addClass("on");
       
@@ -865,15 +853,6 @@
         });
         
        
-        
-        //장바구니 클릭시 장바구니 아이콘에 상품 띄우기
-         /* $(".basket").click(function(){
-        	 $(".inCart").fadeIn(1500)
-                $(".inCart").slideUp(2000)
-        	});  */
-      
-        
-        
         
         
         //상품가격 천단위로 , 찍기
@@ -955,53 +934,64 @@
     	}
     	
     	
-    	var mseq =1;
+    	//로그인 하시겠습니까? alert창
+    	function next(){
+			 if(confirm("로그인 후 이용 가능 합니다. 로그인하시겠습니까?")){
+			  location.href="/mh/user/main/login.do";
+			 } else{
+				 location.href="/mh/user/main/main.do";
+			 }
+		}
     	
-    	  
     	   
-    	//장바구니로 데이터 보내기
-        $(".basket").click(function(){
-        	var mseq = ${sessionScope.seq};
-        	var pseq = $(this).parent().find(".hiddenprice").attr("id");
-        	var qty = $(this).parent().parent().find(".modal-body").find(".list").find(".goods1").find(".adjust").find(".pmBtn").find(".geatsu").val();
-        	//console.log($(this).parent().parent().find(".modal-body").find(".list").find(".goods1").find(".adjust").find(".pmBtn").find(".geatsu"));
-        	//var cartDiv = 
-        		console.log($(this).parent().parent().parent().parent().find("#modal75").artt("id").replace("modal",""));
+    	//장바구니로 데이터 보내기 
+         $(".basket").click(function(){
         	
-            $.ajax({
-              type:"GET",
-              url:"/mh/user/product/productcart.do",
-              data:"mseq="+mseq+"&pseq="+pseq+"&qty="+qty,   
-              dataType:"text",
-              success: function(result){
-            	  $(".inCart").fadeIn(1500)
-                  $(".inCart").slideUp(2000)
-                 // $(".inCart").find(".inImg").attr("src","${dto.img}");
-              },
-              error: function(a,b,c){
-                 console.log(a,b,c);
-              }
-           })  
-  	
-         //장바구니 담기 클릭시 모달 초기화 시키기
-   		
-       		var id = $(this).parent().parent().parent().parent().attr("id")+"qty";
-       		$(this).parent().parent().find(".modal-body").find("#"+id).val("1");
-       		var ogprice = 	$(this).parent().find(".hiddenprice").val();
-       		 $(this).parent().parent().find(".modal-body").find(".sum").find(".sumnum").text(ogprice);
-       		 $(this).parent().parent().find(".modal-body").find(".sum").find(".sumnum").text(numberWithCommas(ogprice));
-       		 $(this).parent().parent().find(".modal-body").find(".save").find(".savenum").text(Math.floor(parseInt(ogprice)*0.005));
-       	
+        		if(${not empty sessionScope.seq}) {	
+        	
+        		var pseq = $(this).parent().find(".hiddenprice").attr("id");
+	        	var qty = $(this).parent().parent().find(".modal-body").find(".list").find(".goods1").find(".adjust").find(".pmBtn").find(".geatsu").val();
+	        	
+	        	var mseq = ${not empty sessionScope.seq ? sessionScope.seq : -1};
+	        	
+	        	var cartSeq = $(this).parent().parent().parent().parent().attr("id").replace("myModal","");
+	        	var cartName = $(this).parent().parent().parent().parent().find(".modal-dialog").find(".modal-content").find(".modal-body").find(".goodsname").text();
+	        	
+	        	$.ajax({
+		              type:"GET",
+		              url:"/mh/user/product/productcart.do",
+		              data:"mseq="+mseq+"&pseq="+pseq+"&qty="+qty,   
+		              dataType:"text",
+		              success: function(result){
+		            	  $(".inCart").fadeIn(1500)
+		                  $(".inCart").slideUp(2000)
+		                  $(".inImg").attr("src",$("#img"+cartSeq).attr("src"));
+		            	  $(".inTxt").text(cartName);
+		            	  
+		              },
+		              error: function(a,b,c){
+		                 console.log(a,b,c);
+		              }
+	           })  
+	           
+	           
+	           //장바구니 담기 클릭시 모달 초기화 시키기
+	       		var id = $(this).parent().parent().parent().parent().attr("id")+"qty";
+	       		$(this).parent().parent().find(".modal-body").find("#"+id).val("1");
+	       		var ogprice = 	$(this).parent().find(".hiddenprice").val();
+	       		 $(this).parent().parent().find(".modal-body").find(".sum").find(".sumnum").text(ogprice);
+	       		 $(this).parent().parent().find(".modal-body").find(".sum").find(".sumnum").text(numberWithCommas(ogprice));
+	       		 $(this).parent().parent().find(".modal-body").find(".save").find(".savenum").text(Math.floor(parseInt(ogprice)*0.005));
+	       		 
+        		} else {
+        			next();
+        		}
+	       	
+        	}); 
+        
+    	
+        	
       
-        });
-           
-    	
-    	
-    	
-    	
-    	
-    	
-    	
     	
     </script>
     

@@ -20,7 +20,9 @@ public class ProductList extends HttpServlet {
 	   
       
       HttpSession session = req.getSession();
-      session.setAttribute("seq", 25);
+      String mseq = (String)session.getAttribute("seq");
+      
+      //String mseq = ((String)session.getAttribute("seq"));
       //목록인지 검색인지? 구분짓기
       //String search = req.getParameter("search");
       

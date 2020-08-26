@@ -3,7 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@include file="/WEB-INF/views/inc/asset.jsp" %>   
 <link rel="stylesheet" href="/mh/css/admin_template.css">
-<link rel="stylesheet" href="/mh/css/delivery.css">
 <link rel="stylesheet" href="/mh/css/jquery-ui.css" />
 <script src="/mh/js/jquery-1.12.4.js"></script>
 <script src="/mh/js/jquery-ui.js"></script>
@@ -26,31 +25,31 @@
             <!-- 상품 관리 메뉴(나중에 각 메뉴별로 href옵션에 링크 걸어야함) -->
             <div>
                 <div class="glyphicon glyphicon-gift"></div>
-                <a href="#" id="item">상품관리</a>
+                <a id="item">상품관리</a>
                 <ul class="sublist" id="itemlist">
-                    <li><a href="#">상품 조회</a></li>
-                    <li><a href="#">상품 등록</a></li>
+                    <li><a href="/mh/admin/product/searchproduct.do">상품 조회</a></li>
+                    <li><a href="/mh/admin/product/enrollproduct.do">상품 등록</a></li>
                 </ul>
             </div>
             <!-- 주문 관리 메뉴 -->
             <div>
                 <div class="glyphicon glyphicon-shopping-cart"></div>
-                <a href="#" id="order">주문관리</a>
+                <a id="order">주문관리</a>
                 <ul class="sublist" id="orderlist">
-                    <li><a href="#">전체 주문 목록</a></li>
-                    <li><a href="#">배송 관리</a></li>
-                    <li><a href="#">취소 / 교환 / 환불</a></li>
+                    <li><a href="/mh/admin/order/totalorder.do">전체 주문 목록</a></li>
+                    <li><a href="">배송 관리</a></li>
+                    <li><a href="/mh/admin/order/cancelorder.do">취소 / 교환 / 환불</a></li>
                 </ul>
             </div>
             <!-- 고객 관리 메뉴 -->
             <div>
                 <div class="glyphicon glyphicon-user"></div>
-                <a href="#" id="customer">고객관리</a>
+                <a href="/mh/admin/member/member.do" id="customer">고객관리</a>
             </div>
             <!-- 게시판 관리 메뉴 -->
             <div>
                 <div class="glyphicon glyphicon-list-alt"></div>
-                <a href="#" id="border">게시판관리</a>
+                <a id="border">게시판관리</a>
                 <ul class="sublist" id="borderlist">
                     <li><a href="#">게시판 설정</a></li>
                     <li><a href="#">공지사항 관리</a></li>
@@ -63,7 +62,7 @@
             <!-- 통계 관리 메뉴 -->
             <div>
                 <div class="glyphicon glyphicon-signal"></div>
-                <a href="#" id="static">통계관리</a>
+                <a id="static">통계관리</a>
                 <ul class="sublist" id="staticlist">
                     <div>
                         <a href="#" id="sales">매출분석</a>
@@ -74,7 +73,7 @@
                         </ul>
                     </div>
                     <div>
-                        <a href="#" id="items">상품분석</a>
+                        <a id="items">상품분석</a>
                         <ul class="subsublist" id="itemslist">
                             <li><a href="#">판매상품 순위</a></li>
                             <li><a href="#">판매분류 순위</a></li>

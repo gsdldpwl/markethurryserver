@@ -1,6 +1,7 @@
 package com.test.admin.statistics;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,6 +15,19 @@ public class CategoryRanking extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		
+//		//1. DB 작업 > select
+//		//2. 결과 전달 + JSP 호출하기
+//		
+//		//1.
+//		RankingDAO dao = new RankingDAO();
+//		
+//		//2.
+//		ArrayList<String> list = dao.categorylist();
+//		
+//		req.setAttribute("list", list);
+		
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/admin/statistics/categoryranking.jsp");
 		dispatcher.forward(req, resp);

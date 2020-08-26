@@ -23,7 +23,8 @@ public class ProductQnaOk extends HttpServlet{
 		
 		String title = req.getParameter("title");
 		String content = req.getParameter("content");
-		String mseq = (String)session.getAttribute("seq");
+		//String mseq = ((String)session.getAttribute("seq")); //
+		String mseq = String.valueOf(session.getAttribute("seq"));
 		String pseq = req.getParameter("pseq");
 		String img = req.getParameter("img");
 		

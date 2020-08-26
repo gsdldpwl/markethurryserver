@@ -143,33 +143,32 @@
 
             <!-- 콘텐츠 영역 -->
             <!-- 내 레시피 -->
-         
+          <form method="post" action="/mh/user/mypage/myrecipeuploadok.do" id="recipeform">
                 <!-- select button -->
                 <div class="MyRCPpart" style="margin-top: 40px;">
                 <div class="rcpTitle">요리분류</div>
                 <select name="rcpTypeList1" id="rcpTypeList">
-                    <option value="Koreanfood">한식</option>
-                    <option value="Westernfood">양식</option>
-                    <option value="Chinesefood">중식</option>
-                    <option value="Japanesefood">일식</option>
-                    <option value="Desert">디저트</option>
-                    <option value="foodect">그외</option>
+                    <option value="0" title="Korean food">한식</option>
+                    <option value="1" title="Chinese food">중식</option>
+                    <option value="2" title="Western food">양식</option>
+                    <option value="3" title="Japanese food">일식</option>
+                    <option value="4" title="etc">그외</option>
                 </select>
                 </div>
 
                 <div class="MyRCPpart">
                   <div class="rcpTitle">제목</div>
-                  <input type="text" id="UserInputTitle" class="UserInputRCP">
+                  <input type="text" id="UserInputTitle" class="UserInputRCP" name="title">
                 </div>
 
               
                   <div class="rcpTitle">내용</div>
-                  <textarea id="UserInputsubstance" class="UserInputRCP"></textarea>
+                   <textarea id="UserInputsubstance" class="UserInputRCP" name="content"></textarea>
                 
                   <div class="MyRCPpart">
                   <div class="filebox preview-image"> 
                   <div class="rcpTitle" id="choiceimg">이미지 선택</div>
-                  <input type="file" value="이미지추가하기" class="upload-file" id="btn_File" >
+                  <input type="file" value="이미지추가하기" class="upload-file" id="btn_File" name="img" >
                   </div>
                    </div>
 
@@ -178,15 +177,17 @@
                     <div class="filebox preview-image"> 
                   <div class="rcpTitle" id="choiceFood">재료 선택</div>
                   <input type="button" value="선택하기" class="upload-file" id="contract_file">
-                  <input type="text" placeholder="선택된 파일 없음" id="selectedvalue" value="">
-                  <div id="MaterialSubtitle">내가 구매한 재료만 선택할 수 있습니다.</div>
+                   <input type="text" placeholder="선택된 파일 없음" id="selectedvalue" value="" name="selectedlist">
+             
+                  <div id="MaterialSubtitle">내가 구매한 재료만<br>선택할 수 있습니다.</div>
+                  
                   </div>
                    </div>
 
-                   <div id="mypagetwobtn">
-                   <button class="btnInputBorad" id="CancleInput" onclick="clearInput()">작성취소</button>
-                   <input type="submit" value="작성완료" class="btnInputBorad" id="SuccessInput">
-                </div>
+                   </form>
+                <div id="mypagetwobtn">
+                   <button class="btnInputBorad" id="CancleInput" onclick="history.back();">작성취소</button>
+                   <input type="button" value="작성완료" class="btnInputBorad" id="SuccessInput">
             <!-- ※ 오른쪽 영역 끝 ※ -->
             
         </div>
@@ -199,11 +200,31 @@
 
     <!-- script start -->
     <script>
-     
+    var flagnum = 0;
     //글 전송하기
     $("#SuccessInput").click(function() {
+    	 /*  if($("#UserInputTitle").val().length != 0) { flagnum++; } 
+  	  else if {
+      	 alert("제목을 입력하세요."); 
+           $("#UserInputTitle").focus();
+           return;
+       }
+  	 
+  	 else if ($("#UserInputsubstance").val().length==0) {
+           //내용을 입력안했을 때
+           
+           alert("내용을 입력하세요."); 
+           $("#UserInputsubstance").focus();
+           return;
+     
+       }  */
+       
+       $("#recipeform").submit();
+		
+		// 디비 처리를 하기 위한 서블릿 맵핑주소를 넣어줌
+		// url뒤에는 selectedvalue 태그의 데이터를 같이 넘김
+  	}) 
     	
-    })
     
     //재료선택하기
     $("#contract_file").click(function() {
@@ -271,7 +292,7 @@
      function callback(selected){
     	 
     	 $(selected).each(function(index) {
-    		 temp += $(selected)[index];
+    		 temp += $(selected)[index] + ",";
     	 });
    		 $("#selectedvalue").attr("value",temp);
      }

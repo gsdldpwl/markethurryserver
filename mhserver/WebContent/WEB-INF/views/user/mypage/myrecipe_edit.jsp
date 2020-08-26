@@ -98,148 +98,162 @@
 		dinfo.include(request, response);
 	%>
 	<!-- 마이페이지 컨텐츠 부분 -->
-    <div style="width: 1100px; min-height: 550px; margin: 60px auto;">
-        
-        <!-- ※ 왼쪽 영역 시작 ※ -->
-		<%@include file="/WEB-INF/views/inc/mypage_menu.jsp" %>
-        <!-- ※ 왼쪽 영역 끝 ※ -->
+   <div style="width: 1100px; min-height: 550px; margin: 60px auto;">
 
-        <!-- ---------------------------------------------------------------------------- -->
+		<!-- ※ 왼쪽 영역 시작 ※ -->
+		<%@include file="/WEB-INF/views/inc/mypage_menu.jsp"%>
+		<!-- ※ 왼쪽 영역 끝 ※ -->
 
-        <!-- ※ 오른쪽 영역 시작 ※ -->
+		<!-- ---------------------------------------------------------------------------- -->
 
-        <div style="width: 870px; height: auto; float: left; margin-left: 30px; vertical-align: middle;">
+		<!-- ※ 오른쪽 영역 시작 ※ -->
 
-            <!-- 마이페이지 메뉴 헤더 들어가는 부분 -->
-            <div style="height: 82px; border-bottom: 2px solid #08718E;">
-                <div style="float: left;">
-                    <h2 id="title">내 레시피<span id="subtitle">내가 등록한 레시피의 목록입니다.</span></h2>
-                </div>
+		<div
+			style="width: 870px; height: auto; float: left; margin-left: 30px; vertical-align: middle;">
 
-                <div style="float: right; margin-top: 15px;">
-                </div>
-            </div>
-            
-            <!-- ---------------------------------------------------------------------------- -->
+			<!-- 마이페이지 메뉴 헤더 들어가는 부분 -->
+			<div style="height: 82px; border-bottom: 2px solid #08718E;">
+				<div style="float: left;">
+					<h2 id="title">
+						내 레시피<span id="subtitle">내가 등록한 레시피의 목록입니다.</span>
+					</h2>
+				</div>
 
-            <!-- 콘텐츠 영역 -->
-            <!-- 내 레시피 -->
-         
-                <!-- select button -->
-                <div class="MyRCPpart" style="margin-top: 40px;">
-                <div class="rcpTitle">요리분류</div>
-                <select name="rcpTypeList1" id="rcpTypeList">
-                    <option value="Koreanfood">한식</option>
-                    <option value="Westernfood">양식</option>
-                    <option value="Chinesefood">중식</option>
-                    <option value="Japanesefood">일식</option>
-                    <option value="Desert">디저트</option>
-                    <option value="foodect">그외</option>
-                </select>
-                </div>
+				<div style="float: right; margin-top: 15px;"></div>
+			</div>
 
-                <div class="MyRCPpart">
-                  <div class="rcpTitle">제목</div>
-                  <input type="text" id="UserInputTitle" class="UserInputRCP">
-                </div>
+			<!-- ---------------------------------------------------------------------------- -->
 
-              
-                  <div class="rcpTitle">내용</div>
-                  <textarea id="UserInputsubstance" class="UserInputRCP"></textarea>
-                
-                  <div class="MyRCPpart">
-                  <div class="filebox preview-image"> 
-                  <div class="rcpTitle">이미지 선택</div>
-                  <input type="file" value="이미지추가하기" class="upload-file" >
-                  </div>
-                   </div>
+			<!-- 콘텐츠 영역 -->
+			<!-- 내 레시피 -->
+
+			<form method="post" action="/mh/user/mypage/myrecipeeditok.do" id="recipeform">
+				<!-- select button -->
+				<div class="MyRCPpart" style="margin-top: 40px;">
+					<div class="rcpTitle">요리분류</div>
+					<select name="category" id="rcpTypeList">
+						<option value="한식">한식</option>
+						<option value="양식">양식</option>
+						<option value="중식">중식</option>
+						<option value="일식">일식</option>
+						<option value="그외">그외</option>
+					</select>
+				</div>
+
+				<div class="MyRCPpart">
+					<div class="rcpTitle">제목</div>
+					<input type="text" id="UserInputTitle" class="UserInputRCP" name="title" value="${rlist.title}">
+				</div>
 
 
-                  <div class="MyRCPpart">
-                    <div class="filebox preview-image"> 
-                  <div class="rcpTitle">재료 선택</div>
-                  <input type="file" value="재료 추가하기" class="upload-file" id="contract_file" multiple>
-                  <div id="MaterialSubtitle">내가 구매한 재료만 선택할 수 있습니다.</div>
-                  </div>
-                   </div>
+				<div class="rcpTitle">내용</div>
+				<textarea id="UserInputsubstance" class="UserInputRCP" name="content" >${rlist.content}</textarea>
 
-                   <div id="mypagetwobtn">
-                   <button class="btnInputBorad" id="CancleInput" onclick="clearInput()">수정취소</button>
-                   <input type="button" value="수정완료" class="btnInputBorad" id="SuccessInput">
-                </div>
-      
-            <!-- ※ 오른쪽 영역 끝 ※ -->
-            
-        </div>
-        <div style="clear:both;"></div>
-    </div>
+				<div class="MyRCPpart">
+					<div class="filebox preview-image">
+						<div class="rcpTitle" id="choiceimg" >이미지 선택</div>
+						<input type="file" value="이미지추가하기" class="upload-file" name="img">
+					</div>
+				</div>
 
 
-<!-- footer -->
-<%@include file="/WEB-INF/views/inc/footer.jsp" %>
+				<div class="MyRCPpart">
+					<div class="filebox preview-image">
+						<div class="rcpTitle" id="choiceFood">재료 선택</div>
+						<input type="button" value="선택하기" class="upload-file"
+							id="contract_file" disabled> <input type="text"
+							placeholder="수정불가" id="selectedvalue" value=""
+							name="selectedlist">
+						<div id="MaterialSubtitle">
+							내가 구매한 재료만<br>선택할 수 있습니다.
+						</div>
+					</div>
+				</div>
 
-    <!-- script start -->
-    <script>
-        // 소진
+				<div id="mypagetwobtn">
+					<button type="button" class="btnInputBorad" id="CancleInput"
+						onclick="location.href='/mh/user/mypage/myrecipe.do';">수정취소</button>
+					<input type="button" value="수정완료" class="btnInputBorad" id="SuccessInput">
+				</div>
 
-   	$("#MyMenu > div").removeClass("nowPage");
-   	$("#goMyRecipe").addClass("nowPage");
-   	
-    //제목 입력 시 저장
-    $("#UserInputTitle")
-    // // 입력 시 작동하도록 key up func
-    .keyup(function(){
-        
-    //     // 자신이 입력하는 값을 담을 변수 선언
-        var inputtext ="";
-    //     // 선언한 변수에 값을 추가 (이 경우 백스페이스를 하면 자동으로 값이 지워짐)
-        inputtext += $(this).val();
-    });
+				<!-- 수정할 글 번호 -->
+				<input type="hidden" name="seq" value="${dto.seq}">
+			</form>
 
+			<!-- ※ 오른쪽 영역 끝 ※ -->
 
-    //내용 입력 시 저장
-    $("#UserInputsubstance")
-    // // 입력 시 작동하도록 key up func
-    .keyup(function(){   
-    //     // 자신이 입력하는 값을 담을 변수 선언
-        var inputtext ="";
-    //     // 선언한 변수에 값을 추가 (이 경우 백스페이스를 하면 자동으로 값이 지워짐)
-        inputtext += $(this).val();
-    });
+		</div>
+		<div style="clear: both;"></div>
+	</div>
 
 
-    $("#SuccessInput").on("click",function() {
-            console.log("click");
-            if(event.keyCode == 13) {
-            // 입력받은 값을 처리
-            // 입력받은 값은 inputtext
-            }  
+	<!-- footer -->
+	<%@include file="/WEB-INF/views/inc/footer.jsp"%>
 
-    // 제목에 아무 내용이 없을 때
-     if($("#UserInputTitle").val().length==0) {
-         
-         alert("제목을 입력하세요."); 
-         $("#UserInputTitle").focus();
-         
-     } else if ($("#UserInputsubstance").val().length==0) {
-         //내용을 입력안했을 때
-         
-         alert("내용을 입력하세요."); 
-         $("#UserInputsubstance").focus();
-   
-     } else {
-         //모두 입력되었으면 완료 메세지 출력
-        $(location).attr('href', 'mypageUplodeRecipeAlert.html');
-     }
-   
- });
-         //작성취소 버튼 누를 시 초기화
-         $("#CancleInput").on("click",function() {
-             $('.UserInputRCP').val('');
-            });
+	<!-- script start -->
+	<script>
+		
+	 //글 전송하기
+    $("#SuccessInput").click(function() {
+    	
+ 
+         $("#recipeform").submit();
 
-    </script>
-    <script src="/mh/js/main.js"></script>
+    }) 
+	
+		$("#MyMenu > div").removeClass("nowPage");
+		$("#goMyRecipe").addClass("nowPage");
+
+		//제목 입력 시 저장
+		$("#UserInputTitle")
+		// // 입력 시 작동하도록 key up func
+		.keyup(function() {
+
+			//     // 자신이 입력하는 값을 담을 변수 선언
+			var inputtext = "";
+			//     // 선언한 변수에 값을 추가 (이 경우 백스페이스를 하면 자동으로 값이 지워짐)
+			inputtext += $(this).val();
+		});
+
+		//내용 입력 시 저장
+		$("#UserInputsubstance")
+		//입력 시 작동하도록 key up func
+		.keyup(function() {
+			//자신이 입력하는 값을 담을 변수 선언
+			var inputtext = "";
+			//선언한 변수에 값을 추가 (이 경우 백스페이스를 하면 자동으로 값이 지워짐)
+			inputtext += $(this).val();
+		});
+
+		$("#SuccessInput").on("click", function() {
+			console.log("click");
+			if (event.keyCode == 13) {
+				// 입력받은 값을 처리
+				// 입력받은 값은 inputtext
+			}
+
+			// 제목에 아무 내용이 없을 때
+			if ($("#UserInputTitle").val().length == 0) {
+
+				alert("제목을 입력하세요.");
+				$("#UserInputTitle").focus();
+
+			} else if ($("#UserInputsubstance").val().length == 0) {
+				//내용을 입력안했을 때
+
+				alert("내용을 입력하세요.");
+				$("#UserInputsubstance").focus();
+			}
+		});
+		//작성취소 버튼 누를 시 초기화
+		$("#CancleInput").on("click", function() {
+			$('.UserInputRCP').val('');
+		});
+		
+		$("#rcpTypeList").val("${rlist.category}");
+		
+	</script>
+	<script src="/mh/js/main.js"></script>
     
 </body>
 </html>

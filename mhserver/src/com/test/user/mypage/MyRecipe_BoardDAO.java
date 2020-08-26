@@ -64,29 +64,6 @@ public class MyRecipe_BoardDAO {
 	}
 			
 
-	public int boardCombiWrite(RecipeDTO rdto) {
-		//레시피 게시글을 추가해봅시다2
-		
-		try {
-			
-			//묶음상품테이블추가
-			String combisql = "insert into combiProduct (seq, receipeseq, productseq, delflag) values (seqcombiproduct.nextVal,(select max(seq) from receipe),?,default);";
-			
-			//select max(seq) from receipe;
-			pstat = conn.prepareStatement(combisql);
-			
-//			pstat.setString(1, x);//user가 선택한 productseq받아오기
-			
-			return pstat.executeUpdate();
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		
-		return 0;
-	}
-	
 	public ArrayList<Myrecipe_BoardDTO> list(String seq) {
 		//게시판에 구매한 목록들을 불러와볼게 얍
 		try {
@@ -123,6 +100,29 @@ public class MyRecipe_BoardDAO {
 		}
 		
 		return null;
+	}
+	
+	public int boardCombiWrite(String[] list) {
+		// 묶음상품 insert
+
+		try {
+
+			String combisql = "insert into combiProduct (seq, receipeseq, productseq, delflag) values (seqcombiproduct.nextVal,(select max(seq) from receipe),?,default)";
+			pstat = conn.prepareStatement(combisql);
+
+			int result = 0;
+			for (String pseq : list) {
+				pstat.setString(1, pseq);// user가 선택한 productseq받아오기
+				result += pstat.executeUpdate();
+
+			}
+			return result;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return 0;
 	}
 
 

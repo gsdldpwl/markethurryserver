@@ -306,83 +306,97 @@
 	<div id="container">
 	
 	  <div id="MainTitle">
-            <div id="foodType">${dto.category}</div>
-            <div id="title1">${dto.title}</div>
-            <div id="UserID">${dto.memberID}</div>
-            <div id="viewnum">조회수 : ${dto.readCount }</div>
-            <div id="Date">작성일 : ${dto.regdate}</div>
-        </div>
-        <hr
-            style="border: solid 1px rgba(158, 155, 155, 0.671);"
-            width="1100px"
-        />
-        <!-- 상자 안 음식 사진 -->
-        <div class="foodpic">
-            <img src="/mh/images/${dto.img}" id="pasta1" />
-        </div>
-        <!-- 레시피 내용 -->
-        <div id="ExplainRCP" style="white-space: pre;">
-      		 ${dto.content}
-        </div>
+			<div id="foodType">${dto.category}</div>
+			<div id="title1">${dto.title}</div>
+			<div id="UserID">${dto.memberID}</div>
+			<div id="viewnum">조회수 : ${dto.readCount }</div>
+			<div id="Date">작성일 : ${dto.regdate}</div>
+		</div>
+		<hr style="border: solid 1px rgba(158, 155, 155, 0.671);"
+			width="1100px" />
+		<!-- 상자 안 음식 사진 -->
+		<div class="foodpic">
+			<img src="/mh/images/${dto.img}" id="pasta1" />
+		</div>
+		<!-- 레시피 내용 -->
+		<div id="ExplainRCP" style="white-space: pre;">${dto.content}</div>
 
-        <!-- 장바구니 담기 버튼 -->
-        <div id="Cartfood">
-            <input type="button" value="장바구니에 담기" class="InputCart" />
-        </div>
+		<!-- 장바구니 담기 버튼 -->
+		<div id="Cartfood">
+			<input type="button" value="장바구니에 담기" class="InputCart" />
+		</div>
 
-        <!-- 레시피 세트 상자 -->
-        <div id="RCPsetBox">
-            <fieldset>
-                <legend>Market Hurry Recipe Set</legend>
-       		
-       		 <div id="PDExplainBox">
-                    <img src="/mh/images/${dto.img}" id="foodPic" />
-                    <div id="sellingFoodName">${dto.memberID}님의 ${dto.title}set</div>
-                    <div id="SalePrice">${totalPrice}</div>
-              
+		<!-- 레시피 세트 상자 -->
+		<div id="RCPsetBox">
+			<fieldset>
+				<legend>Market Hurry Recipe Set</legend>
+
+				<div id="PDExplainBox">
+					<img src="/mh/images/${dto.img}" id="foodPic" />
+					<div id="sellingFoodName">${dto.memberID}님의${dto.title}set</div>
+					<div id="SalePrice">${totalPrice}</div>
+
 				</div>
                 <!-- 음식 set 목록 -->
                 <div id="FDListBox">
-                    <c:forEach items="${productlist}" var="dto">
-                <table id="menuMaterial">
-                    <tr>
-                        <td><span class="glyphicon glyphicon-ok"></span></td>
-                        <td class="MatarialName">${dto.name}</td>
-                        <td class="rcpPrice">${dto.price}원</td>
-                    </tr>
-                </table>
-		           	</c:forEach>
-		           	</div>
+					<c:forEach items="${productlist}" var="dto">
+						<table id="menuMaterial">
+							<tr>
+								<td><span class="glyphicon glyphicon-ok"></span></td>
+								<td class="MatarialName">${dto.name}</td>
+								<td class="rcpPrice">${dto.price}원</td>
+							</tr>
+						</table>
+					</c:forEach>
+				</div>
 
-            </fieldset>
-        </div>
-    
+			</fieldset>
+		</div>
 
-        <!-- 댓글 -->
-	<div id="allAnwser">
-        <div id="AnwserTitle">댓글</div>
-        <c:forEach items="${clist}" var="cdto">
-        <div id="Answerbox">
-            <div id="UserCommnet1">
-                <div class="AnswerUserId">${cdto.memberID}</div>
-                <div class="AnswerDate">${cdto.regdate}</div>
-                <div class="AnswerComment">
-                    ${cdto.content}
-                </div>
-			</div>
-          </div>
-                </c:forEach>
+		<%-- 			<div class="btns btn-group">
+                    <button type="button" class="btn btn-default" onclick="location.href='/mh/user/mypage/myrecipe';">
+                        <span class="glyphicon glyphicon-th-list"></span>
+                        목록
+                    </button>
+                
+                     <c:if test="${id == dto.id}"> 
+                    <button type="button" class="btn btn-default" onclick="location.href='/mh/user/mypage/edit.do?seq=${dto.seq}';">
+                        <span class="glyphicon glyphicon-minus"></span>
+                        수정
+                    </button>
+                    
+                    
+                    
+                    <button type="button" class="btn btn-default" onclick="location.href='/codestudy/board/delete.do?seq=${dto.seq}';">
+                        <span class="glyphicon glyphicon-remove"></span>
+                        삭제
+                    </button>
+             </c:if> --%>
+
+		<!-- 댓글 -->
+		<div id="allAnwser">
+			<div id="AnwserTitle">댓글</div>
+			<c:forEach items="${clist}" var="cdto">
+				<div id="Answerbox">
+					<div id="UserCommnet1">
+						<div class="AnswerUserId">${cdto.memberID}</div>
+						<div class="AnswerDate">${cdto.regdate}</div>
+						<div class="AnswerComment">${cdto.content}</div>
+					</div>
+				</div>
+			</c:forEach>
 	
-			<div id="noAnswerBox">
-			<div id="noAnswer"> 입력된 댓글이 없습니다. 첫번째 댓글을 달아보세요! </div>
-			<hr id="noAnswerline">
+	<div id="noAnswerBox">
+			<div id="noAnswer">입력된 댓글이 없습니다. 첫번째 댓글을 달아보세요!</div>
+				<hr id="noAnswerline">
 			</div>
 
-        <!-- 새로운 댓글 입력 시 -->
-        <div id="NewCommentBoxClass">
-            <textarea placeholder="댓글을 입력해주세요." class="comment"></textarea>
-            <button type="button" id="BTNRegisterAnswer" name="BTNRegisterAnswer" >등록</button>
-        </div>
+			<!-- 새로운 댓글 입력 시 -->
+			<div id="NewCommentBoxClass">
+				<textarea placeholder="댓글을 입력해주세요." class="comment"></textarea>
+				<button type="button" id="BTNRegisterAnswer"
+					name="BTNRegisterAnswer">등록</button>
+			</div>
         
         
 

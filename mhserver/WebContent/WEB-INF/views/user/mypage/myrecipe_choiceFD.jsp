@@ -94,7 +94,7 @@
        
             <div id="list_title">
                 <img src="/mh/images/brandlogo.png" id="img_logo" />
-                <p> 선택한 재료 목록은 고객님의 이름의 묶음 상품으로 판매되어집니다.</p>
+                 <p> 선택한 재료 목록은 고객님의 이름의 묶음 상품으로 판매되어지며 수정이 불가합니다.</p>
             </div>
             
             <div id="newWindow_list">
@@ -112,7 +112,7 @@
 	           
 	           <c:forEach items="${list}" var="dto">
 	             	<tr>
-	             		<input type="hidden" class="pseq" value="hidden pseq">
+	             		<input type="hidden" class="pseq" value="${dto.pseq}">
 		                <td><input type="checkbox" value="food" name="chk" class="chk"/></td>
 		                <td><img src=${dto.pimg } class="pic_food" /></td>
 		                <td class="foodName">${dto.pname }</td>

@@ -124,7 +124,7 @@
 	<!-- '나만의 레시피 올리기' 버튼  -->
 	<div id="ButtonUplode">
 
-		<button id="MyRecipebtn" name="MyRecipebtn" onclick="location.href='mypageUplodeRecipe.html'" />나만의 레시피 올리기</button>
+		<button id="MyRecipebtn" name="MyRecipebtn" onclick="location.href='/mh/user/mypage/myrecipe_upload.do';">나만의 레시피 올리기</button>
 	</div>
 	<!-- best 상자 -->
 	<fieldset>
@@ -162,7 +162,7 @@
 
 
 	<!-- 페이징 -->
-	 <div id="paging">${pagebar}</div> 
+	 <div id="paging" style="clear:both;">${pagebar}</div> 
 
 	<!-- footer -->
 	<%@include file="/WEB-INF/views/inc/footer.jsp"%>

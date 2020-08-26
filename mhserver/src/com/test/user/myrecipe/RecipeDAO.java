@@ -41,7 +41,7 @@ public class RecipeDAO {
 		try {
 
 			String sql = String.format(
-					"select * from (select a.* , rownum as rnum from (select * from vwRecipe order by regdate desc) a) where rnum >= %s and rnum <= %s order by regdate desc",
+					"select * from (select a.* , rownum as rnum from (select * from vwRecipe  where delflag=0 order by regdate desc) a) where rnum >= %s and rnum <= %s order by regdate desc",
 					map.get("begin"), map.get("end"));
 
 			Statement stat = null;
@@ -102,7 +102,7 @@ public class RecipeDAO {
 			Connection conn = new DBUtil().open();
 			PreparedStatement pstat = null;
 
-			String sql = "select count(*) as cnt from vwrecipe";
+			String sql = "select count(*) as cnt from vwrecipe where delflag=0";
 			pstat = conn.prepareStatement(sql);
 
 			rs = pstat.executeQuery();
@@ -123,7 +123,7 @@ public class RecipeDAO {
 	public void updateReadCount(String seq) {
 		try {
 
-			String sql = "update vwRecipeDetail set readCount = readCount + 1 where seq = ?";
+			String sql = "update receipe set readCount = readCount + 1 where seq = ?";
 
 			pstat = conn.prepareStatement(sql);
 			pstat.setString(1, seq);
@@ -174,7 +174,7 @@ public class RecipeDAO {
 					dto.setCategory("일식");
 
 				} else {
-					dto.setCategory("기타");
+					dto.setCategory("그외");
 				}
 
 				return dto;
@@ -194,7 +194,7 @@ public class RecipeDAO {
 
 		try {
 
-			String sql = "select to_char( p.price , '999,999,999,999,999') as price, p.name as name from combiproduct cp inner join product p on cp.productseq=p.seq where receipeseq = ?";
+			String sql = "select to_char( p.price , '999,999,999,999,999') as price, p.name as name from combiproduct cp inner join product p on cp.productseq=p.seq where receipeseq = ? and p.delflag = 0";
 
 			pstat = conn.prepareStatement(sql);
 			pstat.setString(1, seq);
@@ -224,7 +224,7 @@ public class RecipeDAO {
 
 		try {
 
-			String sql = "select a.*, (select id from Member where seq = a.memberseq) as memberID from receipeComment a where receipeseq = ? order by regdate asc";
+			String sql = "select a.*, (select id from Member where seq = a.memberseq) as memberID from receipeComment a where receipeseq = ? and delflag = 0 order by regdate asc and deflag = 0";
 
 			pstat = conn.prepareStatement(sql);
 			pstat.setString(1, seq);
@@ -284,7 +284,7 @@ public class RecipeDAO {
 		
 		try {
 			
-			String sql ="select rownum, x.* from ( select a.* from vwRecipe a order by a.readcount desc) x where rownum <= 3";
+			String sql = "select rownum, x.* from ( select a.* from vwRecipe a order by a.readcount desc) x where rownum <= 3 and delflag = 0";
 			
 			Statement stat = null;
 			stat = conn.createStatement();
@@ -331,6 +331,76 @@ public class RecipeDAO {
 		}
 		
 		return null;
+	}
+	
+	public boolean isOwner(RecipeDTO dto) {
+		// DeleteOK -> 글쓴이 확인
+
+		try {
+
+			String sql = "select count(*) as cnt from receipe a where (select id from Member where seq = a.memberseq) = ? and seq = ? and delflag = 0 ";
+
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, dto.getMemberID()); // 회원아이디
+			pstat.setString(2, dto.getSeq()); // 레시피 번호
+
+			rs = pstat.executeQuery();
+
+			if (rs.next()) {
+				return rs.getInt("cnt") == 1 ? true : false;
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("RecipeDAO.isOwner()");
+		}
+		return false;
+	}
+
+	public int delete(String seq) {
+		// DeleteOK -> 글 번호 받아와서 삭제
+
+		try {
+
+			String sql = "update receipe set delflag = 1 where seq = ?";
+
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, seq);
+
+			return pstat.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("RecipeDAO.delete()");
+		}
+
+		return 0;
+	}
+
+	public int edit(RecipeDTO rdto) {
+		// myrecipe_editok (레피시 수정하기)
+
+		try {
+
+			String sql = "update receipe set category = ?, title = ?, content = ?, regdate = sysdate, img = ? where seq = ?";
+
+			pstat = conn.prepareStatement(sql);
+			System.out.println(rdto.toString());
+
+			pstat.setString(1, rdto.getCategory()); // 분류
+			pstat.setString(2, rdto.getTitle()); // 제목
+			pstat.setString(3, rdto.getContent()); //내용
+			pstat.setString(4, rdto.getImg()); // 이미지
+			pstat.setString(5, rdto.getSeq()); // 레시피seq
+
+			return pstat.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("RecipeDAO.edit()");
+		}
+
+		return 0;
 	}
 
 }

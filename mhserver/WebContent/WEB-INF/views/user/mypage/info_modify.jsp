@@ -280,7 +280,7 @@
             <div id="boxMain">
                 <div class="boxInfo">
                     <span>아이디</span>
-                    <input type="text" id="inputId" name="inputId" class="inputTxt" value="${id}" readonly>
+                    <input type="text" id="inputId" name="inputId" class="inputTxt" value="${dto.id}" readonly>
                 </div>
                 <div class="boxInfo">
                     <span>현재 비밀번호</span>
@@ -308,16 +308,16 @@
                 </div>
                 <div class="boxInfo">
                     <span>이름</span>
-                    <input type="text" id="inputName" name="inputNmae" class="inputTxt" value="${name}">
+                    <input type="text" id="inputName" name="inputNmae" class="inputTxt" value="${dto.name}">
                 </div>
                 <div class="boxInfo">
                     <span>이메일</span>
-                    <input type="text" id="inputMail" name="inputMail" class="inputTxt" value="${email}">
+                    <input type="text" id="inputMail" name="inputMail" class="inputTxt" value="${dto.email}">
                     <input type="button" id="sameMailChk" value="중복확인" class="btnForm">
                 </div>
                 <div class="boxInfo">
                     <span>휴대폰</span>
-                    <input type="text" id="inputPhone" name="inputPhone" class="inputTxt" value="${tel}" readonly>
+                    <input type="text" id="inputPhone" name="inputPhone" class="inputTxt" value="${dto.tel}" readonly>
                     <input type="button" id="phoneNumChk" value="다른번호 인증" class="btnForm anotherNum">
                 </div>
                 <div class="boxInfo blind" id="boxCheckNum">

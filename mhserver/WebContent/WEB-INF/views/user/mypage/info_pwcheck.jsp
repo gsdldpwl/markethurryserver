@@ -110,7 +110,7 @@
             <div id="boxInfo">
                 <div id="boxId">
                     <span>아이디</span>
-                    <input type="text" id="inputId" name="inputId" value="${id}" readonly>
+                    <input type="text" id="inputId" name="inputId" value="${dto.id}" readonly>
                 </div>
                 <div id="boxPw">
                     <span>비밀번호 *</span>

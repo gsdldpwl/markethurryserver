@@ -69,9 +69,15 @@ public class MypageDAO {
 			rs = pstat.executeQuery();
 			
 			if (rs.next()) {
-				gradeinfo.put("name", rs.getString("name"));
-				gradeinfo.put("discountper", rs.getString("discountper"));
-				gradeinfo.put("mileageper", rs.getString("mileageper"));
+				if (gradeseq.equals("1")) {
+					gradeinfo.put("name", rs.getString("name"));
+					gradeinfo.put("discountper", String.format("%.1f",rs.getFloat("discountper")));
+					gradeinfo.put("mileageper", String.format("%.1f",rs.getFloat("mileageper")));
+				} else {
+					gradeinfo.put("name", rs.getString("name"));
+					gradeinfo.put("discountper", rs.getString("discountper"));
+					gradeinfo.put("mileageper", rs.getString("mileageper"));
+				}
 			}
 			
 			rs.close();
@@ -315,7 +321,12 @@ public class MypageDAO {
 				
 				OrderListDTO dto = new OrderListDTO();
 				
-				dto.setDseq(rs.getString("dseq"));
+				if (rs.getString("dseq") != null) {
+					dto.setDseq(rs.getString("dseq"));					
+					dto.setCategory(rs.getInt("category"));
+					dto.setDregdate(rs.getString("dregdate").split(" ")[0]);					
+				}
+				
 				dto.setOlseq(rs.getString("olseq"));
 				dto.setMseq(rs.getString("mseq"));
 				dto.setPseq(rs.getString("pseq"));
@@ -333,9 +344,6 @@ public class MypageDAO {
 				} else if (rs.getInt("status") == 2) {
 					dto.setStatus("배송완료");					
 				}
-				
-				dto.setCategory(rs.getInt("category"));
-				dto.setDregdate(rs.getString("dregdate").split(" ")[0]);
 				
 				if (oltemp.equals(dto.getOlseq())) {
 					//상품번호가 같은 경우,

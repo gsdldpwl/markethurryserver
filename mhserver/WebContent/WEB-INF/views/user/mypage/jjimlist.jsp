@@ -30,8 +30,10 @@
         #tblList th:nth-child(3) { width: 130px; }
 
         .no_data {
+            list-style: none;
             text-align: center;
-            padding: 100px 0px;
+            padding-top: 85px !important;
+            padding-bottom: 85px !important;
         }
 
         .label_check { margin: 0px; }
@@ -476,13 +478,7 @@
                 </div>
             </div>
         </div>
-            
-            <!-- 실제 데이터 구현되기 전까지 임의대로 실행해주는 버튼 -->
-            <!-- 서버와 연결 후에 삭제할 부분 -->
-            <div id="wrap">
-                <a href="javascript:openModal('noSelect');" class="button modal-open">선택사항없음</a>
-                <a href="javascript:openModal('bascketAlready');" class="button modal-open">동일상품존재</a>
-            </div>
+
             <!-- ※ 오른쪽 영역 끝 ※ -->
             
         </div>

@@ -51,9 +51,10 @@
 }
 
 .no_data {
-	list-style: none;
-	text-align: center;
-	padding: 100px 0px;
+            list-style: none;
+            text-align: center;
+            padding-top: 85px !important;
+            padding-bottom: 85px !important;
 }
 
 .label_check {
@@ -312,19 +313,6 @@ a.button {
 				</div>
 			</div>
 
-
-
-			<!-- 실제 데이터 구현되기 전까지 임의대로 실행해주는 버튼 -->
-			<!-- 서버와 연결 후에 삭제할 부분 -->
-			<div id="wrap">
-				<a href="javascript:openModal('noSelect');"
-					class="button modal-open">선택사항없음</a> <a
-					href="javascript:openModal('reallyDelete');"
-					class="button modal-open">삭제확인여부</a>
-			</div>
-
-			<input type="button" value="찜목록없음" id="btnNoData"> <input
-				type="button" value="찜목록있음" id="btnYesData">
 
 			<!-- ※ 오른쪽 영역 끝 ※ -->
 

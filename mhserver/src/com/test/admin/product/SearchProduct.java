@@ -1,6 +1,7 @@
 package com.test.admin.product;
 
 import java.io.IOException;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -10,6 +11,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.test.admin.product.ProductDAO;
+import com.test.admin.product.ProductDTO;
 
 
 @WebServlet("/admin/product/searchproduct.do")

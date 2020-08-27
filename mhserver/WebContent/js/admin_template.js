@@ -116,3 +116,22 @@ $("#items").click(function() {
         $("#itemslist").hide();
     }
 });
+
+$(function () {
+    $("#date1").datepicker({
+        dateFormat: "yy-mm-dd",
+        showOn: "both",
+        buttonImage: "../../images/icons8-calendar-28.png",
+        buttonImageOnly: true,
+        buttonText: "Select date",
+    });
+
+    $("#date2").datepicker({
+        dateFormat: "yy-mm-dd",
+        showOn: "both",
+        buttonImage: "../../images/icons8-calendar-28.png",
+        buttonImageOnly: true,
+        buttonText: "Select date",
+    });
+});
+

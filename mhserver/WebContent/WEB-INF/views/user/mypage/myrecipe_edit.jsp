@@ -17,6 +17,7 @@
             float: left;
             font-weight: bold;
             font-size: 16px;
+           
         }
 
         #rcpTypeList {
@@ -51,11 +52,7 @@
             color: #666666;
             width:110px;
         }
-         .upload-file{
-            /* 이미지, 재료선택파일 선택 버튼 */
-            margin-left: 113px;
-            width: 250px;
-        }
+     
 
         #mypagetwobtn {
             /* 버튼을 감싸고 있는 틀 */
@@ -80,7 +77,6 @@
             color: #08718e;
             border: 1px solid #08718e;
         }
-
         #SuccessInput {
             /* 작성완료 버튼 */
             margin-left:30px;
@@ -88,6 +84,28 @@
             color: white;
             border:none;
         }
+        
+        #btn_File {
+        	margin-left: 30px;
+        }
+        
+        #choiceFood {
+         	margin-right: 45px;
+        }
+        
+        #choiceimg {
+        	margin-right: 30px;
+        }
+      
+      	#selectedvalue {
+      	border: none;
+      	
+      	}
+      	
+      	#contract_file {
+      		width: 75px;
+      		height: 25px;
+      	}
     </style>
 </head>
 
@@ -132,11 +150,11 @@
 				<div class="MyRCPpart" style="margin-top: 40px;">
 					<div class="rcpTitle">요리분류</div>
 					<select name="category" id="rcpTypeList">
-						<option value="한식">한식</option>
-						<option value="양식">양식</option>
-						<option value="중식">중식</option>
-						<option value="일식">일식</option>
-						<option value="그외">그외</option>
+						<option value="0">한식</option>
+						<option value="2">양식</option>
+						<option value="1">중식</option>
+						<option value="3">일식</option>
+						<option value="4">그외</option>
 					</select>
 				</div>
 
@@ -172,12 +190,12 @@
 
 				<div id="mypagetwobtn">
 					<button type="button" class="btnInputBorad" id="CancleInput"
-						onclick="location.href='/mh/user/mypage/myrecipe.do';">수정취소</button>
+						onclick="history.back();">수정취소</button>
 					<input type="button" value="수정완료" class="btnInputBorad" id="SuccessInput">
 				</div>
 
 				<!-- 수정할 글 번호 -->
-				<input type="hidden" name="seq" value="${dto.seq}">
+				<input type="hidden" name="seq" value="${rlist.seq}">
 			</form>
 
 			<!-- ※ 오른쪽 영역 끝 ※ -->

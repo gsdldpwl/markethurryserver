@@ -39,8 +39,6 @@ public class MyRecipe_BoardDAO {
 			//레시피테이블추가
 			String sql = "insert into receipe (seq, memberseq, category, title, content, regdate, readcount, img, delflag) values (seqreceipe.nextVal,?,?,?,?,sysdate,0,?,default)";
 			
-			
-			
 			pstat = conn.prepareStatement(sql);
 			
 			pstat.setString(1, rdto.getMseq()); //글 작성한 멤버seq

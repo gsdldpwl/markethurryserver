@@ -369,8 +369,13 @@
                     <th>선택</th>
                 </tr>
                 <tbody>
+                <c:if test="${jjimlistdto.size() < 1}">
+                	<tr><td class="no_data" colspan="4">찜 목록 내역이 없습니다.</td></tr>
+                </c:if>
+                
+                <c:if test="${jjimlistdto.size() >= 1}">
                 	<c:forEach items="${jjimlistdto}" var="list">
-                    <tr>
+                    <tr data-jseq="${list.jseq}">
                         <td>
                             <label class="label_check">
                                 <input type="checkbox" class="ckbox jjimCheck" name="jjimCheck">
@@ -387,6 +392,7 @@
                         </td>
                     </tr>
                 	</c:forEach>
+                </c:if>
                 </tbody>
             </table>
             
@@ -477,10 +483,6 @@
                 <a href="javascript:openModal('noSelect');" class="button modal-open">선택사항없음</a>
                 <a href="javascript:openModal('bascketAlready');" class="button modal-open">동일상품존재</a>
             </div>
-
-            <input type="button" value="찜목록없음" id="btnNoData">
-            <input type="button" value="찜목록있음" id="btnYesData">
-            
             <!-- ※ 오른쪽 영역 끝 ※ -->
             
         </div>
@@ -514,18 +516,40 @@
             // 장바구니 담기를 눌렀을 때 동일한 상품이 있으면 알림메세지
             // 동일한 상품이 없으면 바로 장바구니에 담기
             
-        })
-
-        // 삭제 선택시
-        // 처음부터 있는 경우는 되는데 나중에 태그를 추가시에는 이 버튼 작동하지 않음 ㅠㅜ
-        $(".deleteList").click(function() {
-            $(this).parent().parent().remove();
-            console.log($("#tblList").children().children().length);
-            if ($("#tblList").children().children().length == 1) {
-                $("#tblList tbody:last-child").append(`<tr><td class="no_data" colspan="4">찜 목록 내역이 없습니다.</td></tr>`);
-            }
         });
 
+        $(".deleteList").click (function() {
+        	
+	      	var deleteflag = false;
+        	var jseq = $(this).parent().parent().data('jseq');
+        	var tag = $(this).parent().parent();
+       		$.ajax({
+            	type: "GET",
+            	url: "/mh/user/mypage/jjimlist_deleteok.do",
+            	data: "jseq=" + jseq,
+            	dataType: "text",
+            	async: false,
+            	success: function(result) {
+            		if(result == 1) {
+            			alert('찜 목록 삭제를 완료했습니다.');
+            			deleteflag = true;
+            		} else {
+            			alert('찜 목록 삭제를 실패했습니다.');            			
+            		}
+            	},
+            	error: function(a,b,c) {
+            		console.log(a,b,c);
+            	}
+            });
+       		
+        	if(deleteflag){
+        		tag.remove();
+                if ($("#tblList").children().children().length == 1) {
+                    $("#tblList tbody:last-child").append(`<tr><td class="no_data" colspan="4">찜 목록 내역이 없습니다.</td></tr>`);
+                }
+        	}
+        });
+        
         // 전체 주문하기 클릭시
         $("#goAllOrder").click(function() {
 
@@ -560,11 +584,6 @@
                 });
             }
             
-            // // 하위 태그 전부 삭제
-            // $("#tblList tbody:last-child *").remove();
-            // // 찜 목록이 없다고 나타내주는 태그 추가
-            // $("#tblList tbody:last-child").append(`<tr><td class="no_data" colspan="4">찜 목록 내역이 없습니다.</td></tr>`);
-
         });
         
         //장바구니 수량버튼 클릭 시 수량 + - 시키기
@@ -647,87 +666,6 @@
         $("#modal, .close, .yes").on('click',function(){
             $("#modal").fadeOut(300);
             $(".modal_common").fadeOut(300);
-        });
-
-
-        // 버튼 클릭은 서버 적용 후에 삭제해야하는 데이터임.
-        
-
-        // 찜 목록이 있는 경우
-        $("#btnYesData").click(function() {
-
-            // 하위 태그 전부 삭제
-            $("#tblList tbody:last-child *").remove();
-
-            // 찜 목록 태그 작성
-            var contents = `<tr>
-                        <td>
-                            <label class="label_check">
-                                <input type="checkbox" class="ckbox jjimCheck" name="jjimCheck">
-                            </label>
-                        </td>
-                        <td><img src="" class="itemImg"></td>
-                        <td>
-                            <div>[오마하] 프라임 등심 스테이크 200g(냉장) 1</div>
-                            <div>24,000원</div>
-                        </td>
-                        <td>
-                            <input type="button" class="goBasket" value="장바구니 담기">
-                            <input type="button" class="deleteList" value="삭제">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label class="label_check">
-                                <input type="checkbox" class="ckbox jjimCheck" name="jjimCheck">
-                            </label>
-                        </td>
-                   <td><img src="" class="itemImg"></td>
-                        <td>
-                            <div>[오마하] 프라임 등심 스테이크 200g(냉장) 2</div>
-                            <div>24,000원</div>
-                        </td>
-                        <td>
-                            <input type="button" class="goBasket" value="장바구니 담기">
-                            <input type="button" class="deleteList" value="삭제">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label class="label_check">
-                                <input type="checkbox" class="ckbox jjimCheck" name="jjimCheck">
-                            </label>
-                        </td>
-                        <td><img src="" class="itemImg"></td>
-                        <td>
-                            <div>[오마하] 프라임 등심 스테이크 200g(냉장) 3</div>
-                            <div>24,000원</div>
-                        </td>
-                        <td>
-                            <input type="button" class="goBasket" value="장바구니 담기">
-                            <input type="button" class="deleteList" value="삭제">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label class="label_check">
-                                <input type="checkbox" class="ckbox jjimCheck" name="jjimCheck">
-                            </label>
-                        </td>
-                        <td><img src="" class="itemImg"></td>
-                        <td>
-                            <div>[오마하] 프라임 등심 스테이크 200g(냉장) 4</div>
-                            <div>24,000원</div>
-                        </td>
-                        <td>
-                            <input type="button" class="goBasket" value="장바구니 담기">
-                            <input type="button" class="deleteList" value="삭제">
-                        </td>
-                    </tr>`;
-
-            // 리스트, li 태그 추가
-            $("#tblList tbody:last-child").append(contents);
-
         });
 
 

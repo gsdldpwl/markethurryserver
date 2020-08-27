@@ -283,17 +283,6 @@
 	$("#MyMenu > div").removeClass("nowPage");
 	$("#goMyOrder").addClass("nowPage");
 
-	// 상품의 1:1 문의 버튼을 눌렀을 때
-	// 해당 상품의 주문 번호 데이터를 가지고 1:1 작성 페이지로 넘어간다.
-	$(".q1to1Item").click(function() {
-    	location.href='/mh/user/customercenter/onebyone.do';
-	});
-	
-	// 상품 이름 옆의 화살표를 눌렀을 때 해당 상품의 정보 페이지로 넘어간다.
-	$(".goItemInfo").click(function() {
-	    console.log("상품 정보 페이지입니다.");
-	});
-	
 	// 주문 목록 기간 선택
 	$("#selectYear").change(function() {
 	    $("#selectYear option:selected").each(function() {

@@ -711,7 +711,7 @@ public class MypageDAO {
 		try {
 			
 			String sql = "select j.seq jseq, p.seq pseq, p.name pname, p.price price, p.img image from jjim j "
-					+ "inner join product p on p.seq = j.productseq where j.memberseq = ?";
+					+ "inner join product p on p.seq = j.productseq where j.memberseq = ? and j.delflag = 0 and p.delflag = 0";
 			
 			pstat = conn.prepareStatement(sql);
 			pstat.setString(1, memberseq);
@@ -749,16 +749,98 @@ public class MypageDAO {
 	 * @return 세부 주문내역 DTO가 담긴 ArrayList
 	 */
 	public ArrayList<OrderListDTO> getOrderDetailList(String olseq) {
-		
+
 		try {
 			
-			String sql = "00";
+			String sql = "select * from vwOrderlist where olseq = ?";
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, olseq);
 			
+			rs = pstat.executeQuery();
+			
+			ArrayList<OrderListDTO> list = new ArrayList<OrderListDTO>();
+			
+			String odtemp = "";
+			String ptemp = "";
+			
+			while (rs.next()) {
+				
+				OrderListDTO dto = new OrderListDTO();
+				
+				dto.setDseq(rs.getString("dseq"));
+				dto.setOlseq(rs.getString("olseq"));
+				dto.setOdseq(rs.getString("odseq"));
+				dto.setMseq(rs.getString("mseq"));
+				dto.setPseq(rs.getString("pseq"));
+				dto.setTotalprice(String.format("%,d", rs.getInt("totalprice")));
+				dto.setPrice(String.format("%,d", rs.getInt("price")));
+				dto.setPname(rs.getString("pname"));
+				dto.setImg(rs.getString("img"));
+				dto.setQty(rs.getInt("qty"));
+				dto.setRegdate(rs.getString("regdate"));
+				
+				if (rs.getInt("status") == 0) {
+					dto.setStatus("배송준비중");					
+				} else if (rs.getInt("status") == 1) {
+					dto.setStatus("배송중");					
+				} else if (rs.getInt("status") == 2) {
+					dto.setStatus("배송완료");					
+				}
+				
+				dto.setCategory(rs.getInt("category"));
+				dto.setDregdate(rs.getString("dregdate"));
+				
+				if (odtemp.equals(dto.getOdseq())) {
+					//상품번호가 같은 경우,
+					if(ptemp.equals(dto.getPseq())) {
+						// 뷰에서 이미 가장 최근 배송날짜가 먼저 나오게 정렬했으므로,
+						// 나중에 나오는 값들을 저장하지 않고 넘기면 됨.
+						continue;
+					}
+				}
+				
+				list.add(dto);
+				odtemp = dto.getOdseq();
+				ptemp = dto.getPseq();
+			}
+			
+			rs.close();
+			pstat.close();
+			
+			return list;
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 		return null;
+	}
+
+	/**
+	 * JjimList_DeleteOk.java
+	 * 찜목록 삭제상태를 업데이트한다.
+	 * @param jseq 삭제할 찜목록의 sequence
+	 * @return 업데이트 결과(0: 실패, 1: 성공)
+	 */
+	public int deleteJjim(String jseq) {
+
+		try {
+			
+			String sql = "update jjim set delflag = 1 where seq = ?";
+			
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, jseq);
+			
+			int result = pstat.executeUpdate();
+			
+			pstat.close();
+			
+			return result;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return 0;
 	}
 	
 }

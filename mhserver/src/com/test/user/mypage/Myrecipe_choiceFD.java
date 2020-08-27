@@ -22,7 +22,7 @@ public class Myrecipe_choiceFD extends HttpServlet {
 		
 		HttpSession session = req.getSession();
 		//추후 삭제해야함 #todo
-		session.setAttribute("seq", "3"); //회원번호
+		//session.setAttribute("seq", "3"); //회원번호
 		
 		
 		MyRecipe_BoardDAO dao = new MyRecipe_BoardDAO();

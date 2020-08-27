@@ -161,7 +161,7 @@
       		
       		$("input[type='checkbox']:checked").each(function(index){
       			selected.push($(this).parent().parent().find(".pseq").val());
-      			alert($(this).parent().parent().find(".pseq").val());
+      			//alert($(this).parent().parent().find(".pseq").val());
       		});
       		window.close();
       		opener.callback(selected);

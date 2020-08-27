@@ -140,7 +140,7 @@ public class RecipeDAO {
 	// recipedetail
 	public RecipeDTO get(String seq) {
 		try {
-			String sql = "select seq, (select id from member where seq = r.memberseq) as memberid, title, content,regdate, readcount, img, category from receipe r  where seq = ? and delflag=0";
+			String sql = "select seq, memberseq, (select id from member where seq = r.memberseq) as memberid, title, content,regdate, readcount, img, category from receipe r  where seq = ? and delflag=0";
 
 			pstat = conn.prepareStatement(sql);
 			pstat.setString(1, seq);
@@ -159,7 +159,8 @@ public class RecipeDAO {
 				dto.setMemberID(rs.getString("memberid"));
 				dto.setTitle(rs.getString("title"));
 				dto.setCategory(rs.getString("category"));
-
+				dto.setMseq(rs.getString("memberseq"));
+				
 				// 분류 숫자 -> 한글
 				if (rs.getString("category").equals("0")) {
 					dto.setCategory("한식");
@@ -224,8 +225,7 @@ public class RecipeDAO {
 
 		try {
 
-			String sql = "select a.*, (select id from Member where seq = a.memberseq) as memberID from receipeComment a where receipeseq = ? and delflag = 0 order by regdate asc and deflag = 0";
-
+			String sql = "select a.*, (select id from Member where seq = a.memberseq and delflag=0) as memberID from receipeComment a where receipeseq = ? and delflag=0 order by regdate asc";
 			pstat = conn.prepareStatement(sql);
 			pstat.setString(1, seq);
 
@@ -385,8 +385,7 @@ public class RecipeDAO {
 			String sql = "update receipe set category = ?, title = ?, content = ?, regdate = sysdate, img = ? where seq = ?";
 
 			pstat = conn.prepareStatement(sql);
-			System.out.println(rdto.toString());
-
+		
 			pstat.setString(1, rdto.getCategory()); // 분류
 			pstat.setString(2, rdto.getTitle()); // 제목
 			pstat.setString(3, rdto.getContent()); //내용
@@ -400,6 +399,25 @@ public class RecipeDAO {
 			System.out.println("RecipeDAO.edit()");
 		}
 
+		return 0;
+	}
+
+	public int deleteComment(String cseq) {
+		//DeleteComment
+		
+		try {
+			
+			String sql ="update receipecomment set delflag = 1 where seq = ?";
+			
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, cseq); //댓글seq
+			
+			return pstat.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("RecipeDAO.deletecomment()");
+		}
 		return 0;
 	}
 

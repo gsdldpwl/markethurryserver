@@ -21,8 +21,8 @@ public class MyrecipeDetail extends HttpServlet {
 		protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 			HttpSession session = req.getSession();
-			//추후 삭제해야함 #todo
-			session.setAttribute("seq", 1);
+	
+			req.setAttribute("mseq", (String)session.getAttribute("seq"));
 			
 			//1.seq 가져오기
 			String seq = req.getParameter("seq");
@@ -61,7 +61,6 @@ public class MyrecipeDetail extends HttpServlet {
 			
 			//
 			String reply = req.getParameter("reply");
-			
 			//전달하기
 			req.setAttribute("dto", dto);	//상품
 			req.setAttribute("clist", clist); //댓글리스트 가져오기

@@ -1,6 +1,7 @@
 package com.test.user.mypage;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,6 +15,20 @@ public class JjimList_DeleteOk extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
+		//1. 데이터 가져오기(buseo)
+		//2. DB 작업 > select
+		//3. 결과 반환 > JSON 반환
+		
+		//1.
+		String jseq = req.getParameter("jseq");
+		
+		//2.
+		MypageDAO dao = new MypageDAO();
+		int result = dao.deleteJjim(jseq);
+		
+		PrintWriter writer = resp.getWriter();
+		writer.print(result);
+		writer.close();
 		
 		
 	}

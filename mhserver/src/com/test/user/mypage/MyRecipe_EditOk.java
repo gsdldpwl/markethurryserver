@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 import com.test.user.myrecipe.RecipeDAO;
 import com.test.user.myrecipe.RecipeDTO;
 
-@WebServlet("/user/mypage/myrecipe_editok.do")
+@WebServlet("/user/mypage/myrecipeeditok.do")
 public class MyRecipe_EditOk extends HttpServlet {
 
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -23,10 +23,10 @@ public class MyRecipe_EditOk extends HttpServlet {
 		// 3. 결과 처리
 
 		// 1.
+		HttpSession session = req.getSession();
 		req.setCharacterEncoding("UTF-8");
-
+		
 		String rseq = req.getParameter("seq"); // recipe seq
-		System.out.println(rseq);
 		String category = req.getParameter("category");// 레시피 분류
 		String title = req.getParameter("title"); // 레시피 제목
 		String content = req.getParameter("content"); // 레시피 내용
@@ -41,7 +41,6 @@ public class MyRecipe_EditOk extends HttpServlet {
 		rdto.setContent(content);
 		rdto.setImg(img);
 
-		HttpSession session = req.getSession();
 
 		RecipeDTO rdto2 = new RecipeDTO();
 		rdto2.setSeq(rseq); // 삭제할 글번호

@@ -3,7 +3,7 @@ package com.test.user.myrecipe;
 
 public class RecipeDTO {
 
-	private String seq;
+	private String seq; //레피시seq
 	private String category;
 	private String title;
 	private String content;
@@ -11,8 +11,19 @@ public class RecipeDTO {
 	private int readCount;
 	private String img;
 	private String memberID;
-	private String mseq; 
+	private String mseq;  //member seq
+	private String cseq; //comment seq
 	
+	
+	
+
+	public String getCseq() {
+		return cseq;
+	}
+
+	public void setCseq(String cseq) {
+		this.cseq = cseq;
+	}
 
 	public String getMseq() {
 		return mseq;

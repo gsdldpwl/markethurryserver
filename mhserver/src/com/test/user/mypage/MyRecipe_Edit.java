@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.test.user.myrecipe.RecipeDAO;
 import com.test.user.myrecipe.RecipeDTO;
@@ -18,9 +19,11 @@ public class MyRecipe_Edit extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		// 1. 수정할 글 번호 가져오기
+		HttpSession session = req.getSession();
+		
+		// 1. 수정할 레피시 번호 가져오기
 		String seq = req.getParameter("seq");
-
+		
 		// 2. 글번호를 가지고 모든 내용 가져오기
 		RecipeDAO rdao = new RecipeDAO();
 

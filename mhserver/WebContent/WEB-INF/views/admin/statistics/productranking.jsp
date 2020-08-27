@@ -220,83 +220,27 @@
                 <td>
                     <select id="sel1">
                         <option>분류 선택</option>
-                        <option>채소</option>
-                        <option>과일</option>
-                        <option>육류</option>
-                        <option>수산</option>
-                        <option>가공식품</option>
-                        <option>소스</option>
-                        <option>유제품</option>
-                        <option>건강식품</option>
-                        <option>음료</option>
+                        <option value="0">채소</option>
+                        <option value="1">과일</option>
+                        <option value="2">육류</option>
+                        <option value="3">수산</option>
+                        <option value="4">가공식품</option>
+                        <option value="5">소스</option>
+                        <option value="6">유제품</option>
+                        <option value="7">건강식품</option>
+                        <option value="8">음료</option>
                     </select>
-                    <input type="text" class="txtbox" id="txt1" />
+                    <input type="text" class="txtbox" id="txt1" required value="${search}"/>
                 </td>
             </tr>
-            <tr>
-                <th>기간</th>
-                <td>
-                    <input type="text" class="datepick" id="date1" disabled />
-                    <span id="taste">~</span>
-                    <input type="text" class="datepick" id="date2" disabled />
-                </td>
-            </tr>
-            <tr>
-                <th>상품</th>
-                <td>
-                    <select id="sel2">
-                        <option>분류 선택</option>
-                        <option>상품명</option>
-                        <option>상품번호</option>
-                    </select>
-                    <input type="text" class="txtbox" id="txt2" />
-                </td>
-            </tr>
+           
         </table>
 
 
 
-        <!-- <div id="searchOrder">
-            <div id="period">
-                <div>기간</div>
-                <input type="text" id="date1" style="margin-left: 10px; margin-top: 11px;" disabled>
-                <span style="margin: auto 20px;">~</span>
-                <input type="text" id="date2" disabled>
-            </div>
-
-            
-            <div id="product">
-                <div>상품 분류</div>
-                <select id="sel2">
-                    <option>분류 선택</option>
-                    <option>채소</option>
-                    <option>과일</option>
-                    <option>육류</option>
-                    <option>수산</option>
-                    <option>가공식품</option>
-                    <option>소스</option>
-                    <option>유제품</option>
-                    <option>건강식품</option>
-                    <option>음료</option>
-                </select>
-                <input type="text" id="txt2">
-            </div>
-            
-            <div id="SearchWord">
-                <div>검색 분류</div>
-                <select id="sel1">
-                    <option>분류 선택</option>
-                    <option>상품명</option>
-                    <option>상품번호</option>
-                </select>
-                <input type="text" id="txt1">
-            </div>
-            
-        </div> -->
-
         <!-- 검색 버튼을 묶는 orderBtn-->
         <div id="orderBtn">
-            <input type="button" value="검색" id="btn1" class="btnSearch">
+            <input type="submit" value="검색" id="btn1" class="btnSearch">
             <input type="button" value="초기화" id="btn2" class="btnSearch">
         </div>
 
@@ -321,140 +265,35 @@
                 <th>상품번호</th>
                 <th>상품명</th>
                 <th>판매가</th>
-                <!-- <th>재고수량</th> -->
-                <th>결제횟수</th>
                 <th>환불수량</th>
                 <th>판매수량</th>
                 <th>판매합계</th>
             </tr>
+            <c:set var="i" value="0" />
+            <c:forEach items="${list}" var="dto">
+            <c:set var="i" value="${i+1}" />
+            
             <tr>
-                <td>1</td>
-                <td>가공식품</td>
-                <td>176</td>
-                <td>갈비탕 </td>
-                <td>11,000</td>
-                <!-- <td>71</td> -->
-                <td>615</td>
-                <td>31</td>
-                <td>721</td>
+                <td class="rank">${i}</td>
+                <td>${dto.category }</td>
+                <td>${dto.seq }</td>
+                <td>${dto.name }</td>
+                <td class="productprice">${dto.price}</td>
+                <td>${dto.refund }</td>
+                <td>${dto.sales }</td>
+                <td class="sumprice">${dto.price * dto.sales }</td>
                 <!-- 판매가 * 판매수량 -->
-                <td></td>
             </tr>
-            <tr>
-                <td>2</td>
-                <td>채소</td>
-                <td>321</td>
-                <td>간편 샐러드</td>
-                <td>1,800</td>
-                <!-- <td>147</td> -->
-                <td>411</td>
-                <td>43</td>
-                <td>498</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>수산</td>
-                <td>145</td>
-                <td>오로라 생연어</td>
-                <td>12,600</td>
-                <!-- <td>66</td> -->
-                <td>399</td>
-                <td>21</td>
-                <td>411</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>4</td>
-                <td>유제품</td>
-                <td>197</td>
-                <td>제주 목초 우유 750ml*2개입</td>
-                <td>7,500</td>
-                <!-- <td>91</td> -->
-                <td>315</td>
-                <td>12</td>
-                <td>346</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>5</td>
-                <td>과일</td>
-                <td>117</td>
-                <td>수박 8kg</td>
-                <td>19,800</td>
-                <!-- <td>127</td> -->
-                <td>241</td>
-                <td>7</td>
-                <td>287</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>6</td>
-                <td>가공식품</td>
-                <td>170</td>
-                <td>묵은지볶음밥</td>
-                <td>7,800</td>
-                <!-- <td>35</td> -->
-                <td>197</td>
-                <td>19</td>
-                <td>211</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>7</td>
-                <td>수산</td>
-                <td>149</td>
-                <td>영광굴비 1.2kg</td>
-                <td>26,500</td>
-                <!-- <td>69</td> -->
-                <td>171</td>
-                <td>14</td>
-                <td>189</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>8</td>
-                <td>육류</td>
-                <td>471</td>
-                <td>한돈 목살 양념 구이</td>
-                <td>13,900</td>
-                <!-- <td>91</td> -->
-                <td>148</td>
-                <td>11</td>
-                <td>164</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>9</td>
-                <td>육류</td>
-                <td>321</td>
-                <td>닭가슴살 큐브 스테이크 500g</td>
-                <td>7,900</td>
-                <!-- <td>71</td> -->
-                <td>142</td>
-                <td>3</td>
-                <td>155</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>10</td>
-                <td>가공식품</td>
-                <td>168</td>
-                <td>데니쉬 식빵</td>
-                <td>7,200</td>
-                <!-- <td>94</td> -->
-                <td>81</td>
-                <td>3</td>
-                <td>92</td>
-                <td></td>
-            </tr>
-            <tr>
-                <th colspan="6">합계</th>
-                <!-- <td></td> -->
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
+            
+            </c:forEach>
+            
+            <c:if test="${not empty search and list.size() == 0}">
+	           	<tr style="text-align:center;">
+	           		<td colspan="8">검색 결과가 없습니다.</td>
+	           	</tr>                    	
+		        </c:if>
+            
+            
         </table>
 
     
@@ -488,18 +327,52 @@
         $("#updateDate").text(today.toLocaleString());
 
 
-        // $("#resultTable > td:nth-child(10)").val();
+        
+        
+        // 천단위 , 찍기
+        function numberWithCommas(x) {
+            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
 
-        // var price = $("#resultTable > td:nth-child(5)").val().replace(",", "");
+        
+        
+        //****************
+        $(".productprice").each(function(index, item){
+        	var productprice = $(item).text();
+        	$(item).text(numberWithCommas(productprice));
+        })
+        
+        $(".sumprice").each(function(index, item){
+        	var sumprice = $(item).text();
+        	$(item).text(numberWithCommas(sumprice));
+        })
+        
+        
+        
+        
+        $("#txt1").focus(function() {
+        	$(this).attr("value", "");
+        })
 
-        // var count = $("#resultTable > td:nth-child(9)").val();
+        $("#txt1").keyup(function() {
 
-        // // $("#price").text().replace(",", "");
+        if(event.keyCode ==  13){
+        	var search = $("#txt1").val();
+        	location.href="/mh/admin/statistics/productranking.do?search="+search;
+        }
+        });
 
-        // // 천단위 , 찍기
-        // function numberWithCommas(x) {
-        //     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-        // }
+
+        $("#btn1").click(function(){
+        	var sel = $("#sel1").val();
+        	var search = $("#txt1").val();
+        	location.href="/mh/admin/statistics/productranking.do?search=" +search + "&sel=" + sel;        		
+        	
+        })
+        
+        
+        var arr_data = ${arr};
+        
 
         Highcharts.chart('chart', {
             chart: {
@@ -509,7 +382,7 @@
                 text: '판매상품 순위'
             },
             subtitle: {
-                text: '판매수량(%)'
+                text: '판매수량(개)'
             },
 
             accessibility: {
@@ -517,7 +390,7 @@
                     enabled: true
                 },
                 point: {
-                    valueSuffix: '%'
+                    valueSuffix: '개'
                 }
             },
 
@@ -525,77 +398,30 @@
                 series: {
                     dataLabels: {
                         enabled: true,
-                        format: '{point.name}: {point.y:.1f}%'
+                        format: '{point.name}'
                     }
                 }
             },
 
             tooltip: {
                 headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-                pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
+                pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.0f}개</b><br/>'
             },
 
             series: [
                 {
                     name: "product",
                     colorByPoint: true,
-                    data: [
-                        {
-                            name: "갈비탕",
-                            y: 33,
-                            drilldown: "갈비탕"
-                        },
-                        {
-                            name: "간편 샐러드",
-                            y: 20.57,
-                            drilldown: "간편 샐러드"
-                        },
-                        {
-                            name: "오로라 생연어",
-                            y: 15.23,
-                            drilldown: "오로라 생연어"
-                        },
-                        {
-                            name: "제주 목초 우유 750ml*2개입",
-                            y: 13.58,
-                            drilldown: "제주 목초 우유 750ml*2개입"
-                        },
-                        {
-                            name: "수박 8kg",
-                            y: 11.02,
-                            drilldown: "수박 8kg"
-                        },
-                        {
-                            name: "묵은지볶음밥",
-                            y: 9.92,
-                            drilldown: "묵은지볶음밥"
-                        },
-                        {
-                            name: "영광굴비 1.2kg",
-                            y: 8.62,
-                            drilldown: "영광굴비 1.2kg"
-                        },
-                        {
-                            name: "한돈 목살 양념 구이",
-                            y: 7.62,
-                            drilldown: "한돈 목살 양념 구이"
-                        },
-                        {
-                            name: "닭가슴살 큐브 스테이크 500g",
-                            y: 4.62,
-                            drilldown: "닭가슴살 큐브 스테이크 500g"
-                        },
-                        {
-                            name: "데니쉬 식빵",
-                            y: 3.62,
-                            drilldown: "데니쉬 식빵"
-                        }
-                    ]
+                    data: arr_data
+                    
                 }
             ]
             
         });
 
+        
+        
+        var arr2_data = ${arr2};
 
         Highcharts.chart('chart2', {
             chart: {
@@ -605,7 +431,7 @@
                 text: '판매상품 순위'
             },
             subtitle: {
-                text: '판매합계(%)'
+                text: '판매합계(원)'
             },
 
             accessibility: {
@@ -613,7 +439,7 @@
                     enabled: true
                 },
                 point: {
-                    valueSuffix: '%'
+                    valueSuffix: '원'
                 }
             },
 
@@ -621,72 +447,22 @@
                 series: {
                     dataLabels: {
                         enabled: true,
-                        format: '{point.name}: {point.y:.1f}%'
+                        format: '{point.name}'
                     }
                 }
             },
 
             tooltip: {
                 headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-                pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
+                pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.0f}원</b><br/>'
             },
 
             series: [
                 {
                     name: "product",
                     colorByPoint: true,
-                    data: [
-                        {
-                            name: "간편 샐러드",
-                            y: 15.74,
-                            drilldown: "간편 샐러드"
-                        },
-                        {
-                            name: "오로라 생연어",
-                            y: 20.57,
-                            drilldown: "오로라 생연어"
-                        },
-                        {
-                            name: "갈비탕",
-                            y: 37.23,
-                            drilldown: "갈비탕"
-                        },
-                        {
-                            name: "제주 목초 우유 750ml*2개입",
-                            y: 19.58,
-                            drilldown: "제주 목초 우유 750ml*2개입"
-                        },
-                        {
-                            name: "한돈 목살 양념 구이",
-                            y: 8.02,
-                            drilldown: "한돈 목살 양념 구이"
-                        },
-                        {
-                            name: "데니쉬 식빵",
-                            y: 5.92,
-                            drilldown: "데니쉬 식빵"
-                        },
-                        {
-                            name: "영광굴비 1.2kg",
-                            y: 13.62,
-                            drilldown: "영광굴비 1.2kg"
-                        },
-                        {
-                            name: "수박 8kg",
-                            y: 17.62,
-                            drilldown: "수박 8kg"
-                        },
-                        {
-                            name: "묵은지볶음밥",
-                            y: 8.62,
-                            drilldown: "묵은지볶음밥"
-                        },
-                        {
-                            name: "닭가슴살 큐브 스테이크 500g",
-                            y: 10.62,
-                            drilldown: "닭가슴살 큐브 스테이크 500g"
-                        }
-                    ]
+                    data: arr2_data
+                    
                 }
             ]
             

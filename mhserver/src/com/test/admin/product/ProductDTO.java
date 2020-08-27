@@ -7,10 +7,12 @@ public class ProductDTO {
 	private String shortdesc; //부제목
 	private String content; //내용
 	private String category; //분류
-	private String price; //가격
+	private int price; //가격
 	private String regdate; //등록일
 	private String img; //상품 이미지
-	private String sales; //판매량
+	private int sales; //판매량
+	
+	private int refund;
 	
 	public String getSeq() {
 		return seq;
@@ -42,10 +44,10 @@ public class ProductDTO {
 	public void setCategory(String category) {
 		this.category = category;
 	}
-	public String getPrice() {
+	public int getPrice() {
 		return price;
 	}
-	public void setPrice(String price) {
+	public void setPrice(int price) {
 		this.price = price;
 	}
 	public String getRegdate() {
@@ -60,11 +62,17 @@ public class ProductDTO {
 	public void setImg(String img) {
 		this.img = img;
 	}
-	public String getSales() {
+	public int getSales() {
 		return sales;
 	}
-	public void setSales(String sales) {
+	public void setSales(int sales) {
 		this.sales = sales;
+	}
+	public int getRefund() {
+		return refund;
+	}
+	public void setRefund(int refund) {
+		this.refund = refund;
 	}
 	
 	

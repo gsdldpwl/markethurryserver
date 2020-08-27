@@ -31,64 +31,52 @@ public class ProductDAO {
 	}
 	
 	// 관리자, 상품조회
-		public ArrayList<ProductDTO> searchproduct(HashMap<String, String> map) {
+		public ArrayList<ProductDTO> searchproduct(HashMap<String, String> map, String startprice, String endprice) {
 			
-			try {
+		try {
+			
+			if (map.get("search") != null) {
+				//이름 & 제목 & 내용 - 포괄 검색
+				//String sql = String.format("select seq, name, regdate, category, price from (select a.*, rownum as rnum from (select * from product where seq like '%%' || ? || '%%' or name like '%%' || ? || '%%' order by seq asc) a) where rnum >= %s and rnum <= %s order by seq desc", map.get("begin"),map.get("end"));
 				
-				if (map.get("search") != null) {
-					//이름 & 제목 & 내용 - 포괄 검색
-					//String sql = String.format("select seq, name, regdate, category, price from (select a.*, rownum as rnum from (select * from product where seq like '%%' || ? || '%%' or name like '%%' || ? || '%%' order by seq asc) a) where rnum >= %s and rnum <= %s order by seq desc", map.get("begin"),map.get("end"));
-					
-					String search = map.get("search");
-					
-					String sql = "select seq, name, regdate, category, price from product where name like '%%" + search + "%%' order by seq asc";
-					
-					stat = conn.createStatement();
-					rs = stat.executeQuery(sql);
-					
-//					stat = conn.prepareStatement(sql);
-//					pstat.setString(1, map.get("search"));
-//					//pstat.setString(2, map.get("search"));
-//					rs = pstat.executeQuery();
-				} else {
-					String sql = "select seq, name, regdate, category, price from product order by seq asc";
-					
-					stat = conn.createStatement();
-					rs = stat.executeQuery(sql);
-					
-				}
-				//else {
+				String search = map.get("search");
 				
+				String sql = "select seq, name, regdate, category, price from product where name like '%%" + search + "%%' order by seq asc";
 				
-				//String sql = String.format("select seq, title, regdate, readcount from (select a.*, rownum as rnum from (select * from product order by seq desc) a) where rnum >= %s and rnum <= %s order by seq desc", map.get("begin"), map.get("end"));
+				stat = conn.createStatement();
+				rs = stat.executeQuery(sql);
 				
-//				stat = conn.createStatement();
-//				rs = stat.executeQuery(sql);
+			} else {
+				String sql = "select seq, name, regdate, category, price from product order by seq asc";
 				
-				//}
+				stat = conn.createStatement();
+				rs = stat.executeQuery(sql);
 				
-				ArrayList<ProductDTO> list = new ArrayList<ProductDTO>();
-				
-				//rs -> list 복사
-				while (rs.next()) {
-					//레코드 1줄 -> BoardDTO 1개
-					ProductDTO dto = new ProductDTO();
-					
-					dto.setSeq(rs.getString("seq"));
-					dto.setName(rs.getString("name"));
-					dto.setRegdate(rs.getString("regdate").substring(0,10));
-					dto.setCategory(rs.getString("category"));
-					dto.setPrice(rs.getString("price"));
-					
-					list.add(dto);
-				}
-				
-				return list;
-				
-			} catch (Exception e) {
-				System.out.println("ProductDAO.searchproduct()");
-				e.printStackTrace();
 			}
+			
+			
+			ArrayList<ProductDTO> list = new ArrayList<ProductDTO>();
+			
+			//rs -> list 복사
+			while (rs.next()) {
+				//레코드 1줄 -> BoardDTO 1개
+				ProductDTO dto = new ProductDTO();
+				
+				dto.setSeq(rs.getString("seq"));
+				dto.setName(rs.getString("name"));
+				dto.setRegdate(rs.getString("regdate").substring(0,10));
+				dto.setCategory(rs.getString("category"));
+				dto.setPrice(rs.getInt("price"));
+				
+				list.add(dto);
+			}
+			
+			return list;
+			
+		} catch (Exception e) {
+			System.out.println("ProductDAO.searchproduct()");
+			e.printStackTrace();
+		}
 			
 			
 			return null;

@@ -17,7 +17,7 @@ public class ShoppingbasketOk extends HttpServlet {
 		
 		HttpSession session = req.getSession();
 		String mseq = (String) session.getAttribute("seq"); 
-		mseq = "1";
+		
 		String type = req.getParameter("type");
 		String pseq = req.getParameter("pseq");
 		

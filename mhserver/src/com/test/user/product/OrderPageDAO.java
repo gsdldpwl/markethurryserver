@@ -20,9 +20,10 @@ public class OrderPageDAO {
 	   private ResultSet rs;
 	   private CallableStatement cstat;
 	         
-	   public OrderPageDAO() {
 	   //DB연결
 	            
+	   public OrderPageDAO()	{
+		   
 	   DBUtil util = new DBUtil();
 	    conn = util.open();
 	            
@@ -83,34 +84,53 @@ public class OrderPageDAO {
 	   
 	   
 	//주문하기 결제 버튼 클릭 후 주문 테이블에 데이터 보내기
-	   public int odtable(String mseq) {
+	   public int odtable(String mseq,String finalprice,OrderPageDTO dto2) {
+		   
 		   try {
 			
-			   String sql = "insert into orderlist set(seq, memberseq, regdate, price) values (seqorderlist.nextVal,?,sysdate,?,delflag)";
+			   String sql = "insert into orderlist (seq, memberseq, regdate, price,delflag) values (seqorderlist.nextVal,?,sysdate,?,0)";
+			   
 			   
 			   pstat = conn.prepareStatement(sql);
 			   pstat.setString(1, mseq);
-			   pstat.setString(2, dto1.get);
+			   pstat.setString(2,finalprice);
 			   
+			   return pstat.executeUpdate();
 				
-				pstat.executeUpdate();
+				 
 		} catch (Exception e) {
-			
+			e.printStackTrace();
 		}
 		   return 0;
 	   }
 
 	   
+	   
+	   
 	//주문하기 결제 버튼 클릭 후 주문상세 테이블에 데이터 보내기   
-	public int oddttable(OrderPageDTO dto2) {
+	public int oddttable(String[] productseq,String[] orpdqty) {
+		
+		
 		try {
-			String sql = "insert into orderlist set(seq, productseq, orderseq, qty) values (seqorderdetail.nextVal,?,?,?,delflag)";
+			String sql = "insert into orderdetail (seq, productseq, orderseq, qty,delflag) values (seqorderdetail.nextVal,?,(select max(seq) from orderlist),?,0)";
+			int result = 0;
+			 pstat = conn.prepareStatement(sql);
+			 for(int i=0; i<productseq.length; i++	) {
+				 pstat.setString(1, productseq[i]);
+				 pstat.setString(2, orpdqty[i]);
+				 
+				 result += pstat.executeUpdate();
+				 
+			 }
+				
+			 return result;
 			
 		} catch (Exception e) {
-			
+			e.printStackTrace();
 		}
 		return 0;
 	}
+
 	   
 	
 

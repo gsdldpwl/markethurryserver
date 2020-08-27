@@ -10,7 +10,10 @@
 </head>
 
 <style>
-
+		* {
+		outline:none;
+		}
+		
         /* 상품정보 css */
         .orderPage {
             width: 1100px;
@@ -881,16 +884,20 @@
                             <th class="sangpuomInfo">상품 정보</th>
                             <th class="sangpuomSum">상품금액</th>
                         </tr>
+                       </thead>
                         <c:forEach items="${list}" var="dto">
                         <tbody>
                         <tr>
                             <td class="infoSmImg">
+                            	<input type="hidden" class="pseq" value=${dto.seq } name="pseq">
                                 <img src="${dto.img }" class="detailImg" alt="${dto.name}">
                             </td>
                             <td class="infoInfo">
                                 <div class="detalName">${dto.name}</div>
+                                <input type="hidden" name="orpdname" value="${dto.name}">
                                 <div class="detalInfo">
                                     <span class="danga">${dto.qty}개 / 개 당 ${dto.price}원</span>
+                                    <input type="hidden" name="orpdqty" value="${dto.qty}">
                                 </div>
                             </td>
                             <td class="detalPrice">
@@ -899,7 +906,7 @@
                          </tr>
                        </c:forEach>
                         </tbody>
-                    </thead>
+                    	
                 </table>
             </div>
             
@@ -1023,7 +1030,8 @@
                         </label>
                         <div class="txtMl">
                             <span>보유적립금:</span>
-                            <span class="havePoint">${dto.memmile}</span>
+                            
+                            <span class="havePoint">${dto.memmile}</span> 
                             <span>원</span>
                             <div class="txtMl2">
                                 *적립금 내역: 마이허리 > 적립금
@@ -1391,7 +1399,8 @@
 
 
 <div class="realPay">
-    <button type="submit" class="btn btn-default" id="payNow">결제하기</button>
+    <input type="button" class="btn btn-default" id="payNow" value="결제하기">
+    <!-- <button type="submit" class="btn btn-default" id="payNow">결제하기</button> -->
 </div> <!--결제하기 버튼 끝-->
 
 
@@ -1407,12 +1416,14 @@
                 주문금액 
                 <div class="toool">
                     <span class="tolSub" id="payPrice"> ${ogprice}</span>
+                    <input type="hidden" name="orpayprice" value="${ogprice}">
                     <span class="tolSub">원</span>
                 </div>
             </div>
                 <div class="detlSub">└ 상품금액
                     <div class="subTool">
                             <span class="detlprice" id="ogPrice">${ogprice}</span>
+                            <input type="hidden" name="pdogprice" value="${ogprice}">
                         <span class="detlprice">원</span>
                      
                     </div>
@@ -1420,6 +1431,7 @@
                 <div class="detlSub">└ 상품할인
                     <div class="subTool">
                         <span class="detlprice" id="salesprice">- ${salesprice}</span>
+                        <input type="hidden" name="pdslprice" value="${salesprice}">
                         <span class="detlprice">원</span>
                     </div>
                 </div>
@@ -1439,6 +1451,7 @@
                     적립금 사용
                     <div class="toool">
                         <span class="tolSub" id="orMail">0</span>
+                        <input type="hidden" name="usemile" value="0" id="orMile">
                         <span class="tolSub">원</span>
                     </div>
                 </div>
@@ -1449,6 +1462,7 @@
                   최종 결제 금액 
               <div class="toool">
                   <span class="tolSub" id="tolSumNum" >${finalprice}</span>
+                  <input type="hidden" name="totalprice" value="${finalprice}" id="tolPay">
                   <span class="tolSub">원</span>
               </div>
          </div>
@@ -1460,6 +1474,7 @@
               <span class="getpoint">
                   <span class="ifyoubuy">구매 시 </span>
                   <strong class="savenum">${finalprice}</strong>
+                  <input type="hidden" name="savemile" value="${finalprice}" class="savenum">
                   <strong class="savewon">원 (0.5%) </strong>
               </span>
           </div>
@@ -1504,21 +1519,26 @@
           if(check){
               $(".myPoint").val($(".havePoint").text());
               $("#orMail").text($(".havePoint").text());
+              $("#orMile").val($(".havePoint").val());
               $("#tolSumNum").text(numberWithCommas(${finalprice - dto.memmile}));
+              $("#tolPay").val(numberWithCommas(${finalprice - dto.memmile}));
             check = false;
           }  else  {
             $(".myPoint").val(0);
             $("#orMail").text(0);
+            $("#orMile").val(0);
             $("#tolSumNum").text(numberWithCommas(${finalprice}));
+            $("#tolPay").val(numberWithCommas(${finalprice}));
             check = true;
           }
+      
 
         });
 
         //개인정보동의 클릭 안하고 결제하기 클릭시 경고문 출력
         $("#payNow").click(function(){
             if($("#essCheck").is(':checked')) {
-                location.href="";
+                	$("#orderproduct").submit();
                  // 결제완료 페이지로 넘어가기
             }else {
                 alert("개인정보 수집/제공에 동의해주세요.");
@@ -1648,17 +1668,15 @@
         
         
         
-        //결제하기 버튼 클릭시 결제완료 alert뜨고, 메인화면으로 돌려보내기
+       /*  //결제하기 버튼 클릭시 결제완료 alert뜨고, 메인화면으로 돌려보내기
         $("#payNow").click(function(){
         	alert("주문이 완료되었습니다.");
         	location.href="/mh/user/main/main.do";
-        })
+        }) */
         
       
       
      
-        
-        
         
 
 

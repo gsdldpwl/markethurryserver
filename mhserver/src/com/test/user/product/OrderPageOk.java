@@ -13,42 +13,39 @@ import javax.servlet.http.HttpSession;
 
 import com.test.user.mypage.MypageDAO;
 
-@WebServlet("/user/product.OrderPageOk.do")
+@WebServlet("/user/product/orderpageok.do")
 public class OrderPageOk extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	
-	
 		HttpSession session = req.getSession();
+		String mseq = (String) session.getAttribute("seq"); 
 		
 		req.setCharacterEncoding("UTF-8");
 		
-		String ogprice = req.getParameter("ogprice");
-		String salesprice = req.getParameter("slPrice");
-		String finalprice = req.getParameter("flprice");
+		//하이든 
+		String ogprice = req.getParameter("orpayprice").replace(",","");
+		String salesprice = req.getParameter("pdslprice").replace(",","");
+		String finalprice = req.getParameter("totalprice").replace(",","");
+		String[] productseq = req.getParameterValues("pseq");
+		String[] orpdqty = req.getParameterValues("orpdqty");
 		
 		
-		String[] productseq = req.getParameterValues("productseq");
-		
-		ArrayList<ShoppingbasketDTO> productList = new ArrayList<ShoppingbasketDTO>();
-		
-		
-		ShoppingbasketDTO dto1 = new ShoppingbasketDTO();
+
 	
-		OrderPageDAO dao2 = new OrderPageDAO();
-		OrderPageDTO dto2 = dao2.memlist((String)session.getAttribute("seq"));
+		OrderPageDAO dao = new OrderPageDAO();
 		MypageDAO dao3 = new MypageDAO();
+		
+		OrderPageDTO dto2 = new OrderPageDTO();
 		int mileage = dao3.getNowMileage((String)session.getAttribute("seq"));
 		
 		dto2.setMemmile(String.valueOf(mileage));
 		
+
 		
-		
-		productList.add(dto1);
-		
-		int result = dao2.odtable(dto2);
-		int result2 = dao2.oddttable(dto2);
-		dao2.close(); //DB 닫기
+		int result = dao.odtable(mseq,finalprice,dto2);
+		int result2 = dao.oddttable(productseq,orpdqty);
+		dao.close(); //DB 닫기
 		
 		//3.
 		if (result ==1) {
@@ -58,8 +55,8 @@ public class OrderPageOk extends HttpServlet{
 			writer.print("<meta charset=\"UTF-8\">");
 			writer.print("<body>");
 			writer.print("<script>");
-			writer.print("alert('문의 작성이 완료되었습니다.');");
-			writer.print("location.href='/mh/user/product/productdetail.do?seq=" + pseq + "';");
+			writer.print("alert('주문이 완료되었습니다.');");
+			writer.print("location.href='/mh/user/main/main.do';");
 			writer.print("</script>");
 			writer.print("</body>");
 			writer.print("</html>");
@@ -67,14 +64,14 @@ public class OrderPageOk extends HttpServlet{
 			
 			
 		} else {
-			//글쓰기 실패
+			
 			resp.setCharacterEncoding("UTF-8");
 			PrintWriter writer = resp.getWriter();
 			writer.print("<html>");
 			writer.print("<meta charset=\"UTF-8\">");
 			writer.print("<body>");
 			writer.print("<script>");
-			writer.print("alert('문의를 작성하는데 실패했습니다.');");
+			writer.print("alert('주문에 실패했습니다.');");
 			writer.print("history.back();");
 			writer.print("</script>");
 			writer.print("</body>");
@@ -82,6 +79,37 @@ public class OrderPageOk extends HttpServlet{
 			writer.close();
 		}
 		
+		
+		if (result2 == productseq.length) {
+			resp.setCharacterEncoding("UTF-8");
+			PrintWriter writer = resp.getWriter();
+			writer.print("<html>");
+			writer.print("<meta charset=\"UTF-8\">");
+			writer.print("<body>");
+			writer.print("<script>");
+			writer.print("alert('주문이 완료되었습니다!');");
+			writer.print("location.href='/mh/user/main/main.do");
+			writer.print("</script>");
+			writer.print("</body>");
+			writer.print("</html>");
+			writer.close();
+			
+			
+		} else {
+			
+			resp.setCharacterEncoding("UTF-8");
+			PrintWriter writer = resp.getWriter();
+			writer.print("<html>");
+			writer.print("<meta charset=\"UTF-8\">");
+			writer.print("<body>");
+			writer.print("<script>");
+			writer.print("alert('주문에 실패했습니다!');");
+			writer.print("history.back();");
+			writer.print("</script>");
+			writer.print("</body>");
+			writer.print("</html>");
+			writer.close();
+		}
 	}	
 	
 }//class

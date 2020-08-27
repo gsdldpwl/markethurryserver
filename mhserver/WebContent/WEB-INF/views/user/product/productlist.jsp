@@ -19,6 +19,11 @@
  
     
     <style>
+    
+   		 * {
+			outline:none;
+		}
+		
         #smalltitle {
             width: 1100px;
             margin: 10px auto;

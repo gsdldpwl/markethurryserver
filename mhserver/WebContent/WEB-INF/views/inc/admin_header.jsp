@@ -51,12 +51,11 @@
                 <div class="glyphicon glyphicon-list-alt"></div>
                 <a id="border">게시판관리</a>
                 <ul class="sublist" id="borderlist">
-                    <li><a href="#">게시판 설정</a></li>
-                    <li><a href="#">공지사항 관리</a></li>
-                    <li><a href="#">이벤트 관리</a></li>
-                    <li><a href="#">상품문의 관리</a></li>
-                    <li><a href="#">상품후기 관리</a></li>
-                    <li><a href="#">나만의 레시피 관리</a></li>
+                    <li><a href="/mh/admin/board/notice.do">공지사항 관리</a></li>
+                    <li><a href="/mh/admin/board/event.do">이벤트 관리</a></li>
+                    <li><a href="/mh/admin/board/ask.do">상품문의 관리</a></li>
+                    <li><a href="/mh/admin/board/review.do">상품후기 관리</a></li>
+                    <li><a href="/mh/admin/board/myrecipeboard.do">나만의 레시피 관리</a></li>
                 </ul>
             </div>
             <!-- 통계 관리 메뉴 -->
@@ -67,18 +66,18 @@
                     <div>
                         <a href="#" id="sales">매출분석</a>
                         <ul class="subsublist" id="saleslist">
-                            <li><a href="#">일별 매출</a></li>
-                            <li><a href="#">주별 매출</a></li>
-                            <li><a href="#">월별 매출</a></li>
+                            <li><a href="/mh/admin/statistics/salesdaily.do">일별 매출</a></li>
+                            <li><a href="/mh/admin/statistics/salesweekly.do">주별 매출</a></li>
+                            <li><a href="/mh/admin/statistics/salesmonthly.do">월별 매출</a></li>
                         </ul>
                     </div>
                     <div>
                         <a id="items">상품분석</a>
                         <ul class="subsublist" id="itemslist">
-                            <li><a href="#">판매상품 순위</a></li>
-                            <li><a href="#">판매분류 순위</a></li>
-                            <li><a href="#">취소/반품 순위</a></li>
-                            <li><a href="#">장바구니 상품 분석</a></li>
+                            <li><a href="/mh/admin/statistics/productranking.do">판매상품 순위</a></li>
+                            <li><a href="/mh/admin/statistics/categoryranking.do">판매분류 순위</a></li>
+                            <li><a href="/mh/admin/statistics/cancel.do">취소/반품 순위</a></li>
+                            <li><a href="/mh/admin/statistics/shoopingcartstat.do">장바구니 상품 분석</a></li>
                         </ul>
                     </div>
                 </ul>

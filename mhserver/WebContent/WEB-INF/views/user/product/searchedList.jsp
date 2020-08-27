@@ -27,11 +27,11 @@
         	<c:forEach var="dto" items="${list}">
 	            <li>
 	                <div class="item">
-	                   <a class="img" onclick="location.href='/mh/productdetail.do<%-- ?seq=${i.getPseq()} --%>';">
+	                   <a class="img" onclick="location.href='/mh/user/product/productdetail.do?seq=${dto.seq}';">
                    		 <img src="${dto.getImg()}" alt="">
 	                   </a>
 	                        <button type="button" id="shopping" class="glyphicon glyphicon-shopping-cart" data-toggle="modal" data-target="#myModal"></button>
-	                    <div class="info" onclick="location.href='/mh/user/product/productdetail.do?seq=${dto.seq};'">
+	                    <div class="info" onclick="location.href='/mh/user/product/productdetail.do?seq=${dto.seq}';">
 	                        <span class="name">${dto.getName()}</span>
 	                        <span class="price">${dto.getPrice()}원</span>
 	                        <span class="desc">${dto.getShortdesc()}</span>
@@ -42,8 +42,8 @@
             </c:forEach>
         </ul>
     </div>
-	
-	 <div id="paging">${pagebar}</div> 
+
+	<div id="paging">${pagebar}</div> 
 
     <!-- Modal -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" id="modal-all">

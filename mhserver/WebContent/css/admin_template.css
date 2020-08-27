@@ -140,3 +140,9 @@ body {
     width: 1600px;
     margin: 0 auto;
 }
+
+#paging {
+	margin: 0px auto;
+	width: 1100px;
+	text-align:center;
+}

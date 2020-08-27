@@ -266,7 +266,7 @@
 
 	<!-- footer -->
 	 <a href="#" id="topbtn" style="border: 0px; outline: none;"></a>
-	<%@include file="/WEB-INF/views/inc/footer.jsp"%>\
+	<%@include file="/WEB-INF/views/inc/footer.jsp"%>
 	
 	<script>
 		

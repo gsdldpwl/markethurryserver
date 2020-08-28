@@ -22,7 +22,7 @@ public class MyrecipeDetail extends HttpServlet {
 
 			HttpSession session = req.getSession();
 	
-			req.setAttribute("mseq", (String)session.getAttribute("seq"));
+			req.setAttribute("mseq", (String)session.getAttribute("seq") != null ? (String)session.getAttribute("seq") : "-1");
 			
 			//1.seq 가져오기
 			String seq = req.getParameter("seq");
@@ -60,13 +60,13 @@ public class MyrecipeDetail extends HttpServlet {
 			ArrayList<CommentDTO> clist = dao.listComment(seq);
 			
 			//
-			String reply = req.getParameter("reply");
+			//String reply = req.getParameter("reply");
 			//전달하기
 			req.setAttribute("dto", dto);	//상품
 			req.setAttribute("clist", clist); //댓글리스트 가져오기
 			req.setAttribute("productlist", productlist); //묶음상품리스트
 			req.setAttribute("totalPrice", totalPrice); //묶음상품 총가격 
-			req.setAttribute("reply",reply);  
+			//req.setAttribute("reply",reply);  
 //			req.setAttribute("seq", seq);
 			
 			RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/user/myrecipe/myrecipedetail.jsp");

@@ -13,9 +13,16 @@ public class RecipeDTO {
 	private String memberID;
 	private String mseq;  //member seq
 	private String cseq; //comment seq
+	private String cpseq; //combiproduct seq
 	
-	
-	
+
+	public String getCpseq() {
+		return cpseq;
+	}
+
+	public void setCpseq(String cpseq) {
+		this.cpseq = cpseq;
+	}
 
 	public String getCseq() {
 		return cseq;

@@ -2,15 +2,16 @@ package com.test.user.myrecipe;
 
 import java.sql.Connection;
 
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.test.user.main.DBUtil;
 import com.test.user.product.ProductlistDTO;
+import com.test.user.product.ShoppingbasketDTO;
 
 public class RecipeDAO {
 
@@ -160,7 +161,7 @@ public class RecipeDAO {
 				dto.setTitle(rs.getString("title"));
 				dto.setCategory(rs.getString("category"));
 				dto.setMseq(rs.getString("memberseq"));
-				
+
 				// 분류 숫자 -> 한글
 				if (rs.getString("category").equals("0")) {
 					dto.setCategory("한식");
@@ -195,7 +196,7 @@ public class RecipeDAO {
 
 		try {
 
-			String sql = "select to_char( p.price , '999,999,999,999,999') as price, p.name as name from combiproduct cp inner join product p on cp.productseq=p.seq where receipeseq = ? and p.delflag = 0";
+			String sql = "select to_char( p.price , '999,999,999,999,999') as price, p.name as name, p.seq as seq from combiproduct cp inner join product p on cp.productseq=p.seq where receipeseq = ? and p.delflag = 0";
 
 			pstat = conn.prepareStatement(sql);
 			pstat.setString(1, seq);
@@ -206,6 +207,7 @@ public class RecipeDAO {
 
 			while (rs.next()) {
 				ProductlistDTO pdto = new ProductlistDTO();
+				pdto.setSeq(rs.getString("seq"));
 				pdto.setName(rs.getString("name"));
 				pdto.setPrice(rs.getString("price"));
 
@@ -237,6 +239,7 @@ public class RecipeDAO {
 				// 레코드 1줄 -> DTO 1개
 				CommentDTO cdto = new CommentDTO();
 
+				cdto.setSeq(rs.getString("seq"));
 				cdto.setMemberID(rs.getString("memberid"));
 				cdto.setContent(rs.getString("content"));
 				cdto.setRegdate(rs.getString("regdate").substring(0, 10));
@@ -256,42 +259,41 @@ public class RecipeDAO {
 	}
 
 	public int write(CommentDTO dto) {
-		//새로 추가된 댓글 추가해버리기
+		// 새로 추가된 댓글 추가해버리기
 		try {
-			
+
 			String sql = "insert into receipecomment (seq, receipeseq, commentseq, memberseq, content, regdate, delflag) values (seqreceipecomment.nextVal, ?, null, ?, ?, sysdate, default)";
-			
+
 			pstat = conn.prepareStatement(sql);
-			
-			pstat.setString(1, dto.getSeq()); //레시피 seq 		
+
+			pstat.setString(1, dto.getSeq()); // 레시피 seq
 //			pstat.setString(2, dto.getCmtseq()); //대댓글 seq : null 
-			pstat.setString(2, dto.getMseq()); //멤버seq->로그인한 사람꺼 
+			pstat.setString(2, dto.getMseq()); // 멤버seq->로그인한 사람꺼
 			pstat.setString(3, dto.getContent());
-			
+
 			return pstat.executeUpdate();
-			
+
 		} catch (Exception e) {
 			System.out.println("RecipeDAO.write()");
 			e.printStackTrace();
 		}
-		
-		
+
 		return 0;
 	}
 
 	public ArrayList<RecipeDTO> bestList() {
-		//베스트레시피
-		
+		// 베스트레시피
+
 		try {
-			
+
 			String sql = "select rownum, x.* from ( select a.* from vwRecipe a order by a.readcount desc) x where rownum <= 3 and delflag = 0";
-			
+
 			Statement stat = null;
 			stat = conn.createStatement();
 			rs = stat.executeQuery(sql);
 
 			ArrayList<RecipeDTO> bestList = new ArrayList<RecipeDTO>();
-			
+
 			while (rs.next()) {
 				RecipeDTO dto = new RecipeDTO();
 
@@ -323,16 +325,16 @@ public class RecipeDAO {
 
 				bestList.add(dto);
 			}
-			
+
 			return bestList;
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		return null;
 	}
-	
+
 	public boolean isOwner(RecipeDTO dto) {
 		// DeleteOK -> 글쓴이 확인
 
@@ -385,10 +387,10 @@ public class RecipeDAO {
 			String sql = "update receipe set category = ?, title = ?, content = ?, regdate = sysdate, img = ? where seq = ?";
 
 			pstat = conn.prepareStatement(sql);
-		
+
 			pstat.setString(1, rdto.getCategory()); // 분류
 			pstat.setString(2, rdto.getTitle()); // 제목
-			pstat.setString(3, rdto.getContent()); //내용
+			pstat.setString(3, rdto.getContent()); // 내용
 			pstat.setString(4, rdto.getImg()); // 이미지
 			pstat.setString(5, rdto.getSeq()); // 레시피seq
 
@@ -403,20 +405,49 @@ public class RecipeDAO {
 	}
 
 	public int deleteComment(String cseq) {
-		//DeleteComment
-		
+		// DeleteComment
+
 		try {
-			
-			String sql ="update receipecomment set delflag = 1 where seq = ?";
-			
+
+			String sql = "update receipecomment set delflag = 1 where seq = ?";
+
 			pstat = conn.prepareStatement(sql);
-			pstat.setString(1, cseq); //댓글seq
-			
+			pstat.setString(1, cseq); // 댓글seq
+
 			return pstat.executeUpdate();
 
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("RecipeDAO.deletecomment()");
+		}
+		return 0;
+	}
+
+	public int send(String[] pseqlist,String mseq) {
+		//from shoppingbasketOk.java
+		
+		try {
+
+			String sql = "insert into shoppingcart (seq, memberseq,productseq, qty, regdate, delflag) values (SEQSHOPPINGCART.nextval,?,?,1,sysdate,default)";
+
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, mseq);
+			
+			int result = 0;
+			
+			for (String pseq: pseqlist) {
+				pstat.setString(2,pseq);
+				result = pstat.executeUpdate();
+				
+			}
+
+			return result;
+
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("recipeDAO.Shoppinglist()");
+
 		}
 		return 0;
 	}

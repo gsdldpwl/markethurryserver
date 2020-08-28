@@ -9,17 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/deletecomment.do")
+@WebServlet("/user/myrecipe/deletecomment.do")
 public class DeleteComment extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		//댓글seq와 레피시 seq필요!
-		String rseq = req.getParameter("seq"); //레피시seq
+		String rseq = req.getParameter("rseq"); //레피시seq
 		String cseq = req.getParameter("cseq");//댓글seq
-		
+
 		RecipeDAO rdao = new RecipeDAO();
+		CommentDTO cdto = new CommentDTO();
+		
+		cdto.setSeq(cseq); //삭제할 댓글번호
 		
 		int result = rdao.deleteComment(cseq);
 		

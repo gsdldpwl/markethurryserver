@@ -34,7 +34,7 @@ public class MyrecipeCommentOk extends HttpServlet {
 	String seq = req.getParameter("seq"); 
 
 	
-	String reply = req.getParameter("reply");
+	//String reply = req.getParameter("reply");
 		
 	//댓글 내용 가져오기
 	String content = req.getParameter("content");
@@ -50,19 +50,9 @@ public class MyrecipeCommentOk extends HttpServlet {
 	cdto.setMseq((String)session.getAttribute("seq"));//멤버
 
 	int result = dao.write(cdto);
+	PrintWriter writer = resp.getWriter();
+	writer.print(result);
 	
-	
-		
-	
-//	String status = "";
-//	if(result > 0) {
-//		status = "SUCCESS";
-//	}else {
-//		status = "FAIL";
-//	}
-//	
-//	resp.setContentType("text/plan");
-//	resp.getWriter().write(status);
   }
 
 }

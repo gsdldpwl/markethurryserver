@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>MarketHurry :: 내레시피</title>
 <%@include file="/WEB-INF/views/inc/header.jsp"%>
+<link rel="stylesheet" href="/mh/css/modal.css">
 <style>
 /* 소진구현 */
 * {
@@ -158,13 +159,15 @@ fieldset {
 
 #Cartfood {
 	/* 장바구니버튼 전체 */
+	position: relative;
 	width: 1172px;
 	margin: 0px auto;
 	padding: 35px;
 }
 
-.InputCart {
+#InputCart {
 	/* 장바구니에 담기 버튼 */
+	display: block;
 	float: right;
 	color: #08718e;
 	font-weight: bold;
@@ -172,6 +175,7 @@ fieldset {
 	height: 40px;
 	border: 1px solid #08718e;
 	background-color: white;
+	margin-bottom: 10px;
 }
 
 #allAnwser {
@@ -179,7 +183,7 @@ fieldset {
 	padding-top: 100px;
 }
 
-#Answerbox {
+.Answerbox {
 	/* 댓글 박스 */
 	width: 1100px;
 	margin: 0px auto;
@@ -194,12 +198,12 @@ fieldset {
 	border-bottom: 1px solid rgb(196, 193, 193);
 }
 
-#UserCommnet1 {
+.UserCommnet1 {
 	/* 댓글 작은상자 */
 	width: 1098px;
 	margin: 0px auto;
 	border-bottom: 1px solid rgb(196, 193, 193);
-	padding: 10px;
+	padding: 20px;
 }
 
 .AnswerUserId {
@@ -207,6 +211,7 @@ fieldset {
 	font-weight: bold;
 	margin-bottom: 10px;
 	font-size: 15px;
+	width: 300px;
 }
 
 .AnswerDate {
@@ -214,6 +219,7 @@ fieldset {
 	margin-top: 10px;
 	color: #666666;
 	font-size: 12px;
+	float: right;
 }
 
 .ReAnswer {
@@ -296,6 +302,71 @@ fieldset {
 #btnContent span {
 	color: #08718e;
 }
+
+.delete {
+	/* 댓글 삭제버튼 */
+	color: #666;
+	font-size: 11px;
+	float: right;
+	border: none;
+	background-color: white;
+}
+
+.AnswerComment {
+	/* 댓글 내용 부분 */
+	padding-bottom: 10px;
+}
+
+.inCart {
+	/* 장바구니에 담기 css */
+	position: absolute;
+	float: right;
+	left: 807px;
+	top: 76px;
+	width: 330px;
+	height: 102px;
+	border: 1px solid #ddd;
+	background-color: #fff;
+	/* opacity: 0; */
+	/*  z-index: 9999; */
+}
+
+.gsInCart {
+	padding: 20px;
+}
+
+.gsInCart img {
+	float: left;
+	width: 46px;
+	height: 60px;
+	margin: 0 auto;
+	border: 0;
+	max-width: 100%;
+}
+
+.gsInCart p {
+	float: left;
+	width: 240px;
+	padding: 8px 0 0 20px;
+	font-weight: 700;
+	font-size: 14px;
+	line-height: 21px;
+}
+
+.gsInCart .inTxt {
+	display: block;
+	overflow: hidden;
+	width: 100%;
+	color: #999;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.gsInCart .inTxt2 {
+	display: block;
+	padding-top: 3px;
+	color: #333;
+}
 </style>
 </head>
 
@@ -321,8 +392,24 @@ fieldset {
 
 		<!-- 장바구니 담기 버튼 -->
 		<div id="Cartfood">
-			<input type="button" value="장바구니에 담기" class="InputCart" />
+			<input type="button" value="장바구니에 담기" id="InputCart">
+			<div class="inCart">
+				<div class="gsInCart">
+					<img src="/mh/images/${dto.img}">
+					<p class="cTxt">
+						<span class="inTxt">${dto.memberID}님의&nbsp${dto.title}set</span> <span
+							class="inTxt2">장바구니에 담겼습니다.</span>
+					</p>
+				</div>
+			</div>
+			<input type="hidden" name="mseq" id="mseq"value="${sessionScope.seq }"> 
+				<input type="hidden"name="rseq" id="rseq" value="${dto.seq }"> 
+				<input type="hidden" name="pseq" id="pseq">
+
+
 		</div>
+
+		<!-- 장바구니로 보내버리기 -->
 
 		<!-- 레시피 세트 상자 -->
 		<div id="RCPsetBox">
@@ -331,7 +418,7 @@ fieldset {
 
 				<div id="PDExplainBox">
 					<img src="/mh/images/${dto.img}" id="foodPic" />
-					<div id="sellingFoodName">${dto.memberID}님의${dto.title}set</div>
+					<div id="sellingFoodName">${dto.memberID}님의&nbsp${dto.title}set</div>
 					<div id="SalePrice">${totalPrice}</div>
 
 				</div>
@@ -340,6 +427,8 @@ fieldset {
 					<c:forEach items="${productlist}" var="dto">
 						<table id="menuMaterial">
 							<tr>
+								<td><input type="hidden" name="productseq" id="material"
+									class="material" value="${dto.seq}"></td>
 								<td><span class="glyphicon glyphicon-ok"></span></td>
 								<td class="MatarialName">${dto.name}</td>
 								<td class="rcpPrice">${dto.price}원</td>
@@ -351,15 +440,14 @@ fieldset {
 			</fieldset>
 
 
-
+			<!-- 수정 삭제 목록 버튼 -->
 			<div class="btns btn-group" id="btnContent">
 				<button type="button" class="btn btn-default"
 					onclick="location.href='/mh/user/myrecipe/myrecipe.do';">
 					<span class="glyphicon glyphicon-th-list"></span> 목록
 				</button>
 
-
-
+				<!-- 자신의 글에만 수정, 삭제 가능하도록  -->
 				<c:if test="${dto.mseq eq mseq}">
 
 					<button type="button" class="btn btn-default"
@@ -378,41 +466,58 @@ fieldset {
 
 
 		<!-- 댓글 -->
-		<c:if test="${not empty mseq}">
-			<div id="allAnwser">
-				<div id="AnwserTitle">댓글</div>
-				<c:forEach items="${clist}" var="cdto">
-					<div id="Answerbox">
-						<div id="UserCommnet1">
-							<div class="AnswerUserId">${cdto.memberID}</div>
-							<div class="AnswerDate">${cdto.regdate}</div>
-							<div class="AnswerComment">${cdto.content}</div>
-							<c:if test="${dto.mseq eq mseq}">
-								 <span class="delete" onclick="location.href='/mh/user/myrecipe/deletecomment.do?seq=${cdto.seq}&cseq=${dto.seq}';">[삭제]</span>
-							</c:if>
-						</div>
+		<div id="allAnwser">
+			<div id="AnwserTitle">댓글</div>
+			<c:forEach items="${clist}" var="cdto">
+				<div class="Answerbox">
+					<div class="UserCommnet1">
+						<div class="AnswerDate">${cdto.regdate}</div>
+						<div class="AnswerUserId">${cdto.memberID}</div>
+						<div class="AnswerComment">${cdto.content}</div>
+						<c:if test="${dto.mseq eq mseq}">
+							<input type="button" value="[삭제]" class="delete"
+								onclick="location.href='/mh/user/myrecipe/deletecomment.do?cseq=${cdto.seq}&rseq=${dto.seq}';">
+						</c:if>
 					</div>
-				</c:forEach>
-
-				<div id="noAnswerBox">
-					<div id="noAnswer">입력된 댓글이 없습니다. 첫번째 댓글을 달아보세요!</div>
-					<hr id="noAnswerline">
 				</div>
+			</c:forEach>
+
+			<!-- 로그인해야만 댓글 등록 가능하도록 -->
+			<div id="noAnswerBox">
+				<div id="noAnswer">입력된 댓글이 없습니다. 첫번째 댓글을 달아보세요!</div>
+				<hr id="noAnswerline">
+			</div>
 
 
-				<!-- 새로운 댓글 입력 시 -->
+			<!-- 새로운 댓글 입력 시 -->
+			<c:if test="${mseq > -1}">
 				<div id="NewCommentBoxClass">
-					<textarea placeholder="댓글을 입력해주세요." class="comment"></textarea>
+					<input type="text" placeholder="댓글을 입력해주세요." class="comment">
 					<button type="button" id="BTNRegisterAnswer"
 						name="BTNRegisterAnswer">등록</button>
 				</div>
-		</c:if>
+			</c:if>
 
 
 
+		</div>
+		<!-- 댓글전체 -->
 	</div>
-	<!-- 댓글전체 -->
+
+	<div id="modal"></div>
+
+
+	<!-- 장바구니 추가 완료 -->
+	<div class="modal_common cartsuccess">
+		<a href="javascript:;" class="close">X</a>
+		<p class="title">알림메세지</p>
+		<div class="con">장바구니에 상품이 담겼습니다.</div>
+		<div>
+			<input type="button" value="확인" href="javascript:;" class="yes">
+		</div>
 	</div>
+
+	<div style="clear: both;"></div>
 	<!-- 페이지 전체 -->
 
 	<!-- footer -->
@@ -420,8 +525,47 @@ fieldset {
 
 </body>
 <script>
+
+var temp = "";
+$(".material").each(function(index,item){
+	temp += $(item).val() + ","
+	$("#pseq").attr("value",temp);
+})
+
+//장바구니 클릭시 장바구니 아이콘에 상품 띄우기
+$(".inCart").hide();
+
+var mseq = $("#mseq").val();
+var rseq = $("#rseq").val();
+var pseq = $("#pseq").val();
+
+$("#InputCart").click(function(){
+		
+       //$(".inCart").css("display","block");
+		   
+        $.ajax({
+        	type:"GET",
+        	url:"/mh/user/myrecipe/enrollcombiproduct.do",
+        	data: "mseq=" + mseq + "&rseq=" + rseq + "&pseq=" + pseq,
+        	datytype: "text",
+        	success: function (result) {
+        		if (result == 1) {
+        			openModal("cartsuccess");
+        			$(".inCart").fadeIn(1500);
+        	        $(".inCart").slideUp(2000);
+        		} else {
+        			alert("실패");
+        		}
+        	}, error: function(a,b,c){
+				console.log(a,b,c);
+        	}
+        })
+    });
+	
+
 	var mseq = ${mseq};//멤버 seq
 	var seq = ${dto.seq}; //레피시 seq가져오기
+	
 	
 	//새로운 댓글 등록하기
 	$("#BTNRegisterAnswer").click(function() {
@@ -436,23 +580,13 @@ fieldset {
 				dataType: "json",
 				//success빼고 모두 실행완료! -> success 는 왜 실행이 되지않는감ㅜ_ㅜ
 				success: function(result) {
-// 					var result = data.responseText;
-
-// 					if(result == "SUCCESS"){
-// 						//success가 되버리면 새로고침 + alert가 되도록 구현을 원합니다
-				
-// 						//alert띄우기
- 						 alert("등록되었습니다.");
-// 						//초기화 -> 새로고침하면 필요없는건가?
-// 				 		content.html(""); 
-// 						//새로고침하는 거??
-// 				 	   location.reload();
-// 					}else{
-// 					 alert("시스템 오류입니다.");
-// 					}
+					if(result == 1){
+						location.href = "/mh/user/myrecipe/myrecipedetail.do?seq=" + seq;
+					} else {
+						alert("실패");
+					}
 				}, error: function(e){
 					console.log(e);
-// 					 alert("시스템 오류입니다.");
 				}
 			});
      	}; 
@@ -485,4 +619,5 @@ fieldset {
 	
 
 </script>
+<script src="/mh/js/modal.js"></script>
 </html>

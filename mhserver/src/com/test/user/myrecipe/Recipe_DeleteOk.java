@@ -40,7 +40,7 @@ public class Recipe_DeleteOk extends HttpServlet {
 		if(result== 1) {
 			
 			//삭제성공 -> 리스트로 이동
-			resp.sendRedirect("/mh/user/myrecipe/myrecipe.do");
+			resp.sendRedirect("/mh/user/myrecipe/myrecipelist.do");
 			
 		} else if(result == 0) {
 			resp.setCharacterEncoding("UTF-8");

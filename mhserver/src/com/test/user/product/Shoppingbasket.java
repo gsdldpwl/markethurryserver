@@ -41,7 +41,7 @@ public class Shoppingbasket extends HttpServlet{
 			writer.print("</head>");
 			writer.print("<body>");
 			writer.print("<script>");
-			writer.print("alert(''); location.href='/mh/user/main/login.do';");
+			writer.print("alert('로그인 후 이용하실 수 있습니다.'); location.href='/mh/user/main/login.do';");
 			writer.print("</script>");
 			writer.print("</body>");
 			writer.print("</html>");

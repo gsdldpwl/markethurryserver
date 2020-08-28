@@ -1,119 +1,226 @@
-#menustep {
-    margin: 0px auto;
-    margin-top: 30px;
-    width: 1570px;
-}
+        /* 상단 헤더 */
+        #menustep > span {
+            font-size: 1.2em;
+            color: #999999;
+        }
 
-#menuname {
-    width: 1570px;
-    margin: 15px auto;
-}
+        #menuname > span {
+            font-size: 2em;
+            font-weight: bold;
+            color: #666666;
+        }
 
-#menustep > span {
-    font-size: 1.2em;
-    color: #999999;
-}
+        #menustep {
+            margin-bottom: 15px;
+        }
 
-#menuname > span {
-    font-size: 2em;
-    font-weight: bold;
-    color: #666666;
-}
+        #headerTitle {
+            width: 1570px;
+            margin: 30px auto;
+        }
 
-#deliverystate {
-    border: 0px solid black;
-    width: 1600px;
-    height: 150px;
-    margin: 60px 60px;
-}
+        #TopIconReady,
+        #TopIconIng,
+        #TopIconComplete {
+            /* 상단 기호 */
+            color: #ccc;
+            float: left;
+            font-size: 100px;
+            margin-left: 50px;
+            margin-top: 20px;
+        }
+        .topMenu {
+            /* 배송준비중, 배송중, 배송완료 탭 */
+            width: 500px;
+            height: 100px;
+            float: left;
+            margin-top: 20px;
+            margin-left: 30px;
+            margin-bottom: 25px;
+            border-right: 1px solid #666666;
+            font-size: 28px;
+            text-align: center;
+        }
 
-#deliverystate > div {
-    float: left;
-    border-right: 1px solid #999999;
-    width: 533px;
-    height: 70px;
-    font-size: 1.3em;
-    font-weight: bold;
-    text-align: center;
-}
+        #topMenu3 {
+            /* 배송완료 */
+            border-right: none;
+        }
 
-#deliverystate > div:last-child {
-    border-right: 0px;
-}
+        /* #TopIconComplete {
+            배송완료 이미지
+            color: #08718e;
+            font-size: 100px;
+        } */
 
-#deliverystate > div > span {
-    display: block;
-    margin-top: 10px;
-}
+        /* #CompleteNum,
+        #TopIconComplete {
+            배송완료 & 숫자
+            color: #08718e;
+            font-weight: bold;
+        } */
 
-#search {
-    border: 0px solid #999999;
-    width: 1600px;
-    height: 150px;
-    margin: -110px 40px;
-}
+        /* #CompleteList {
+            color: #08718e;
+            font-weight: bold;
+            font-size: 30px;
+        } */
 
-#search > div {
-    border: 1px solid #999999;
-    width: 1570px;
-    height: 60px;
-    margin: auto 15px;
-}
+        .topCenter {
+            /* 기호 */
+            border-left: 1px solid black;
+            height: 50px;
+        }
+        #ReadyNum,
+        #IngNum,
+        #CompleteNum {
+            font-size: 28px;
+            text-align: center;
+        }
 
-#search > div > div {
-    background-color: #DDDDDD;
-    width: 130px;
-    height: 58px;
-    padding-top: 18px;
-    padding-left: 8px;
-    font-size: 1.2em;
-    font-weight: bold;
-    float: left;
-}
+        /* 테이블 */
+        #tblsearch {
+            border-collapse: collapse;
+            border: 1px solid #ccc;
+            margin: 0px 15px;
+            padding: 10px;
+            width: 1570px;
+        }
 
-#date1, #date2 {
-    margin: 16px auto;
-    outline: none;
-}
+        #tblsearch td,
+        #tblsearch th {
+            border: 1px solid #ccc;
+            height: 50px;
+        }
 
-#btn {
-    width: 300px;
-    margin: 160px 760px;
-}
+        #tblsearch th {
+            text-align: center;
+            width: 200px;
+            font-size: 1.2em;
+            font-weight: bold;
+            background-color: #f3f3f3;
+        }
 
-.btn {
-    margin: auto 2px;
-    width: 100px;
-    height: 30px;
-    padding-bottom: 25px;
-}
+        #tblsearch td {
+            width: 1350px;
+            padding-left: 10px;
+        }
 
-#searchresult {
-    margin: -70px 40px;
-    margin-bottom: 10px;
-    font-size: 2em;
-    font-weight: bold;
-    color: #666666;
-}
+        #taste {
+            margin-left: 10px;
+        }
 
-#result {
-    border: 1px solid #999999;
-    width: 1600px;
-    height: 200px;
-    margin: 10px 54px;
-}
+        .datepick {
+            height: 30px;
+        }
+        .ui-datepicker-week-end .ui-state-default {
+            color: RED;
+        }
+        .hasDatepicker {
+            width: 120px;
+            margin: 0px 10px;
+            text-align: center;
+        }
 
-#result > span {
-    display: inline-block;
-    font-size: 1.2em;
-    margin: 2px 20px;
-    margin-top: 10px;
-}
+        #sel1,
+        #sel2 {
+            height: 30px;
+            border-color: #aaa;
+            margin-left: 10px;
+        }
 
-#result > div > table > thead > tr > th {
-    margin: auto 20px;
-    margin-top: 10px;
-    background-color: #DDDDDD;
-    font-size: 1.4em;
-    font-weight: bold;
-}
+        .txtbox {
+            height: 30px;
+            width: 800px;
+            border: 1px solid #aaa;
+            margin-left: 5px;
+            padding-left: 10px;
+        }
+
+        /* 버튼 */
+        .btnSearch {
+            outline: none;
+            background-color: white;
+            border: 1px solid #ccc;
+            font-weight: bold;
+            width: 100px;
+            height: 40px;
+            padding-top: 10px;
+            padding-bottom: 25px;
+        }
+
+        #btn1 {
+            /* 검색 버튼 */
+            background-color: #ccc;
+            /* border: none; */
+        }
+
+        #orderBtn {
+            width: 1570px;
+            margin: 0px auto;
+            margin-top: 30px;
+            text-align: center;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #aaa;
+        }
+
+        #searchresult {
+            width: 1570px;
+            margin: 0px auto;
+            margin-top: 40px;
+        }
+
+        .SearchResultBox {
+            width: 310px;
+            height: 40px;
+            text-align: center;
+        }
+
+        #result {
+            border: none;
+            width: 1570px;
+            margin: 0px auto;
+        }
+
+        #orderResult {
+            margin: 20px auto;
+        }
+
+        #pagingbox {
+            /* 페이징 감싸기 */
+            width: 1600px;
+            margin: 0px auto;
+            margin-left: 720px;
+            /* margin-top: 60px; */
+        }
+        .btnPaging {
+            /* 페이징 */
+            border: 1px solid #ccc;
+            background-color: #f3f3f3;
+            float: left;
+            width: 30px;
+            height: 30px;
+            padding: 5px;
+            text-align: center;
+            font-weight: bold;
+            color: #666666;
+        }
+
+        th {
+            /* 검색결과 표의 제목들 */
+            text-align: center;
+            font-weight: bold;
+            background-color: #f3f3f3;
+            width: auto;
+        }
+        
+        #resultTable td {
+        	text-align: center;
+            width: auto;
+            height: 30px;
+        }
+
+        #resultTable {
+            /* 테이블 전체 */
+            text-align: center;
+        }

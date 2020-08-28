@@ -24,8 +24,8 @@
                         <td><span>24시간 접수 가능</span><br><span class="cpmdesc">고객센터 운영중 순차적으로 답변해드리겠습니다.</span></td>
                     </tr>
                     <tr>
-                        <td><a href="/mh/user/customercenter/notice.do" class="ask">공지사항</a></td>
-                        <td><span style="font-weight: bold; font-size:11px">마켓허리에서 알려드리는 오늘의 소식!</span></td>
+                        <td><a href="/mh/admin/main/adminlogin.do" class="ask">관리자</a></td>
+                        <td><span style="font-weight: bold; font-size:15px"></span></td>
                     </tr>
                 </tbody>
                 </table>

@@ -1,0 +1,75 @@
+package com.test.user.myrecipe;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.test.user.product.ProductlistDTO;
+
+@WebServlet("/user/myrecipe/myrecipedetail.do")
+public class MyrecipeDetail extends HttpServlet {
+		
+		@Override
+		protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+			HttpSession session = req.getSession();
+	
+			req.setAttribute("mseq", (String)session.getAttribute("seq") != null ? (String)session.getAttribute("seq") : "-1");
+			
+			//1.seq 가져오기
+			String seq = req.getParameter("seq");
+			RecipeDAO dao = new RecipeDAO();
+			
+			
+			if (session.getAttribute("read") == null || (boolean)session.getAttribute("read") == false) {
+				//2. 조회수 증가
+				dao.updateReadCount(seq);
+				session.setAttribute("read", true);
+			}
+			
+			
+			RecipeDTO rdto = dao.get(seq);
+			
+			//개행하기
+			String content = dto.getContent();
+			content = content.replace("\n", "<br><br>");
+			dto.setContent(content);
+
+			int totalPrice = 0;
+			
+			//묶음레시피의 상품 목록을 가져오기
+			ArrayList<ProductlistDTO> productlist = dao.productlist(seq);
+			
+			
+			for(ProductlistDTO PDTotal : productlist) {
+				//묶음 상품 레시피 가격 모두 더하기
+				int b = Integer.parseInt(PDTotal.getPrice().trim().replace(",", "")); 
+		
+				totalPrice += b;
+			}
+			
+			// 댓글 목록 가져오기	
+			ArrayList<CommentDTO> clist = dao.listComment(seq);
+			
+			//
+			//String reply = req.getParameter("reply");
+			//전달하기
+			req.setAttribute("rdto", rdto);	//상품
+			req.setAttribute("clist", clist); //댓글리스트 가져오기
+			req.setAttribute("productlist", productlist); //묶음상품리스트
+			req.setAttribute("totalPrice", totalPrice); //묶음상품 총가격 
+			//req.setAttribute("reply",reply);  
+//			req.setAttribute("seq", seq);
+			
+			RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/user/myrecipe/myrecipedetail.jsp");
+			dispatcher.forward(req, resp);
+	}
+}

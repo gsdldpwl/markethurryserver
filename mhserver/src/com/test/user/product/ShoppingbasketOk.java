@@ -32,7 +32,8 @@ public class ShoppingbasketOk extends HttpServlet {
 		} 
 		// 상품삭제
 		else if(type.equals("2")) {
-			String[] selectedSeq = req.getParameterValues("selectedSeq");
+			
+			String[] selectedSeq = req.getParameter("selectedSeq").substring(0,req.getParameter("selectedSeq").length()).split(",");
 			dao.deleteProduct(mseq,selectedSeq);
 		}
 		

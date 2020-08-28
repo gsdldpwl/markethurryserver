@@ -32,8 +32,8 @@ public class ProductDAO {
 	
 	// 관리자, 상품조회
 		public ArrayList<ProductDTO> searchproduct(HashMap<String, String> map, String startprice, String endprice) {
-			
-		try {
+
+			try {
 			
 			if (map.get("search") != null) {
 				//이름 & 제목 & 내용 - 포괄 검색

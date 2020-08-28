@@ -66,6 +66,8 @@ public class ShoppingbasketDAO {
 			for(String seq : selectedSeq) {
 				pstat.setString(2, seq);
 				pstat.executeUpdate();
+				System.out.println(mseq);
+				System.out.println(seq);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

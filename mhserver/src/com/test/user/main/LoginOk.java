@@ -13,6 +13,9 @@ import javax.servlet.http.HttpSession;
 @WebServlet("/user/main/loginok.do")
 public class LoginOk extends HttpServlet {
 	
+	/**
+	 *
+	 */
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
@@ -30,7 +33,6 @@ public class LoginOk extends HttpServlet {
 		
 		int result = dao.loginCheck(dto);
 		
-		PrintWriter writer = resp.getWriter();
 		
 		if(result == 1) {
 			dto = dao.setinfo(dto);
@@ -38,7 +40,8 @@ public class LoginOk extends HttpServlet {
 			session.setAttribute("seq", dto.getSeq());
 			resp.sendRedirect("/mh/user/main/main.do");
 		} else {
-			
+			resp.setCharacterEncoding("UTF-8");
+			PrintWriter writer = resp.getWriter();
 			writer.print("<html>");
 			writer.print("<head>");
 			writer.print("<meta charset='UTF-8'>");
@@ -54,3 +57,4 @@ public class LoginOk extends HttpServlet {
 	}
 
 }
+

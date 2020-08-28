@@ -29,7 +29,6 @@ public class Onebyone extends HttpServlet {
 		String seq = (String) session.getAttribute("seq");
 		
 		CustomercenterDAO dao = new CustomercenterDAO();
-		System.out.println(seq);
 		
 		if(seq != null) {
 			ArrayList<OnebyoneDTO> list = dao.getOBOList(seq);

@@ -15,7 +15,9 @@ body {
     overflow-x: hidden;
     font-family: "Noto Sans KR",  sans-serif;
 }
-
+#menu > li > div {
+	cursor: pointer;
+}
 /* 헤더 */
 #header {
     position: fixed;
@@ -137,4 +139,10 @@ body {
 #container {
     width: 1600px;
     margin: 0 auto;
+}
+
+#paging {
+	margin: 0px auto;
+	width: 1100px;
+	text-align:center;
 }

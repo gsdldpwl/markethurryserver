@@ -19,9 +19,9 @@ public class OnebyoneAnswer extends HttpServlet {
 		String seq = req.getParameter("seq");
 		
 		CustomercenterDAO dao = new CustomercenterDAO(); 
-		OnebyoneDTO dto = dao.get(seq);
+		OnebyoneDTO odto = dao.get(seq);
 		
-		req.setAttribute("dto",dto);
+		req.setAttribute("odto",odto);
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/user/customercenter/onebyoneanswer.jsp");
 		dispatcher.forward(req, resp);

@@ -37,7 +37,7 @@ public class MyrecipeDetail extends HttpServlet {
 			
 			
 			RecipeDTO dto = dao.get(seq);
-			
+			System.out.println(dto.getMseq());
 			//개행하기
 			String content = dto.getContent();
 			content = content.replace("\n", "<br><br>");

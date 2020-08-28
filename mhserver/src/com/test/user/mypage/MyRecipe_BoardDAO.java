@@ -62,25 +62,24 @@ public class MyRecipe_BoardDAO {
 	}
 			
 
-	public ArrayList<Myrecipe_BoardDTO> list(String seq) {
-		//게시판에 구매한 목록들을 불러와볼게 얍
+	public ArrayList<Myrecipe_BoardDTO> list(String mseq) {
+	
 		try {
 			
-			String sql ="select * from vwChoiceFD where seq = ?";
-			
+			String sql ="select * from vwChoiceFD where mseq = ?";
 			pstat = conn.prepareStatement(sql);
-			pstat.setString(1, seq);
+			pstat.setString(1, mseq);
 			
 			rs = pstat.executeQuery();
 			
 			ArrayList<Myrecipe_BoardDTO> rlist = new ArrayList<Myrecipe_BoardDTO>();
-			
+			System.out.println(mseq);
 			while (rs.next()) {
 				
 				Myrecipe_BoardDTO dto = new Myrecipe_BoardDTO();
 				
 				// 
-				dto.setMseq(rs.getString("seq")); //로그인한 회원번호
+				dto.setMseq(rs.getString("mseq")); //로그인한 회원번호
 				dto.setPimg(rs.getString("pimg")); //이미지
 				dto.setPname(rs.getString("pname")); // 상품이름
 				dto.setPdate(rs.getString("pdate")); // 상품구매날짜

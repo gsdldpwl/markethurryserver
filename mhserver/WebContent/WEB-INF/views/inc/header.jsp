@@ -9,7 +9,7 @@
 	<a href="#!">전체 카테고리</a> 
 	<a href="/mh/user/product/hotproduct.do" class="hyperlink">HOT 상품</a> 
 	<a href="/mh/user/product/cheapproduct.do" class="hyperlink">알뜰 상품</a>
-	<a href="/mh/user/myrecipe/myrecipe.do" class="hyperlink">나만의 레시피</a> 
+	<a href="/mh/user/myrecipe/myrecipelist.do" class="hyperlink">나만의 레시피</a> 
 	<a href="/mh/user/event/event.do" class="hyperlink">이달의 이벤트</a> 
 	<input type="text" id="searchbox" value="검색내용을 입력해주세요." autocomplete="off"> 
 	<span class="glyphicon glyphicon-search" id="searchimg"></span> 
@@ -37,7 +37,7 @@
 		<span class="eachNotice">[마켓허리] 유튜브 ‘컬리라이프-일할 때도 쉴 때도 먹어야 한다, 극한직업 컬리 MD편’ 댓글 이벤트 당첨 공지</span> 
 		<span class="eachNotice">[마켓허리] 코로나19 확진자 관련 현황 및 대응조치 안내</span> 
 		<span class="eachNotice">[가격인상공지] [모어댄프레쉬] 맥돈 삼겹살 구이용 300g 외 23건 (2020 5. 20 ~)</span> 
-		<span class="eachNotice">[마켓컬리] 개인정보처리방침 개정 내용 사전안내</span>
+		<span class="eachNotice">[마켓허리] 개인정보처리방침 개정 내용 사전안내</span>
 	</div>
 </div>
 <header>
@@ -65,7 +65,7 @@
 	<a href="#!">전체 카테고리</a> 
 	<a href="/mh/user/product/hotproduct.do" class="hyperlink">HOT 상품</a> 
 	<a href="/mh/user/product/cheapproduct.do" class="hyperlink">알뜰 상품</a> 
-	<a href="/mh/user/myrecipe/myrecipe.do" class="hyperlink">나만의 레시피</a> 
+	<a href="/mh/user/myrecipe/myrecipelist.do" class="hyperlink">나만의 레시피</a> 
 	<a href="/mh/user/event/event.do" class="hyperlink">이달의 이벤트</a> 
 	<input type="text" id="searchbox" value="검색내용을 입력해주세요." autocomplete="off"> 
 	<span class="glyphicon glyphicon-search" id="searchimg"></span> 

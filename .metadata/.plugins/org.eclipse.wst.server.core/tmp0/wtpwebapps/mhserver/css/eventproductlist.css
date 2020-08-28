@@ -1,0 +1,400 @@
+        #smalltitle {
+            width: 1100px;
+            margin: 10px auto;
+            font-weight: 600;
+        }
+
+
+        #smalltitle span {
+            /* width: 100%; */
+            position: relative;
+            padding-left: 29px;
+            color: teal;
+        }
+
+
+       #goodsList ul{
+         list-style:none;
+         margin: 0;
+         padding: 0;
+         }
+
+         #goodsList li {
+             margin: 0 0  0 0;
+             padding: 30px 54px 0px 11px;
+             border: 0;
+             float: left;
+         }
+
+         #goodsList {
+            width: 1100px;
+            margin: 0px auto;
+         }
+
+        #goodsList .item {
+            display: block;
+            cursor: pointer;
+            width: 300px;
+            height: 500px;
+            /* border: 1px solid tomato; */
+        }
+
+        #goodsList .item img {
+            display: block;
+            width: 300px;
+            height: 400px;
+            transition: all .5s ease-in-out;
+            /* position: relative; */
+        }
+
+        #goodsList .item img:hover {
+            transform: scale(1.02);
+            transition: all .3s ease-in-out;
+            /* 마우스 올리면 이미지 당겨지는 효과 주기 */
+
+        }
+
+        #goodsList button {
+           display: block;
+           width: 45px;
+           height: 45px;
+           position: relative;
+           left: 250px;
+           top: -50px;
+           color: teal;
+           /* background-color: transparent;  투명하게 만들기*/
+           background-color: rgba(255, 255, 255, 0.5);  /* 배경만 살짝 투명하게 만들기*/
+           border-radius: 50px;
+           border: none;
+           font-size: 1.5em;
+          
+        }
+
+        #goodsList button:focus {outline:none;}
+
+
+        #goodsList .info{
+            /* display: block; */
+            padding: 10px;
+            /* border: 1px solid teal; */
+            width: 300px;
+            height: 100px;
+            margin-top: 0px;
+            position: relative;
+            top: -45px;
+        }
+
+        #goodsList .name {
+            overflow: hidden;
+            max-height: 58px;
+            font-weight: 700;
+            font-size: 19px;
+            color: black;
+        }
+
+        #goodsList .price {
+            overflow: hidden;
+            max-height: 58px;
+            font-weight: 700;
+            font-size: 17px;
+            color: teal;
+            display: block;
+        }
+
+        #goodsList .desc {
+            overflow: hidden;
+            max-height: 58px;
+            font-weight: 700;
+            font-size: 13px;
+            color: #666;
+            display: block;
+        }
+
+
+        /* 소메뉴 css */
+        #titleselect > ul {
+            list-style: none;
+            font-size: 16px;
+            margin-left: 0;
+            padding: 0;
+            /* position: absolute; */
+        }
+
+
+        #titleselect{
+           padding-top : 10px;
+            width: 100%;
+            /* position: relative ; */
+            /* left:100px ; */
+            /* top: 100px; */
+            position: absolute;
+            left: 1350px;
+            top: 330px;
+            border: none;
+            background-color: white;
+            font-size: 12px;
+            /* border: 1px solid teal; */
+            cursor: pointer;
+            /* float: right; */
+            z-index: 8;
+           
+        }
+
+        #titleselect > .nameselect {
+           padding: 10px;
+           margin: 40px auto;
+           color: black
+         
+        }
+       
+
+        #titleselect > ul > li > a {
+             display: none;
+            margin: 15px 0;
+            margin-left: 10px;
+            font-size: 12px;
+            color: black;
+        }
+
+        #titleselect > ul > li > a.on, #titleselect > ul > li > a:hover{
+           color: teal;
+           font-weight: bold;
+        }
+
+		#paging {
+			margin: 0px auto;
+			width: 1100px;
+			text-align:center;
+		}
+       
+
+        /* modal css */
+
+        #modal-all {
+            width: 100%;
+        }
+
+        .modal {
+            width: 100%;
+            margin: 0px auto;
+            padding: 100PX;
+        }
+
+        .modal-header{
+            border-bottom: none;
+            /* padding: 25px 0 17px 30px; */
+            padding-bottom: 0px;
+        }
+        
+
+        .modal-dialog {
+            width: 440px;
+            height: auto;
+        }
+     
+
+        .modal-title {
+            font-size: 1.8em;
+            font-weight: 500;
+            color: black;
+            /* padding: 20px; */
+            padding: 20px 20px 0px 20px;
+           
+        }
+
+       .modal-body .goodsname {
+        display: block;
+        padding-bottom: 12px;
+        padding-left: 20px;
+        border-bottom: 2px solid #333 ;
+        font-size: 16px;
+        }
+
+        .modal-body .list{
+            list-style: none;
+            overflow: hidden;
+            overflow-y: auto;
+            width: 400px;
+            height: 220px;
+            /* padding: 0px; */
+            padding: 10px 20px 0px 20px;
+            
+       }
+
+       /* .modal-body .list .goods1 .adjust .goodsprice {
+            margin-right: 200px;
+           
+       } */
+
+       
+       .modal-body .list .goods1 .adjust {
+            /* margin-right: 200px; */
+           
+       }
+
+      .goods1 .adjust {
+           font-weight: 600;
+           margin-top: 10px;
+           }
+
+        .modal-body .list .adjust button {
+            overflow: hidden;
+            /* position: absolute; */
+            /* left: 200px; */
+            /* float: left; */
+            width: 22px;
+            height: 22px;
+            border: 0;
+            background: #f6f7f7;
+            line-height: 0;
+           
+        }
+
+        .modal-body .list .adjust .geatsu {
+            width: 41px;
+            height: 24px;
+            padding: 0 0 2px;
+            border: 0;
+            background-color: white;
+            font-size: 14px;
+            text-align: center;
+            color: black;
+        }
+
+        .modal-body .list .goodsname2 {
+            font-size: 14px;
+        }
+
+        .modal-body .pmBtn {
+            float: right;
+        }
+
+        .sum .sumname {
+            font-size: 15px;
+            margin-left: 15px;
+        }
+
+        .sum .sumnum {
+            margin-left: 220px;
+            font-size: 27px;
+        }
+
+        .sum .won {
+            font-size: 17px;
+        }
+
+        .save {
+            margin-left: 216px;
+            margin-top: 7px ;
+        }
+    
+        .save .jukrip {
+            width: 38px;
+            height: 20px;
+            margin-right: 2px;
+            border: 1px solid #e8a828;
+            border-radius: 10px;
+            background-color: #ffbf00;
+            font-weight: 700;
+            font-size: 12px;
+            color: #fff;
+            line-height: 18px;
+            text-align: center;
+            vertical-align: 1px;
+            display: inline-block;
+          
+        }
+
+        .save .getpoint {
+            font-size: 14px;
+        }
+
+       .modal-footer {
+         overflow: hidden;
+         padding:21px 0 30px;;
+         width: 100%;
+         text-align: center;
+         border-top: none;
+       }
+
+       .modal-footer #cancle {
+           width:185px ;
+           height: 50px;
+           color: teal;
+           background-color: white;
+           border: 1px solid teal;
+           border-radius: 3px;
+           
+       }
+
+       .modal-footer #basket {
+           width:185px ;
+           height: 50px;
+           background-color: teal;
+           border: 1px solid white;
+           border-radius: 3px;
+       }
+
+
+       /* page bar */
+
+       .pagebar{
+           width: 100%;
+           text-align: center;
+           color: teal;
+       }
+
+
+       /* 장바구니에 담기 css */
+       .inCart {
+        display: none;
+        /* display: block; */
+        position: absolute;
+        /* right: 40px; */
+        left: 0px;
+        top: 45px;
+        width: 330px;
+        height: 102px;
+        border: 1px solid #ddd;
+        background-color: #fff;
+        /* opacity: 0; */
+        z-index: 9999;
+       }
+
+       .gsInCart {
+           padding: 20px;
+
+       }
+
+       .gsInCart img {
+        float: left;
+        width: 46px;
+        height: 60px;
+        margin: 0 auto;
+        border: 0;
+        max-width: 100%;
+       }
+
+       .gsInCart p {
+        float: left;
+        width: 240px;
+        padding: 8px 0 0 20px;
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 21px;
+       }
+
+       .gsInCart .inTxt {
+        display: block;
+        overflow: hidden;
+        width: 100%;
+        color: #999;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+       }
+
+       .gsInCart .inTxt2 {
+        display: block;
+        padding-top: 3px;
+        color: #333;
+       }

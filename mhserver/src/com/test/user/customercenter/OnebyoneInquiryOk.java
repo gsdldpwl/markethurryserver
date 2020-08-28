@@ -42,6 +42,7 @@ public class OnebyoneInquiryOk extends HttpServlet {
 		if(result == 1) {
 			resp.sendRedirect("/mh/user/customercenter/onebyone.do");
 		} else {
+			resp.setCharacterEncoding("UTF-8");
 			PrintWriter writer = resp.getWriter();
 			writer.print("<html>");
 			writer.print("<head>");

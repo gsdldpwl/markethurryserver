@@ -243,6 +243,7 @@ public class RecipeDAO {
 				cdto.setMemberID(rs.getString("memberid"));
 				cdto.setContent(rs.getString("content"));
 				cdto.setRegdate(rs.getString("regdate").substring(0, 10));
+				cdto.setMseq(rs.getString("memberseq"));
 //				cdto.setCmtseq(rs.getString("commentseq") == null ? "0" : "1");
 
 				clist.add(cdto);

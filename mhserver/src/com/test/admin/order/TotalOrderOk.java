@@ -15,6 +15,10 @@ import com.test.user.main.MemberDTO;
 
 import oracle.net.aso.l;
 
+/**
+ * @author leeho
+ * 사용자가 입력한 값에 해당되는 주문목록 가져오기
+ */
 @WebServlet("/admin/order/totalorderok.do")
 public class TotalOrderOk extends HttpServlet {
 	

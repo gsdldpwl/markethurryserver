@@ -11,6 +11,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+
+
+/**
+ * 마이페이지의 나만의 레시피 리스트를 출력하며, myrecipe.jsp와 연결되어있는 클래스입니다.
+ * @author 장소진
+ *
+ */
 @WebServlet("/user/mypage/myrecipe.do")
 public class MyRecipe extends HttpServlet {
 

@@ -9,6 +9,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * @author 이예지
+ * 상품 상세페이지 - 상품리뷰 조회수 관련
+ *
+ */
 @WebServlet("/user/product/productreviewCount.do")
 public class ProductReview extends HttpServlet{
 

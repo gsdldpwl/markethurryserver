@@ -9,6 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * @author 신수진
+ * 마이페이지 > 회원 등급 안내 페이지
+ */
 @WebServlet("/user/mypage/membership_info.do")
 public class Membership_Info extends HttpServlet {
 

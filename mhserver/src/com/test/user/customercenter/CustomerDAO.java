@@ -12,6 +12,11 @@ import java.util.HashMap;
 
 import com.test.user.main.DBUtil;
 
+/**
+ * @author 이예지
+ * 고객센터 - 공지사항 관련
+ *
+ */
 public class CustomerDAO {
 	
 	private Connection conn;
@@ -33,7 +38,10 @@ public class CustomerDAO {
 	}
 
 	
-	//notice (공지사항) 조회수 증가
+	/**
+	 * 공지사항 조회수 증가
+	 * @param 공지사항(글) 번호
+	 */
 	public void updateReadcount(String seq) {
 		
 		try {
@@ -56,7 +64,11 @@ public class CustomerDAO {
 	}
 	
 	
-	//notice 서블릿 -> 글번호를 주고 게시물 1개를 반환받기 위해 위임
+	/**
+	 * 해당 글 번호를 가진 공지사항을 반환
+	 * @param 글 번호
+	 * @return 글 제목, 내용, 등록일, 조회수
+	 */
 	public CustomerDTO get(CustomerDTO dto2) {
 		
 		try {
@@ -65,7 +77,6 @@ public class CustomerDAO {
 			
 			pstat = conn.prepareStatement(sql);
 			pstat.setString(1, dto2.getSeq()); //글번호
-//			pstat.setString(2, dto2.getSeq());
 			
 			rs = pstat.executeQuery();
 			
@@ -73,15 +84,10 @@ public class CustomerDAO {
 				
 				CustomerDTO dto = new CustomerDTO();
 				
-//				dto.setSeq(rs.getString("seq"));
 				dto.setTitle(rs.getString("title"));
 				dto.setContent(rs.getString("content"));
 				dto.setRegdate(rs.getString("regdate"));
 				dto.setReadcount(rs.getInt("readcount"));
-//				dto.setMseq(rs.getString("mseq"));
-//				
-//				dto.setName(rs.getString("name"));
-//				dto.setId(rs.getString("id"));
 				
 				return dto;				
 			}
@@ -98,6 +104,11 @@ public class CustomerDAO {
 
 	
 	
+	/**
+	 * search로 검색어, begin, end로 페이징
+	 * @param map : 검색어를 map형식으로 받음
+	 * @return 전달 받은 map 값과 일치하는 조건을 가진 결과값의 수 반환
+	 */
 	public int getTotalCount(HashMap<String, String> map) {
 		
 		
@@ -129,13 +140,15 @@ public class CustomerDAO {
 		return 0;
 	}
 	
-	//게시판 목록
+	
+	/**
+	 * 게시판 목록과 관련된 메소드
+	 * @param map : 검색어, 페이징을 위한 시작 값, 끝 값을 map형식으로 받음
+	 * @return 검색어의 유무에 따라 다른 쿼리 실행, 번호, 제목, 등록일, 조회수를 반환
+	 */
 	public ArrayList<CustomerDTO> list(HashMap<String, String> map) {
 		
 		try {
-			
-			//목록 or 검색
-			//String where = "";
 			
 			if (map.get("search") != null) {
 				//이름 & 제목 & 내용 - 포괄 검색
@@ -158,7 +171,6 @@ public class CustomerDAO {
 			
 			//rs -> list 복사
 			while (rs.next()) {
-				//레코드 1줄 -> BoardDTO 1개
 				CustomerDTO dto = new CustomerDTO();
 				
 				dto.setSeq(rs.getString("seq"));

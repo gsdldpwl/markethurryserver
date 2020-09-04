@@ -13,6 +13,10 @@ import javax.servlet.http.HttpSession;
 
 import com.test.user.mypage.MypageDAO;
 
+/**
+ * @author 정희수
+ *주문 완료된 데이터를 DB에 넣고 확인하는 클래스입니다.
+ */
 @WebServlet("/user/product/orderpageok.do")
 public class OrderPageOk extends HttpServlet{
 	@Override
@@ -37,7 +41,7 @@ public class OrderPageOk extends HttpServlet{
 		MypageDAO dao3 = new MypageDAO();
 		
 		OrderPageDTO dto2 = new OrderPageDTO();
-		int mileage = dao3.getNowMileage((String)session.getAttribute("seq"));
+		int mileage = dao3.getNowMileage((String)session.getAttribute("seq")); //회원 마일리지 가져오기
 		
 		dto2.setMemmile(String.valueOf(mileage));
 		
@@ -47,7 +51,8 @@ public class OrderPageOk extends HttpServlet{
 		int result2 = dao.oddttable(productseq,orpdqty);
 		dao.close(); //DB 닫기
 		
-		//3.
+		
+		//3.orderlist 테이블에 데이터 입력 완료시
 		if (result ==1) {
 			resp.setCharacterEncoding("UTF-8");
 			PrintWriter writer = resp.getWriter();
@@ -79,7 +84,7 @@ public class OrderPageOk extends HttpServlet{
 			writer.close();
 		}
 		
-		
+		//orderdetail 테이블에 데이터 입력 완료시
 		if (result2 == productseq.length) {
 			resp.setCharacterEncoding("UTF-8");
 			PrintWriter writer = resp.getWriter();

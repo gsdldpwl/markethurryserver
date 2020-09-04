@@ -9,6 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * @author 신수진
+ * 마이페이지 > 회원정보수정 > 비밀번호 확인 정보 전달 서블릿
+ */
 @WebServlet("/user/mypage/info_pwcheckok.do")
 public class Info_PwcheckOk extends HttpServlet {
 	

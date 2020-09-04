@@ -9,6 +9,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
+/**
+ * 나만의 레시피의 댓글 구현 부분에서 댓글 삭제를 구현하는 클래스입니다.
+ * @author 장소진
+ *
+ */
 @WebServlet("/user/myrecipe/deletecomment.do")
 public class DeleteComment extends HttpServlet {
 	

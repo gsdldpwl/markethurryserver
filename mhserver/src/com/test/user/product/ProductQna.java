@@ -9,6 +9,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * @author 이예지
+ * 상품 상세페이지 - 상품문의 관련
+ *
+ */
 @WebServlet("/user/product/productqna.do")
 public class ProductQna extends HttpServlet{
 	

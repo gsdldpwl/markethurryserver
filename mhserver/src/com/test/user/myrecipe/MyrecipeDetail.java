@@ -14,6 +14,12 @@ import javax.servlet.http.HttpSession;
 
 import com.test.user.product.ProductlistDTO;
 
+
+/**
+ * 나만의 레시피의 세부 페이지를 나타내며, myrecipedetail.jsp와 연동시키는 클래스 입니다.
+ * @author 장소진
+ *
+ */
 @WebServlet("/user/myrecipe/myrecipedetail.do")
 public class MyrecipeDetail extends HttpServlet {
 		

@@ -12,6 +12,10 @@ import java.util.HashMap;
 
 import com.test.user.main.DBUtil;
 
+/**
+ * @author 정희수
+ *주문서에 들어갈 회원 정보를 가져오고 주문 완료 된 데이터를 DB에 보내는 작업을 하는 DAO클래스입니다.
+ */
 public class OrderPageDAO {
 
 	private Connection conn;

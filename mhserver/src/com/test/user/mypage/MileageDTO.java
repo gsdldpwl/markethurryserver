@@ -1,5 +1,9 @@
 package com.test.user.mypage;
 
+/**
+ * @author 신수진
+ * 마일리지 DTO
+ */
 public class MileageDTO {
 
 	private int category;

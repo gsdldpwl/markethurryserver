@@ -9,6 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * @author 신수진
+ * 마이페이지 > 상품후기 > 상품후기 삭제 서블릿
+ */
 @WebServlet("/user/mypage/review_delete.do")
 public class Review_Delete extends HttpServlet {
 	

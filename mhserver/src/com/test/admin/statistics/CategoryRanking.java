@@ -10,6 +10,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * @author 이예지
+ * 관리자 - 통계관리에서 상품분류별 판매순위 페이지
+ *
+ */
 @WebServlet("/admin/statistics/categoryranking.do")
 public class CategoryRanking extends HttpServlet {
 	

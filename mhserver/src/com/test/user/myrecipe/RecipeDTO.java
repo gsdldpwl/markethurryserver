@@ -1,6 +1,11 @@
 package com.test.user.myrecipe;
 
 
+/**
+ * 나만의 레시피에서 필요한 receipe 데이터들을 불러오는 클래스입니다.
+ * @author 장소진
+ *
+ */
 public class RecipeDTO {
 
 	private String seq; //레피시seq

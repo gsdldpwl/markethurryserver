@@ -1,5 +1,9 @@
 package com.test.user.mypage;
 
+/**
+ * @author 신수진
+ * 주문목록 DTO
+ */
 public class OrderListDTO {
 	
 	private String dseq;	//배송번호

@@ -14,6 +14,10 @@ import javax.servlet.http.HttpSession;
 import com.test.user.event.EventDTO_lh;
 import com.test.user.product.ProductlistDTO;
 
+/**
+ * @author leeho
+ * 마켓허리 메인 홈페이지 화면 클래스
+ */
 @WebServlet("/user/main/main.do")
 public class main extends HttpServlet {
 	

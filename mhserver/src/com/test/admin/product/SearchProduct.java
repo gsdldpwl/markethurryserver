@@ -12,6 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
+/**
+ * @author 이예지
+ * 관리자 - 상품조회
+ */
 @WebServlet("/admin/product/searchproduct.do")
 public class SearchProduct extends HttpServlet {
    
@@ -37,20 +41,9 @@ public class SearchProduct extends HttpServlet {
       ProductDAO dao = new ProductDAO();
       
       
-      ArrayList<ProductDTO> list = dao.searchproduct(map, startprice, endprice);
+      ArrayList<ProductDTO> list = dao.searchproduct(map);
       
-      
-//      for (ProductDTO dto : list) {
-//         
-//         if (search != null && search != "") { //d. 검색어 부각시키기 // - 제목 
-//              String title = dto.getTitle(); 
-//              title = title.replace(search, "<span style='font-weight:bold;color:tomato;'>" + search + "</span>");
-//              dto.setTitle(title); 
-//         }
-//         
-//         
-//      }
-      
+   
       
       req.setAttribute("list", list);
       req.setAttribute("search", search);

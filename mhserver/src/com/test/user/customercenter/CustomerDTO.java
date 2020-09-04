@@ -1,5 +1,10 @@
 package com.test.user.customercenter;
 
+/**
+ * @author 이예지
+ * 고객센터 - 공지사항 관련
+ *
+ */
 public class CustomerDTO {
 	
 

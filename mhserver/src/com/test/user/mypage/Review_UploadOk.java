@@ -9,6 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * @author 신수진
+ * 마이페이지 > 상품후기 > 상품후기 등록 확인 서블릿
+ */
 @WebServlet("/user/mypage/review_uploadok.do")
 public class Review_UploadOk extends HttpServlet {
 	

@@ -10,6 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
+/**
+ * @author leeho
+ * 회원가입 이메일 중복 체크
+ */
 @WebServlet("/user/main/registeremialcheck.do")
 public class RegisterEmailcheck extends HttpServlet {
 	
@@ -17,9 +21,10 @@ public class RegisterEmailcheck extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		String email = req.getParameter("email");
-		System.out.println(email);
 		
 		MainDAO dao = new MainDAO();
+		
+		// 이메일 중복체크
 		int result = dao.emailCheck(email);
 		
 		PrintWriter writer = resp.getWriter();

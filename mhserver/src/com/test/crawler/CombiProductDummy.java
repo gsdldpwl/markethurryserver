@@ -6,6 +6,10 @@ import java.util.Random;
 
 import com.test.user.main.DBUtil;
 
+/**
+ * @author leeho
+ * 묶음상품 더미 데이터
+ */
 public class CombiProductDummy {
 
 	public static void main(String[] args) {
@@ -17,8 +21,6 @@ public class CombiProductDummy {
 		for(int i=1; i<=96; i++) {
 			PreparedStatement stat = null;
 			for(int j=0; j<rnd.nextInt(8)+5; j++) {
-//				System.out.println(i);
-//				System.out.println(rnd.nextInt(891)+1);
 				try {
 					String sql = "insert into combiProduct values (seqcombiProduct.nextVal, ?,?, default)";
 					stat = conn.prepareStatement(sql);

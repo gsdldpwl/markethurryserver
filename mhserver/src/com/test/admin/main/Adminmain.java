@@ -9,6 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * @author leeho
+ * 관리자 메인 호출 서블릿
+ */
 @WebServlet("/admin/main/adminmain.do")
 public class Adminmain extends HttpServlet {
 	

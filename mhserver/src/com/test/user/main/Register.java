@@ -9,6 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * @author leeho
+ * 회원가입
+ */
 @WebServlet("/user/main/register.do")
 public class Register extends HttpServlet {
 	

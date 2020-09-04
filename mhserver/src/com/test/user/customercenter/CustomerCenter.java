@@ -13,6 +13,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+/**
+ * @author 이예지
+ * 유저 - 고객센터(공지사항 리스트) 페이지
+ *
+ */
 @WebServlet("/user/customercenter/customercenter.do")
 public class CustomerCenter extends HttpServlet{
 	

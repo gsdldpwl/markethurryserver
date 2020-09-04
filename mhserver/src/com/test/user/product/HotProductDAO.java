@@ -10,6 +10,10 @@ import java.util.ArrayList;
 
 import com.test.user.main.DBUtil;
 
+/**
+ * @author ks008
+ * product테이블에 접근하기 위한 객체입니다.
+ */
 public class HotProductDAO {
 	
 	private Connection conn;
@@ -29,7 +33,11 @@ public class HotProductDAO {
 			e.printStackTrace();
 		}
 	}
-
+	
+	/**
+	 * @author ks008
+	 * 인기상품을 조회하는 메소드입니다.
+	 */
 	public ArrayList<ProductDTO> Hotlist() {
 		
 		DecimalFormat formatter = new DecimalFormat("###,###");

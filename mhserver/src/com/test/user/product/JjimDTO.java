@@ -1,5 +1,10 @@
 package com.test.user.product;
 
+/**
+ * @author 이예지
+ * 상품의 찜 목록과 관련됨
+ *
+ */
 public class JjimDTO {
 
 	private String seq;

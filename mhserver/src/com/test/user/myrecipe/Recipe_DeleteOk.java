@@ -11,6 +11,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 
+/**
+ * 나만의 레시피에서 게시글을 삭제 버튼 클릭 시 DB와 연동시키는 클래스 입니다.
+ * @author 장소진
+ *
+ */
 @WebServlet("/user/mypage/recipe_deleteok.do")
 public class Recipe_DeleteOk extends HttpServlet {
 	

@@ -9,6 +9,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+/**
+ * @author leeho
+ * 장바구니 데이터 +,-,삭제 서블릿
+ */
 @WebServlet("/user/product/shoppingbasketok.do")
 public class ShoppingbasketOk extends HttpServlet {
 	

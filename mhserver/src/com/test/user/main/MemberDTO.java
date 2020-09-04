@@ -1,5 +1,9 @@
 package com.test.user.main;
 
+/**
+ * @author leeho
+ * 회원 DTO
+ */
 public class MemberDTO {
 
 	private String seq;

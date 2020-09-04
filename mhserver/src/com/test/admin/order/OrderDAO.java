@@ -11,6 +11,10 @@ import java.util.HashMap;
 import com.test.user.main.DBUtil;
 import com.test.user.main.MemberDTO;
 
+/**
+ * @author leeho
+ * 주문관리 DAO 객체입니다.
+ */
 public class OrderDAO {
 	
 	private Connection conn;
@@ -31,6 +35,14 @@ public class OrderDAO {
 		}
 	}
 
+	/**
+	 * @param word : 사용자가 입력한 검색어
+	 * @param startdate : 검색 시작날짜
+	 * @param enddate : 검색 종료날짜
+	 * @param flag : 카테고리
+	 * @param map : begin,end 들어가 있는 DTO
+	 * @return 주문 DTO가 담겨있는 arraylist
+	 */
 	public ArrayList<OrderListDTO> getOrderlist(String word, String startdate, String enddate, int flag, HashMap<String, String> map) {
 		try {
 			boolean wordflag = false;

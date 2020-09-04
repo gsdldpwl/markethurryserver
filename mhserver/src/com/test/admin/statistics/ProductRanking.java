@@ -16,6 +16,11 @@ import org.json.simple.JSONObject;
 
 import com.test.admin.product.ProductDTO;
 
+/**
+ * @author 이예지
+ * 관리자 - 통계관리 - 판매상품순위
+ *
+ */
 @WebServlet("/admin/statistics/productranking.do")
 public class ProductRanking extends HttpServlet {
 	

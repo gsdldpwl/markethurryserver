@@ -10,6 +10,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
+/**
+ * @author ks008
+ * 알뜰상품을 조회하는 서블릿입니다.
+ */
 @WebServlet("/user/product/cheapproduct.do")
 public class CheapProduct extends HttpServlet {
 

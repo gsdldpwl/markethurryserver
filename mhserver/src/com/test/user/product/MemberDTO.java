@@ -1,5 +1,10 @@
 package com.test.user.product;
 
+/**
+ * @author 이예지
+ * 회원관련 정보들
+ *
+ */
 public class MemberDTO {
 
    private String seq;

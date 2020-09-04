@@ -10,6 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * @author leeho
+ * 1:1 문의 상세 페이지
+ */
 @WebServlet("/user/customercenter/onebyoneanswer.do")
 public class OnebyoneAnswer extends HttpServlet {
 	

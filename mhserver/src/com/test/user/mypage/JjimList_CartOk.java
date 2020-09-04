@@ -8,6 +8,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * @author 신수진
+ * 마이페이지 > 찜목록 > 장바구니 담기 정보 전달 서블릿
+ */
 @WebServlet("/user/mypage/jjimlist_cartok.do")
 public class JjimList_CartOk extends HttpServlet {
 	

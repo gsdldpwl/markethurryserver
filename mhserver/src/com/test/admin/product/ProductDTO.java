@@ -1,5 +1,10 @@
 package com.test.admin.product;
 
+/**
+ * @author 이예지
+ * 관리자 - 상품관련
+ *
+ */
 public class ProductDTO {
 
 	private String seq; //상품번호

@@ -11,6 +11,10 @@ import java.util.HashMap;
 import com.test.user.main.DBUtil;
 import com.test.user.main.MemberDTO;
 
+/**
+ * @author leeho
+ * 고객관리 DAO
+ */
 public class ClientDAO {
 
 	private Connection conn;
@@ -31,6 +35,12 @@ public class ClientDAO {
 		}
 	}
 
+	/**
+	 * @param word : 사용자 입력값
+	 * @param flag : 검색 카테고리
+	 * @param map : 페이징 변수
+	 * @return 일치하는 고객 DTO를 담은 arraylist
+	 */
 	public ArrayList<MemberDTO> getClientlist(String word, int flag, HashMap<String, String> map) {
 
 		try {
@@ -85,6 +95,11 @@ public class ClientDAO {
 		return null;
 	}
 
+	/**
+	 * @param word : 사용자 입력값
+	 * @param flag : 검색 카테고리
+	 * @return 일치하는 검색결과의 갯수
+	 */
 	public int getTotalCount(String word, int flag) {
 		try {
 			String sql = "select count(*) as cnt from member where ";

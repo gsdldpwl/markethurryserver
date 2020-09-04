@@ -11,6 +11,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+
+/**
+ * 마이페이지의 나만의 레시피 새글 등록에서 사용자가 구매한 목록들을 불러올 수 있도록 DB데이터와 연동을 도와주는 클래스입니다.
+ * @author 장소진
+ *
+ */
 @WebServlet("/myrecipe_choiceFD.do")
 public class Myrecipe_choiceFD extends HttpServlet {
 	

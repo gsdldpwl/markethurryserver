@@ -1,5 +1,9 @@
 package com.test.user.product;
 
+/**
+ * @author leeho
+ * 레시피 DTO
+ */
 public class RecipeDTO {
 
 	private String seq;

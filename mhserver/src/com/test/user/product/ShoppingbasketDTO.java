@@ -1,5 +1,9 @@
 package com.test.user.product;
 
+/**
+ * @author leeho
+ * 장바구니 DTO
+ */
 public class ShoppingbasketDTO {
 	
 	private String seq;

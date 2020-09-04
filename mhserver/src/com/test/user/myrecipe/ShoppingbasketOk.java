@@ -11,6 +11,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+
+/**
+ * 나만의 레시피의 묶음상품에서 장바구니 담기를 클릭했을 때 cart 데이터로 보내기를 위임하기 위한 클래스입니다.
+ * @author 장소진
+ *
+ */
 @WebServlet("/user/myrecipe/enrollcombiproduct.do")
 public class ShoppingbasketOk extends HttpServlet {
 

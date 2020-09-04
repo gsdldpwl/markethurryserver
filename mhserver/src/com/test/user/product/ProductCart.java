@@ -10,6 +10,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+/**
+ * @author 이예지
+ * 상품 상세페이지에서 사용하는 장바구니 관련
+ * 넣으려는 상품이 DB에 존재하는지 확인 후 쿼리를 나눠 실행
+ */
 @WebServlet("/user/product/productcart.do")
 public class ProductCart extends HttpServlet {
 
@@ -20,11 +25,9 @@ public class ProductCart extends HttpServlet {
 		
 		// 상품번호 및 데이터
 		String seq = req.getParameter("seq");
-//		String mseq = req.getParameter("mseq");
 		String mseq = ((String)session.getAttribute("seq"));
 		String pseq = req.getParameter("pseq");
 		String qty = req.getParameter("qty");
-//		String regdate = req.getParameter("regdate");
 
 		// setter
 		CartDTO cdto = new CartDTO();
@@ -32,7 +35,6 @@ public class ProductCart extends HttpServlet {
 		cdto.setMseq(mseq);
 		cdto.setPseq(pseq);
 		cdto.setQty(qty);
-//		cdto.setRegdate(regdate);
 
 		// 넣으려는 상품이 DB에 존재하는지를 검사
 		ProductDAO dao = new ProductDAO();

@@ -14,6 +14,12 @@ import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
 
+
+/**
+ * 나만의 레시피에서 댓글을 남길 시 댓글을 DB와 연동시키는 클래스 입니다.
+ * @author 장소진
+ *
+ */
 @WebServlet("/user/myrecipe/myrecipecommentok.do")
 public class MyrecipeCommentOk extends HttpServlet {
 	

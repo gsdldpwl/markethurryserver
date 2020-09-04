@@ -13,6 +13,10 @@ import java.util.HashMap;
 import com.test.user.main.DBUtil;
 
 
+/**
+ * @author 정희수
+ *상품 목록에서 상품 이름,가격, 설명 등을 가져오고 카테고리 별 정렬, 페이징하는 DB를 가져오는 클래스입니다.
+ */
 public class ProductlistDAO {
 
 	private Connection conn;
@@ -36,6 +40,7 @@ public class ProductlistDAO {
 		}
 	}
 
+	
 	//Productlist 서블릿 -> 상품목록 주세요.
 	public ArrayList<ProductlistDTO> list(HashMap<String, String> map) {
 		//상품목록 받으러왔습니다.
@@ -84,14 +89,13 @@ public class ProductlistDAO {
 
 	
 	
+	/** 카테고리 별 상품 갯수 가져오기
+	 * @param map : 카테고리 데이터를 담고있는 hashmap
+	 * @return 검색된 상품의 갯수
+	 */
 	public int getTotalCount(HashMap<String, String> map) {
 		 try {
-			 //String where ="";
 			
-			   //if(map.get("seq") != null) {
-				   //where =String.format("where (name like '%%%s%%' or  subject like '%%%s%%' or content like '%%%s%%')",map.get("search"),map.get("search"),map.get("search"));
-				   
-			   //}
 								 
 			 String sql ="select count(*) as cnt from product where category="+map.get("category");
 			 stat = conn.createStatement();
@@ -108,6 +112,13 @@ public class ProductlistDAO {
 		return 0;
 	}
 
+	
+	//상품 정보 가져오기 + 상품 페이징하기
+	/**
+	 * @param search : 검색어
+	 * @param map : 페이징 시작, 끝 번호
+	 * @return 검색된 상품 DTO를 담은 arraylist
+	 */
 	public ArrayList<ProductlistDTO> getSearchedList(String search,HashMap<String, Integer> map) {
 		
 		try {
@@ -140,6 +151,12 @@ public class ProductlistDAO {
 		return null;
 	}
 
+	
+	
+	/**
+	 * @param search: 검색어
+	 * @return 검색된 상품의 갯수
+	 */
 	public int getTotalCountOfSearch(String search) {
 
 		try {
@@ -162,6 +179,12 @@ public class ProductlistDAO {
 		return 0;
 	}
 
+	
+	//장바구니 목록 가져오기
+	/**
+	 * @param mseq : 회원 seq
+	 * @return : 장바구니 상품 DTO를 담고있는 arraylist
+	 */
 	public ArrayList<ShoppingbasketDTO> getShoppingbasketlist(String mseq) {
 		
 		try {
@@ -192,6 +215,11 @@ public class ProductlistDAO {
 		return null;
 	}
 
+	
+	/**
+	 * @param mseq : 회원 seq
+	 * @return 해당 회원의 할인율
+	 */
 	public double getSalesPercentage(String mseq) {
 		
 		try {

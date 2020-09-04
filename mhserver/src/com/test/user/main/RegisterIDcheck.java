@@ -10,6 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
+/**
+ * @author leeho
+ * 회원가입 아이디 중복체크
+ */
 @WebServlet("/user/main/registeridcheck.do")
 public class RegisterIDcheck extends HttpServlet {
 	

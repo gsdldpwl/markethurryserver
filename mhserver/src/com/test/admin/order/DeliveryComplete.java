@@ -9,6 +9,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
+/**
+ * @author ks008
+ * 배송완료된 것을 조회하는 서블릿입니다.
+ */
 @WebServlet("/admin/order/deliverycomplete.do")
 public class DeliveryComplete extends HttpServlet {
 	

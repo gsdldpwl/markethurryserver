@@ -11,13 +11,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+/**
+ * @author leeho
+ * 1:1 문의 작성 
+ */
 @WebServlet("/user/customercenter/onebyoneinquiry.do")
 public class OnebyoneInquiry extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		HttpSession session = req.getSession();
-		//(!gnhdy596
+		
+		// 로그인 상태인 경우 1:1 문의 창으로 이동
 		if(session.getAttribute("seq") != null) {
 			
 			CustomercenterDAO dao = new CustomercenterDAO();
@@ -29,7 +34,9 @@ public class OnebyoneInquiry extends HttpServlet {
 			RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/user/customercenter/onebyoneinquiry.jsp");
 			dispatcher.forward(req, resp);
 			
-		} else {
+		} 
+		// 비로그인 시 안내창과 함께 로그인 페이지로 이동
+		else {
 			resp.setCharacterEncoding("UTF-8");
 			PrintWriter writer = resp.getWriter();
 			writer.print("<html>");

@@ -10,6 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * @author 신수진
+ * 마이페이지 > 주문목록 > 주문 상세 페이지
+ */
 @WebServlet("/user/mypage/orderdetaillist.do")
 public class OrderDetailList extends HttpServlet {
 	

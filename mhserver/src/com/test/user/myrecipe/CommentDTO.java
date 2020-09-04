@@ -1,5 +1,10 @@
 package com.test.user.myrecipe;
 
+/**
+ * 나만의 레시피의 댓글 구현 부분에서 commentrecipe 데이터를 불러오는 클래스입니다.
+ * @author 장소진
+ *
+ */
 public class CommentDTO {
 
 	private String seq;

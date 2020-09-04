@@ -13,6 +13,13 @@ import javax.servlet.http.HttpSession;
 import com.test.user.myrecipe.RecipeDAO;
 import com.test.user.myrecipe.RecipeDTO;
 
+
+
+/**
+ * 마이페이지의 나만의 레시피 수정에서 DB와 연동을 할 수 있도록 도와주는 클래스 입니다.
+ * @author 장소진
+ *
+ */
 @WebServlet("/user/mypage/myrecipeeditok.do")
 public class MyRecipe_EditOk extends HttpServlet {
 

@@ -11,6 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+/**
+ * @author leeho
+ * 1:1 문의 작성 시 주문번호를 선택하는 팝업 페이지를 띄우는 서블릿
+ */
 @WebServlet("/user/customercenter/orderlistpopup.do")
 public class OnebyoneInquiryPopup extends HttpServlet {
 	

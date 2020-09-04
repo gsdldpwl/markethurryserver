@@ -11,6 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+/**
+ * @author 신수진
+ * 마이페이지 > 마일리지 > 마일리지 페이지
+ */
 @WebServlet("/user/mypage/mileage.do")
 public class Mileage extends HttpServlet {
 	

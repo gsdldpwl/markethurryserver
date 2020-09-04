@@ -12,6 +12,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.test.user.product.ProductDTO;
 
+
+/**
+ * @author ks008
+ * 이벤트 상품 목록을 조회하는 서블릿입니다.
+ */
 @WebServlet("/user/event/eventlist.do")
 public class EventList extends HttpServlet {
 

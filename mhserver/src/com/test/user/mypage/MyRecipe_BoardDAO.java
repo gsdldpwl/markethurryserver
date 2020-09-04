@@ -9,6 +9,12 @@ import java.util.ArrayList;
 import com.test.user.main.DBUtil;
 import com.test.user.myrecipe.RecipeDTO;
 
+
+/**
+ * 마이페이지의 나만의 레시피 새글 올리기와 수정, 삭제에 관해 쿼리문을 통해 DB작업을 실행시키는 클래스입니다.
+ * @author 장소진
+ *
+ */
 public class MyRecipe_BoardDAO {
 
 	private Connection conn;

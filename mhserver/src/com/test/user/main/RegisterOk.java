@@ -11,6 +11,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * @author leeho
+ * 사용자가 입력한 값들이 이상없는지 확인
+ */
 @WebServlet("/user/main/registerok.do")
 public class RegisterOk extends HttpServlet{
 	
@@ -19,7 +23,6 @@ public class RegisterOk extends HttpServlet{
 		
 		req.setCharacterEncoding("UTF-8");
 		MainDAO dao = new MainDAO();
-		
 		
 		String id = req.getParameter("id");
 		String pw = req.getParameter("pw");
@@ -64,6 +67,7 @@ public class RegisterOk extends HttpServlet{
 		PrintWriter writer= resp.getWriter();
 		resp.setCharacterEncoding("UTF-8");
 		
+		// 회원가입 성공 시 메인 화면으로 이동
 		if(result == 1 ) {
 			writer.print("<html>"); 
 			writer.print("<body>");
@@ -74,7 +78,7 @@ public class RegisterOk extends HttpServlet{
 			writer.print("</html>");
 			writer.close();
 		} else {
-			// 회원가입 실패
+			// 회원가입 실패 시 알림창
 			writer.print("<html>");
 			writer.print("<head>");
 			writer.print("<meta charset='UTF-8'>");

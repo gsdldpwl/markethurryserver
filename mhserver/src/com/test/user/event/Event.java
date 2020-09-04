@@ -10,6 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * @author ks008
+ * 이벤트 베너와 이벤트 상품을 조회하는 서블릿입니다.
+ */
 @WebServlet("/user/event/event.do")
 public class Event extends HttpServlet {
 	

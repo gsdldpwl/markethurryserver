@@ -11,16 +11,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+/**
+ * @author 신수진
+ * 마이페이지 > 주문목록 > 주문 페이지
+ */
 @WebServlet("/user/mypage/orderlist.do")
 public class OrderList extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		// 연결 후에 주석 풀기!!!!!!!!!!!
-//		HttpSession session = req.getSession();
-//		session.getAttribute("dto");
-		
 		//orderlist.do
 		//orderlist.do?year=2020
 		// ## 셀렉트 박스로 기간 검색 선택 했을 경우를 위해 ##

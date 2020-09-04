@@ -1,5 +1,9 @@
 package com.test.user.event;
 
+/**
+ * @author leeho
+ * 이벤트 DTO 객체
+ */
 public class EventDTO_lh {
 	private String seq;
 	private String adminseq;

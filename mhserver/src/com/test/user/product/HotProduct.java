@@ -10,6 +10,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
+/**
+ * @author ks008
+ * 인기상품을 조회하는 서블릿입니다.
+ */
 @WebServlet("/user/product/hotproduct.do")
 public class HotProduct extends HttpServlet {
 

@@ -8,6 +8,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * @author 신수진
+ * 마이페이지 > 회원정보수정 > 정보 수정 확인 서블릿
+ */
 @WebServlet("/user/mypage/info_modifyok.do")
 public class Info_ModifyOk extends HttpServlet {
 	

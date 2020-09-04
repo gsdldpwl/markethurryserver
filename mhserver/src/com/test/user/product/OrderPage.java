@@ -16,6 +16,10 @@ import org.json.simple.JSONArray;
 
 import com.test.user.mypage.MypageDAO;
 
+/**
+ * @author 정희수
+ *장바구니에서 선택한 상품을 주문하는 클래스입니다.
+ */
 @WebServlet("/user/product/orderpage.do")
 public class OrderPage extends HttpServlet{
 	@Override
@@ -32,8 +36,10 @@ public class OrderPage extends HttpServlet{
 		String salesprice = req.getParameter("slPrice");
 		String finalprice = req.getParameter("flprice");
 		
+		
 		// 세션이 있다면 그 세션에 들어있는 회원번호를 request 객체에 넘겨주기
 		String mseq = (String) session.getAttribute("seq");
+		
 		
 		// 체크된 상품들을 가져온다.
 		// seq, 이름, 가격, 수량

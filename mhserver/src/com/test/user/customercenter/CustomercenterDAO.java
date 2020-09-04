@@ -9,6 +9,10 @@ import java.util.ArrayList;
 
 import com.test.user.main.DBUtil;
 
+/**
+ * @author leeho
+ * 고객센터 메뉴 관련 DAO
+ */
 public class CustomercenterDAO {
 
 	private Connection conn;
@@ -16,6 +20,9 @@ public class CustomercenterDAO {
 	private PreparedStatement pstat;
 	private ResultSet rs;
 
+	/**
+	 * 데이터베이스 연결
+	 */
 	public CustomercenterDAO() {
 
 		DBUtil util = new DBUtil();
@@ -23,6 +30,9 @@ public class CustomercenterDAO {
 
 	}
 
+	/**
+	 * 데이터베이스 연결 종료
+	 */
 	public void close() {
 		try {
 			conn.close();
@@ -31,6 +41,10 @@ public class CustomercenterDAO {
 		}
 	}
 
+	/**
+	 * @param seq : 사용자 seq
+	 * @return 일치하는 1:1문의 DTO를 담은 arraylist
+	 */
 	public ArrayList<OnebyoneDTO> getOBOList(String seq) {
 
 		try {
@@ -66,6 +80,10 @@ public class CustomercenterDAO {
 		return null;
 	}
 
+	/**
+	 * @param seq : 사용자 seq
+	 * @return seq와 일치하는 1:1 DTO
+	 */
 	public OnebyoneDTO get(String seq) {
 
 		try {
@@ -101,6 +119,10 @@ public class CustomercenterDAO {
 		return null;
 	}
 
+	/**
+	 * @param seq : 사용자 seq
+	 * @return 사용자가 구매했던 주문 DTO를 담은 arraylist
+	 */
 	public ArrayList<OnebyoneInquiryDTO> getOBOOrderlist(String seq) {
 		
 		try {
@@ -129,6 +151,14 @@ public class CustomercenterDAO {
 		return null;
 	}
 
+	/**
+	 * @param category : 1:1문의 종류
+	 * @param orderseq : 주문번호
+	 * @param content : 내용
+	 * @param mseq : 멤버 seq 
+	 * @param title : 제목
+	 * @return 작성 성공 여부
+	 */
 	public int insertOBOInquiry(String category, String orderseq, String content, String mseq, String title) {
 		
 		try {

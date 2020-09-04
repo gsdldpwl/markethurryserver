@@ -10,6 +10,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+/**
+ * @author 이예지
+ * 상품 상세페이지 - 상품문의 관련
+ *
+ */
 @WebServlet("/user/product/productqnaok.do")
 public class ProductQnaOk extends HttpServlet{
 
@@ -23,7 +28,6 @@ public class ProductQnaOk extends HttpServlet{
 		
 		String title = req.getParameter("title");
 		String content = req.getParameter("content");
-		//String mseq = ((String)session.getAttribute("seq")); //
 		String mseq = String.valueOf(session.getAttribute("seq"));
 		String pseq = req.getParameter("pseq");
 		String img = req.getParameter("img");

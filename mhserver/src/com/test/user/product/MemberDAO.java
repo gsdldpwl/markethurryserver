@@ -8,6 +8,10 @@ import java.sql.Statement;
 
 import com.test.user.main.DBUtil;
 
+/**
+ * @author 이예지
+ * 회원 DAO 객체
+ */
 public class MemberDAO {
 
    private Connection conn;

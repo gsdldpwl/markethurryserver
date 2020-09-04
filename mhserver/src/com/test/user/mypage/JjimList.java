@@ -11,6 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+/**
+ * @author 신수진
+ * 마이페이지 > 찜목록 > 찜목록 페이지
+ */
 @WebServlet("/user/mypage/jjimlist.do")
 public class JjimList extends HttpServlet {
 	

@@ -10,6 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+/**
+ * @author 신수진
+ * 마이페이지 > 다음 달 내 등급 안내 페이지
+ */
 @WebServlet("/user/mypage/membership_next.do")
 public class Membership_Next extends HttpServlet {
 

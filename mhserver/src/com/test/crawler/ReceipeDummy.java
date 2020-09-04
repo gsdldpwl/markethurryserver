@@ -14,6 +14,10 @@ import org.jsoup.select.Elements;
 
 import com.test.user.main.DBUtil;
 
+/**
+ * @author leeho
+ * 마켓컬리 레시피 데이터 크롤러
+ */
 public class ReceipeDummy {
 
 	public static void main(String[] args) {

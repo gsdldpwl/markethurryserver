@@ -9,6 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * @author 신수진
+ * 마이페이지 > 찜목록 > 찜목록 삭제 서블릿
+ */
 @WebServlet("/user/mypage/jjimlist_deleteok.do")
 public class JjimList_DeleteOk extends HttpServlet {
 	

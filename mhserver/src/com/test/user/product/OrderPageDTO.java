@@ -1,5 +1,9 @@
 package com.test.user.product;
 
+/**
+ * @author 정희수
+ *주문서에 들어갈 회원정보 + 상품정보를 가져오는 DTO클래스입니다.
+ */
 public class OrderPageDTO {
 
 	private String proname;				//상품 이름

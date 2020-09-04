@@ -13,6 +13,10 @@ import javax.servlet.http.HttpSession;
 import com.test.user.main.MainDAO;
 import com.test.user.main.MemberDTO;
 
+/**
+ * @author leeho
+ * 관리자 로그인 확인 서블릿
+ */
 @WebServlet("/admin/main/adminloginok.do")
 public class AdminLoginOk extends HttpServlet {
 	
@@ -27,10 +31,12 @@ public class AdminLoginOk extends HttpServlet {
 			result = 1;
 		}
 		
-		
+		// 로그인 성공
 		if(result == 1) {
 			resp.sendRedirect("/mh/admin/main/adminmain.do");
-		} else {
+		} 
+		// 로그인 실패
+		else {
 			resp.setCharacterEncoding("UTF-8");
 			PrintWriter writer = resp.getWriter();
 			writer.print("<html>");

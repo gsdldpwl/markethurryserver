@@ -4,19 +4,21 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-//JAVA DOC 주석
+
 /**
- * 
- * @author 홍길동 오라클 연결 클래스입니다.
- * 
+ * @author leeho
+ * 데이터베이스 연결 클래스
  */
 public class DBUtil {
 
 	private Connection conn = null;
-
+	
 	/**
 	 * 서버에 연결합니다.
 	 * 
+	 * @param host 서버 주소
+	 * @param id   계정명
+	 * @param pw   비밀번호
 	 * @return 연결 객체를 반환합니다.
 	 */
 	public Connection open() {
@@ -41,15 +43,6 @@ public class DBUtil {
 		return null;
 
 	}// open
-
-	/**
-	 * 서버에 연결합니다.
-	 * 
-	 * @param host 서버 주소
-	 * @param id   계정명
-	 * @param pw   비밀번호
-	 * @return 연결 객체를 반환합니다.
-	 */
 
 	/**
 	 * 연결을 종료합니다.

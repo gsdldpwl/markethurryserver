@@ -9,6 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * @author 신수진
+ * 마이페이지 > 회원정보수정 > 정보 수정 페이지
+ */
 @WebServlet("/user/mypage/info_modify.do")
 public class Info_Modify extends HttpServlet {
 

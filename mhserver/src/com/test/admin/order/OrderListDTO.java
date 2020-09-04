@@ -1,7 +1,9 @@
 package com.test.admin.order;
 
-import java.util.ArrayList;
-
+/**
+ * @author leeho
+ * 주문목록 DTO
+ */
 public class OrderListDTO {
 	
 	private String seq;

@@ -12,6 +12,10 @@ import java.util.ArrayList;
 import com.test.user.main.DBUtil;
 import com.test.user.product.ProductDTO;
 
+/**
+ * @author ks008
+ * event테이블에 접근하기 위한 객체입니다.
+ */
 public class EventDAO {
 
 	private Connection conn;
@@ -32,7 +36,10 @@ public class EventDAO {
 		}
 	}
 
-	//event서블릿 -> 이미지 링크
+	/**
+	 * @author ks008
+	 * 이벤트에서 이벤트 베너를 가져오는 메소드입니다.
+	 */
 	public ArrayList<EventDTO> img() {
 
 		try {
@@ -66,7 +73,10 @@ public class EventDAO {
 
 	}
 	
-	//eventlist 서블릿 -> 이벤트 제목
+	/**
+	 * @author ks008
+	 * 이벤트에서 이벤트 제목을 가져오는 메소드입니다.
+	 */
 	public String title(String seq) {
 		
 		try {
@@ -97,7 +107,10 @@ public class EventDAO {
 		
 	}
 
-	//eventlist 서블릿 -> 이벤트 상품 목록
+	/**
+	 * @author ks008
+	 * 이벤트 상품 목록에서 상품 정보를 가져오는 메소드입니다.
+	 */
 	public ArrayList<ProductDTO> list(String seq) {
 
 		// 가격 세자리수 소수점 표기

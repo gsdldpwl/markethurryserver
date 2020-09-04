@@ -12,8 +12,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+
+/**
+ * 나만의 레시피 메인 페이지를 나타내는 페이지이며, myrecipelist.jsp와 연동시키는 클래스 입니다.
+ * @author 장소진 
+ */
 @WebServlet("/user/myrecipe/myrecipelist.do")
 public class Myrecipe extends HttpServlet {
+
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

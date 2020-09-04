@@ -9,6 +9,11 @@ import java.sql.Statement;
 
 import com.test.user.main.DBUtil;
 
+/**
+ * @author 이예지
+ * 상품 상세페이지 - 상품 후기관련
+ *
+ */
 public class ReviewDAO {
 
 	private Connection conn;
@@ -29,6 +34,12 @@ public class ReviewDAO {
 		}
 	}
 
+	
+	/**
+	 * 상품 후기 조회 수 관련 메소드
+	 * @param 후기 번호(글 번호)
+	 * @return 성공 유무에 따라 0 또는 1 반환
+	 */
 	public int plusReviewCount(String reviewSeq) {
 		
 		

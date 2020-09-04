@@ -9,6 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * @author leeho
+ * 관리자 로그인 페이지 호출 서블릿
+ */
 @WebServlet("/admin/main/adminlogin.do")
 public class Adminlogin extends HttpServlet {
 	

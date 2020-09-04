@@ -11,6 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+/**
+ * @author leeho
+ * 1:1 문의 작성 완료 후 데이터베이스에 insert
+ */
 @WebServlet("/user/customercenter/onebyoneinquiryok.do")
 public class OnebyoneInquiryOk extends HttpServlet {
 	
@@ -39,9 +43,12 @@ public class OnebyoneInquiryOk extends HttpServlet {
 		CustomercenterDAO dao = new CustomercenterDAO();
 		int result = dao.insertOBOInquiry(category,orderseq,content,mseq,title);
 		
+		// insert 성공 시 1:1 문의 목록 화면으로 이동
 		if(result == 1) {
 			resp.sendRedirect("/mh/user/customercenter/onebyone.do");
-		} else {
+		} 
+		// 실패 시 알람창, 뒤로가기
+		else {
 			resp.setCharacterEncoding("UTF-8");
 			PrintWriter writer = resp.getWriter();
 			writer.print("<html>");

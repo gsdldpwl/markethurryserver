@@ -12,20 +12,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+/**
+ * @author 정희수
+ * 상품을 카테고리 별로 출력하고 페이징하는 클래스 입니다.
+ *
+ */
 @WebServlet("/user/product/productlist.do")
 public class ProductList extends HttpServlet {
-   @Override
+
+@Override
    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
       
 	   
       
       HttpSession session = req.getSession();
-      String mseq = (String)session.getAttribute("seq");
-      
-      //String mseq = ((String)session.getAttribute("seq"));
-      //목록인지 검색인지? 구분짓기
-      //String search = req.getParameter("search");
-      
+      String mseq = (String)session.getAttribute("seq");  //로그인한 회원 번호 받기
       
       //정렬 기준
       String sort = req.getParameter("sort");//sort정렬
@@ -35,12 +36,12 @@ public class ProductList extends HttpServlet {
       
       
       if (sort == null || sort == "") {
-         sort = "sales"; //기본값
+         sort = "sales"; 		//기본값
          sortname = "인기상품순";
          sortcolor = "on";
       }
         HashMap<String,String> map = new HashMap<String,String>();
-      //map.put("search", search);
+      
       
       //0이면 신상품순, 1번은 인기상품순, 2번 낮은가격순, 3번이 높은가격순
       if (sort.equals("0")) {
@@ -136,9 +137,9 @@ public class ProductList extends HttpServlet {
          pagebar += "</li>";
       }
       
-      //for (int i=1; i<=totalPage; i++) {
+     
+      //페이지 번호
       while (!(loop > blockSize || n > totalPage)) {
-         //페이지 번호
          if (n == nowPage) {
             pagebar += "<li class='active'>";
             pagebar += String.format("<a href=\"#!\">%d</a>", n);
@@ -173,7 +174,7 @@ public class ProductList extends HttpServlet {
       pagebar += "</nav>";
       
       
-      //req.setAttribute("search",search);
+      
       
       req.setAttribute("list",list);
     

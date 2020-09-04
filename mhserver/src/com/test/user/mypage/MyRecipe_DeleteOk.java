@@ -13,6 +13,13 @@ import javax.servlet.http.HttpSession;
 import com.test.user.myrecipe.RecipeDAO;
 import com.test.user.myrecipe.RecipeDTO;
 
+
+
+/**
+ * 마이페이지의 나만의 레시피의 글을 삭제할 수 있도록 DB 데이터와 연동을 도와주는  클래스입니다.
+ * @author 장소진
+ *
+ */
 @WebServlet("/user/mypage/myrecipe_deleteok.do")
 public class MyRecipe_DeleteOk extends HttpServlet {
 	

@@ -14,6 +14,11 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+
+/**
+ * @author ks008
+ * DAO를 통해 받은 데이터들을 jsp파일로 가공해서 보내주는 클래스입니다.
+ */
 @WebServlet("/admin/order/deliveryok.do")
 public class DeliveryOk extends HttpServlet {
 

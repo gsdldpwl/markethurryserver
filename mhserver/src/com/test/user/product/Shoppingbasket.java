@@ -12,6 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+/**
+ * @author leeho
+ * 장바구니 페이지 서블릿
+ */
 @WebServlet("/user/product/shoppingbasket.do")
 public class Shoppingbasket extends HttpServlet{
 	
@@ -21,6 +25,7 @@ public class Shoppingbasket extends HttpServlet{
 		HttpSession session = req.getSession();
 		String mseq = (String) session.getAttribute("seq");
 		
+		// 로그인 
 		if(mseq != null) {
 			
 			ProductlistDAO dao = new ProductlistDAO();
@@ -32,7 +37,9 @@ public class Shoppingbasket extends HttpServlet{
 			req.setAttribute("per", salesper);
 			RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/user/product/shoppingbasket.jsp");
 			dispatcher.forward(req, resp);
-		} else {
+		} 
+		// 비 로그인
+		else {
 			resp.setCharacterEncoding("UTF-8");
 			PrintWriter writer= resp.getWriter();
 			writer.print("<html>");

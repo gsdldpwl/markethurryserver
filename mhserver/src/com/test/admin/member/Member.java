@@ -9,6 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * @author leeho
+ * 관리자 고객관리 페이지
+ */
 @WebServlet("/admin/member/member.do")
 public class Member extends HttpServlet {
 	

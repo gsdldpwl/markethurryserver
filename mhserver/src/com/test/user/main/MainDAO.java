@@ -10,13 +10,21 @@ import java.util.ArrayList;
 import com.test.user.event.EventDTO_lh;
 import com.test.user.product.ProductlistDTO;
 
+/**
+ * @author leeho
+ * 메인 홈페이지를 위한 DAO 객체입니다.
+ */
 public class MainDAO {
 
 	private Connection conn;
 	private Statement stat;
 	private PreparedStatement pstat;
 	private ResultSet rs;
-
+	
+	
+	/**
+	 * 데이터베이스 연결 메소드
+	 */
 	public MainDAO() {
 
 		DBUtil util = new DBUtil();
@@ -24,6 +32,9 @@ public class MainDAO {
 
 	}
 	
+	/**
+	 * 데이터베이스 종료 메소드
+	 */
 	public void close() {
 		try {
 			conn.close();
@@ -32,6 +43,10 @@ public class MainDAO {
 		}
 	}
 
+	/**
+	 * @param dto : 사용자가 로그인 페이지에서 입력한 아이디와  패스워드를 담은 객체
+	 * @return 로그인 성공 여부
+	 */
 	public int loginCheck(MemberDTO dto) {
 		
 		try {
@@ -54,6 +69,11 @@ public class MainDAO {
 		return 0;
 	}
 
+	/** 
+	 * 로그인이 성공된 DTO객체의 id와 같은 레코드를 데이터베이스에 가져오는 메소드
+	 * @param dto : 멤버 객체
+	 * @return 데이터베이스에서 일치하는 데이터를 넣어놓은 DTO 객체
+	 */
 	public MemberDTO setinfo(MemberDTO dto) {
 		try {
 			String sql = "select * from member where id=?";
@@ -81,6 +101,10 @@ public class MainDAO {
 		return null;
 	}
 
+	/** 입력한 아이디 중복검사
+	 * @param id : 사용자가 입력한 아이디
+	 * @return 일치하는 아이디의 갯수, 1 이상 시 중복
+	 */
 	public int idcheck(String id) {
 		
 		try {
@@ -100,6 +124,10 @@ public class MainDAO {
 		return 1;
 	}
 
+	/** 입력한 이메일 중복검사
+	 * @param email : 사용자가 입력한 이메일
+	 * @return 일치하는 이메일의 갯수, 1 이상 시 중복
+	 */
 	public int emailCheck(String email) {
 		
 		try {
@@ -119,10 +147,13 @@ public class MainDAO {
 		return 1;
 	}
 
+	/** 일일 판매량 1~8순위 가져오는 메소드
+	 * @return 1~8순위 상품의 DTO 객체를 담은 arraylist
+	 */
 	public ArrayList<ProductlistDTO> gettodyHotProduct() {
 		
 		try {
-			String sql = "select p.seq as productseq, p.name as name, p.price as price, p.img as img, p.shortdesc as shortdesc from(select rownum, a.* from (select * from orderdetail od inner join orderlist ol on od.orderseq = ol.seq where regdate = '200722' and ol.delflag = 0 order by qty desc)a where rownum <= 8) a inner join product p on a.productseq = p.seq";
+			String sql = "select p.seq as productseq, p.name as name, p.price as price, p.img as img, p.shortdesc as shortdesc from(select rownum, a.* from (select * from orderdetail od inner join orderlist ol on od.orderseq = ol.seq where regdate = sysdate and ol.delflag = 0 order by qty desc)a where rownum <= 8) a inner join product p on a.productseq = p.seq";
 			stat = conn.createStatement();
 			rs = stat.executeQuery(sql);
 			ArrayList<ProductlistDTO> list = new ArrayList<ProductlistDTO>();
@@ -148,6 +179,9 @@ public class MainDAO {
 		return null;
 	}
 
+	/** 최고 판매량 1~8순위 가져오는 메소드
+	 * @return 1~8순위 상품의 DTO 객체를 담은 arraylist
+	 */
 	public ArrayList<ProductlistDTO> getHotProduct() {
 		
 		try {
@@ -175,6 +209,9 @@ public class MainDAO {
 		return null;
 	}
 
+	/** 최저판매량 1~8순위 가져오는 메소드
+	 * @return 1~8순위 상품의 DTO 객체를 담은 arraylist
+	 */
 	public ArrayList<ProductlistDTO> getSalesProduct() {
 
 		try {
@@ -200,7 +237,11 @@ public class MainDAO {
 		}
 		return null;
 	}
-
+	
+	
+	/** 이벤트 중 종료기간이 짧은 이벤트 3개 가져오기
+	 * @return 이벤트 데이터가 담긴 DTO 객체를 담은 arraylist
+	 */
 	public ArrayList<EventDTO_lh> getEventList() {
 		
 		try {
@@ -231,6 +272,10 @@ public class MainDAO {
 		return null;
 	}
 
+	
+	/** 최초 '마켓허리의 추천' 상품 리스트를 가져오는 메소드
+	 * @return 채소 카테고리 8개의 상품 DTO가 담긴 arraylist
+	 */
 	public ArrayList<ProductlistDTO> getRecommendProduct() {
 		
 		try {

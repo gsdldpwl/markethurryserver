@@ -27,6 +27,10 @@ import com.test.user.main.DBUtil;
 
 import org.json.*;
 
+/**
+ * @author leeho
+ * 마켓허리 상품 데이터 크롤러
+ */
 public class ProductDummy {
 
 	public static void main(String[] args) {
@@ -46,7 +50,6 @@ public class ProductDummy {
 		for (int i = 0; i < categoryNumList.length; i++) {
 			// 상품 고유코드가 들어갈 리스트
 			ArrayList<product> goodsList = new ArrayList<product>();
-			System.out.println(categoryNumList[i]);
 			// 한 카테고리의 전체 페이지를 돈다.
 			httpConn.get(categoryNumList[i],
 					String.format("https://api.kurly.com/v1/categories/%s?page_limit=99&page_no=1", categoryNumList[i]),

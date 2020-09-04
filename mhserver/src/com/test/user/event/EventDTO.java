@@ -1,5 +1,9 @@
 package com.test.user.event;
 
+/**
+ * @author ks008
+ * Event테이블과 데이터 교환을 위한 객체입니다.
+ */
 public class EventDTO {
 	
 	private String seq;			//이벤트 seq

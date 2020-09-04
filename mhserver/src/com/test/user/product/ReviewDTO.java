@@ -1,5 +1,10 @@
 package com.test.user.product;
 
+/**
+ * @author 이예지
+ * 상품후기관련, 배송과 회원 관련 정보도 포함
+ *
+ */
 public class ReviewDTO {
 
 	private String seq; //리뷰 번호

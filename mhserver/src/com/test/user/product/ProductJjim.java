@@ -11,6 +11,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+/**
+ * @author 이예지
+ * 상품 상세페이지 - 찜 목록과 관련
+ *
+ */
 @WebServlet("/user/product/productjjim.do")
 public class ProductJjim extends HttpServlet{
 

@@ -10,8 +10,12 @@ import java.util.Random;
 
 import com.test.user.main.DBUtil;
 
+/**
+ * @author leeho
+ * 리뷰 더미데이터 생성
+ */
 public class ReviewDummy {
-	//
+	
 	public static void main(String[] args) {
 		
 		Random rnd = new Random();

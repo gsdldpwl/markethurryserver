@@ -13,6 +13,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.test.user.main.MemberDTO;
 
+/**
+ * @author leeho
+ * 사용자 검색 시 일치하는 목록 가져오는 서블릿
+ */
 @WebServlet("/admin/member/memberok.do")
 public class MemberOk extends HttpServlet {
 	

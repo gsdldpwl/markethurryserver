@@ -1,5 +1,9 @@
 package com.test.admin.order;
 
+/**
+ * @author ks008
+ * Delivery테이블(뷰)과 데이터 교환을 위한 객체입니다.
+ */
 public class DeliveryDTO {
 
 	private String order_regdate;		//주문일(결제일)

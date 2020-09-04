@@ -14,6 +14,11 @@ import javax.servlet.http.HttpSession;
 import com.test.user.customercenter.CustomerDAO;
 import com.test.user.customercenter.CustomerDTO;
 
+/**
+ * @author 이예지
+ * 상품 상세페이지
+ *
+ */
 @WebServlet("/user/product/productdetail.do")
 public class ProductDetail extends HttpServlet{
 	
@@ -32,7 +37,6 @@ public class ProductDetail extends HttpServlet{
 		
 		//적립율..
 		String mseq = ((String)session.getAttribute("seq"));
-		//mseq = "1";
 		dto.setMseq(mseq);
 		
 		

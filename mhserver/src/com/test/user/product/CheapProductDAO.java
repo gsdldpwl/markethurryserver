@@ -11,6 +11,10 @@ import java.util.ArrayList;
 
 import com.test.user.main.DBUtil;
 
+/**
+ * @author ks008
+ * product테이블에 접근하기 위한 객체입니다.
+ */
 public class CheapProductDAO {
 	
 	private Connection conn;
@@ -30,7 +34,11 @@ public class CheapProductDAO {
 			e.printStackTrace();
 		}
 	}
-
+	
+	/**
+	 * @author ks008
+	 * 알뜰상품을 조회하는 메소드입니다.
+	 */
 	public ArrayList<ProductDTO> Cheaplist() {
 		
 		DecimalFormat formatter = new DecimalFormat("###,###");

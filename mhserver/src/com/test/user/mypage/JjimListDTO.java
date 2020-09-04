@@ -1,5 +1,9 @@
 package com.test.user.mypage;
 
+/**
+ * @author 신수진
+ * 찜목록 DTO
+ */
 public class JjimListDTO {
 
 	private String jseq;

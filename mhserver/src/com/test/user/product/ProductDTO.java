@@ -10,7 +10,7 @@ public class ProductDTO {
 	private String img; //상품 이미지
 	
 	private String mseq; //회원번호
-	
+
 	public String getSeq() {
 		return seq;
 	}
@@ -67,9 +67,4 @@ public class ProductDTO {
 		this.mseq = mseq;
 	}
 
-	
-//	
-//	private String name; // 회원이름
-//	private String id;	// 회원아이디
-	
-}
+}// class

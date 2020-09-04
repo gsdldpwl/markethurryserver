@@ -1,5 +1,10 @@
 package com.test.user.product;
 
+/**
+ * @author 이예지
+ * 상품문의와 관련된 클래스
+ *
+ */
 public class InquiryDTO {
 	
 	private String seq;

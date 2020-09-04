@@ -12,12 +12,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * @author leeho
+ * 사용자가 검색한 값과 일치하는 상품 정보를 가져오는 서블릿
+ */
 @WebServlet("/user/product/searchedlist.do")
 public class SearchedList extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+		// 사용자가 입력한 검색값
 		String search = req.getParameter("search");
 
 		// 페이징 처리 관련 변수

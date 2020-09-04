@@ -9,6 +9,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+/**
+ * @author leeho
+ * 로그아웃
+ */
 @WebServlet("/user/main/loginout.do")
 public class Loginout extends HttpServlet {
 	@Override

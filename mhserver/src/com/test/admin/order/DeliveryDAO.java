@@ -13,6 +13,10 @@ import java.util.HashMap;
 import com.test.user.main.DBUtil;
 import com.test.user.event.EventDTO;
 
+/**
+ * @author ks008
+ * Delivery테이블(뷰)에 접근하기 위한 객체입니다.
+ */
 public class DeliveryDAO {
 
 	private Connection conn;
@@ -33,7 +37,10 @@ public class DeliveryDAO {
 		}
 	}
 	
-	//주문번호로만 검색
+	/**
+	 * @author ks008
+	 * 주문번호를 검색하는 메소드입니다.
+	 */
 	public ArrayList<DeliveryDTO> order(String seq) {
 		
 		try {
@@ -76,7 +83,10 @@ public class DeliveryDAO {
 		
 	}
 	
-	//기간으로만 검색
+	/**
+	 * @author ks008
+	 * 기간으로만 검색하는 메소드입니다.
+	 */
 	public ArrayList<DeliveryDTO> date(HashMap<String, String> map) {
 		
 		try {
@@ -120,7 +130,10 @@ public class DeliveryDAO {
 		
 	}
 	
-	//상품명으로 검색
+	/**
+	 * @author ks008
+	 * 상품명으로만 검색하는 메소드입니다.
+	 */
 	public ArrayList<DeliveryDTO> name(String product) {
 		
 		try {
@@ -163,7 +176,10 @@ public class DeliveryDAO {
 		
 	}
 	
-	//분류별로 검색
+	/**
+	 * @author ks008
+	 * 분류별로 검색하는 메소드입니다.
+	 */
 	public ArrayList<DeliveryDTO> category(String category) {
 
 		try {
@@ -197,50 +213,6 @@ public class DeliveryDAO {
 			}
 			
 			return name;
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		return null;
-		
-	}
-	
-	//주문번호, 기간(시작, 끝), 상품명으로 검색
-	public ArrayList<DeliveryDTO> list(HashMap<String, String> map2) {
-		
-		try {
-			//주문번호, 기간(시작, 끝), 상품명 - 포괄 검색			
-			if (map2.get("seq") != null && map2.get("begin") != null && map2.get("end") != null && map2.get("product") != null) {
-				String sql = String.format("select d.*, (select count(*) from vwdelivery where order_seq = %d and product_name like '%%%s%%' and delivery_regdate between '%s' and '%s') as cnt from vwdelivery d where order_seq = %d and product_name like '%%%s%%' and delivery_regdate between '%s' and '%s'", Integer.parseInt(map2.get("seq")), map2.get("product"), map2.get("begin"), map2.get("end"), Integer.parseInt(map2.get("seq")), map2.get("product"), map2.get("begin"), map2.get("end"));
-				
-				stat = conn.createStatement();
-				rs = stat.executeQuery(sql);
-				
-				ArrayList<DeliveryDTO> total = new ArrayList<DeliveryDTO>();
-				
-				//rs -> list 복사
-				while (rs.next()) {
-					//레코드 1줄 -> DeliveryDTO 1개
-					DeliveryDTO dto = new DeliveryDTO();
-					
-					dto.setOrder_regdate(rs.getString("order_regdate"));
-					dto.setOrder_seq(rs.getString("order_seq"));
-					dto.setOrder_name(rs.getString("order_name"));
-					dto.setProduct_name(rs.getString("product_name"));
-					dto.setProduct_qty(rs.getString("product_qty"));
-					dto.setOrder_price(String.format("%,d", rs.getInt("order_price")));
-					dto.setDelivery_category(rs.getString("delivery_category"));
-					dto.setDelivery_status(rs.getString("delivery_status"));
-					dto.setDelivery_regdate(rs.getString("delivery_regdate"));
-					
-					total.add(dto);
-					
-				}//while
-				
-				return total;
-				
-			}//if
 			
 		} catch (Exception e) {
 			e.printStackTrace();

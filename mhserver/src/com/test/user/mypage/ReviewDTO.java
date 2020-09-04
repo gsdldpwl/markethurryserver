@@ -1,5 +1,9 @@
 package com.test.user.mypage;
 
+/**
+ * @author 신수진
+ * 상품후기 DTO
+ */
 public class ReviewDTO {
 
 	private String seq;

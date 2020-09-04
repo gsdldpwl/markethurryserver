@@ -13,6 +13,13 @@ import javax.servlet.http.HttpSession;
 import com.test.user.myrecipe.RecipeDAO;
 import com.test.user.myrecipe.RecipeDTO;
 
+
+
+/**
+ * 마이페이지의 나만의 레시피에서 글을 수정을 구현하도록 하며, myrecipe_edit.jsp와 연결되어 있는 클래스입니다.
+ * @author 장소진
+ *
+ */
 @WebServlet("/user/mypage/myrecipe_edit.do")
 public class MyRecipe_Edit extends HttpServlet {
 

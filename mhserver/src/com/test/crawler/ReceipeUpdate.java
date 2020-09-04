@@ -7,6 +7,10 @@ import java.sql.Statement;
 
 import com.test.user.main.DBUtil;
 
+/**
+ * @author leeho
+ * 레시피 이미지 패스 수정
+ */
 public class ReceipeUpdate {
 
 	public static void main(String[] args) {

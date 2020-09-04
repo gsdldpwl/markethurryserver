@@ -18,14 +18,19 @@ import javax.servlet.http.HttpSession;
 import com.test.user.main.MemberDTO;
 
 
+/**
+ * @author leeho
+ * 1:1문의 목록 가져오기
+ */
 @WebServlet("/user/customercenter/onebyone.do")
 public class Onebyone extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// (!gnhdy596
+		
 		HttpSession session = req.getSession();
 		
+		// 세션에 등록되어있는 사용자의 멤버 seq
 		String seq = (String) session.getAttribute("seq");
 		
 		CustomercenterDAO dao = new CustomercenterDAO();

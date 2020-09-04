@@ -12,6 +12,11 @@ import java.util.HashMap;
 import com.test.user.main.DBUtil;
 import com.test.user.customercenter.CustomerDTO;
 
+/**
+ * @author 이예지
+ * 상품 상세페이지 관련
+ *
+ */
 public class ProductDAO {
 
 	private Connection conn;
@@ -34,6 +39,11 @@ public class ProductDAO {
 	
 	
 	
+	/**
+	 * 상품 번호, 이름, 부제, 내용, 가격, 이미지를 가져오는 기본 메소드
+	 * @param 상품 번호
+	 * @return 해당 상품번호에 맞는 상품 번호, 이름, 부제, 내용, 가격, 이미지를 반환
+	 */
 	public ProductDTO get(String seq) {
 		
 		try {
@@ -72,6 +82,11 @@ public class ProductDAO {
 	
 	
 
+	/**
+	 * 상품 상세페이지의 상품후기
+	 * @param 상품번호
+	 * @return 해당 상품번호에 있는 상품후기를 반환
+	 */
 	public ArrayList<ReviewDTO> getreview(String seq) {
 		
 		
@@ -124,7 +139,11 @@ public class ProductDAO {
 	}
 
 	
-	 void updateReadcount(String seq) {
+	 /**
+	  * 후기 번호를 받아 조회수를 올려주는 메소드
+	  * @param 글 번호(후기)
+	  */
+	void updateReadcount(String seq) {
 		 
 		 try {
 			 
@@ -145,6 +164,11 @@ public class ProductDAO {
 		
 	}
 
+	/**
+	 * 상품 상세페이지에 상품문의 리스트 출력
+	 * @param 상품번호
+	 * @return 해당 상품번호의 상품문의(번호, 제목, 등록일, 내용, 이미지, id, 답변) 반환
+	 */
 	public ArrayList<InquiryDTO> getinquiry(String seq) {
 		
 		try {
@@ -196,6 +220,11 @@ public class ProductDAO {
 
 	
 	
+	/**
+	 * 묶음상품과 관련된 레시피를 가져오는 메소드
+	 * @param 묶음상품 번호
+	 * @return 해당 묶음상품번호와 관련된 레시피번호, 레시피제목, 레시피 이미지를 반환
+	 */
 	public ArrayList<RecipeDTO> getRelativeRecipe(String seq) {
 		
 		try {
@@ -233,7 +262,11 @@ public class ProductDAO {
 	}
 	
 	
-	//Qna쓰는 화면 - 상품명 가져오기
+	/**
+	 * 상품문의 작성 페이지에서 상품명에 사용되는 메소드
+	 * @param 상품번호
+	 * @return 해당 상품번호와 일치하는 상품번호, 상품명 반환
+	 */
 	public ProductDTO productname(String seq) {
 		
 		try {
@@ -267,7 +300,11 @@ public class ProductDAO {
 	}
 	
 	
-	//상품문의 추가
+	/**
+	 * 상품문의 작성 관련 메소드
+	 * @param 상품번호, 회원번호, 제목, 내용, 이미지
+	 * @return insert 성공 유무에 따라 0 또는 1 반환
+	 */
 	public int addqna(InquiryDTO dto) {
 		 
 		 try {
@@ -293,7 +330,12 @@ public class ProductDAO {
 		
 	}
 	
-	//찜목록 추가
+	
+	/**
+	 * 찜목록에 상품 추가
+	 * @param 회원번호, 상품번호
+	 * @return insert 성공 유무에 따라 0 또는 1 반환
+	 */
 	public int addjjim(JjimDTO dto) {
 		
 		try {
@@ -316,6 +358,11 @@ public class ProductDAO {
 	}
 
 	
+	/**
+	 * 장바구니에 상품 추가
+	 * @param 회원번호, 상품번호, 수량
+	 * @return insert 성공 유무에 따라 0 또는 1 반환
+	 */
 	public int addcart(CartDTO cdto) {
 		
 		try {
@@ -338,6 +385,12 @@ public class ProductDAO {
 		return 0;
 	}
 
+	
+	/**
+	 * 장바구니에 같은 상품이 존재하는지 확인하는 메소드
+	 * @param 회원번호, 상품번호
+	 * @return 해당 회원번호, 상품번호를 가진 컬럼 수량 반환
+	 */
 	public int checkexist(CartDTO cdto) {
 		try {
 			String sql = "select count(*) as cnt from shoppingcart where memberseq = ? and productseq=?";
@@ -356,6 +409,13 @@ public class ProductDAO {
 		return 0;
 	}
 
+	
+	
+	/**
+	 * 장바구니에 상품 추가(기존에 상품이 존재하는 경우)
+	 * @param 수량, 회원번호, 상품번호
+	 * @return 0 또는 1 반환
+	 */
 	public int updateCart(CartDTO cdto) {
 		try {
 			String sql = "";
@@ -379,6 +439,11 @@ public class ProductDAO {
 	
 	
 
+	/**
+	 * 찜 목록에 이미 상품이 존재하는지 확인하는 메소드
+	 * @param 회원번호, 상품번호
+	 * @return 해당 회원번호, 상품번호를 가진 컬럼 수량 반환
+	 */
 	public int checkjjim(JjimDTO jdto) {
 		
 		

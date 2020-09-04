@@ -1,5 +1,12 @@
 package com.test.user.mypage;
 
+
+
+/**
+ * receipe 테이블의 데이터를 불러 오기위한 클래스입니다.
+ * @author 장소진
+ *
+ */
 public class MyRecipeDTO {
 	
 	private String seq;

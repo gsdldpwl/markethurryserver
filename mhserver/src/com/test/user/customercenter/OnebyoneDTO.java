@@ -1,5 +1,9 @@
 package com.test.user.customercenter;
 
+/**
+ * @author leeho
+ * 1:1 문의 DTO
+ */
 public class OnebyoneDTO {
 	
 	private String seq;

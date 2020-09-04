@@ -15,6 +15,10 @@ import javax.servlet.http.HttpSession;
 import com.test.user.main.MemberDAO;
 import com.test.user.main.MemberDTO;
 
+/**
+ * @author 신수진
+ * 마이페이지 > 상단 회원 정보 바 include page 서블릿
+ */
 @WebServlet("/user/mypage/mypage_cinfo.do")
 public class Mypage_Cinfo extends HttpServlet {
 	

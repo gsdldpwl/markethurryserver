@@ -12,6 +12,13 @@ import javax.servlet.http.HttpSession;
 
 import com.test.user.myrecipe.RecipeDTO;
 
+
+
+/**
+ * 마이페이지의 나만의 레시피에서 새글 등록시 DB와 연결을 도와주는 클래스입니다.
+ * @author 장소진
+ *
+ */
 @WebServlet("/user/mypage/myrecipeuploadok.do")
 public class MyRecipe_UploadOk extends HttpServlet {
 

@@ -9,6 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * @author leeho
+ * 도로명 주소 api 활용 
+ */
 @WebServlet("/user/main/addressapi.do")
 public class AddressApi extends HttpServlet {
 	

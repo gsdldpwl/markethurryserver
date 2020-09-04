@@ -13,6 +13,13 @@ import com.test.user.main.DBUtil;
 import com.test.user.product.ProductlistDTO;
 import com.test.user.product.ShoppingbasketDTO;
 
+
+
+/**
+ * 나만의 레시피에서의 DB작업처리가 필요한 쿼리문들을 모아 실행되는 메소드입니다.
+ * @author 장소진
+ *
+ */
 public class RecipeDAO {
 
 	private Connection conn;
